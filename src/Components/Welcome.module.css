@@ -1,0 +1,50 @@
+.head {
+  height: 130px;
+  /* background-color: blue; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* banner 左上角的 svg和 产品名称标识 */
+.leftTop {
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+}
+.title {
+  font-size: 30px;
+  font-weight: lighter;
+}
+.todoSvg {
+  background-image: url(../assets/svg/TODO_INFO.svg);
+  height: 64px;
+  width: 64px;
+}
+
+.background {
+  height: 600px;
+  width: 100vw;
+
+  background-color: tomato;
+}
+.innerImage {
+  height: 600px;
+  width: 1000px;
+  margin: 0 auto;
+  background-image: url(../assets/images/welcome.jpg);
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.white {
+  color: whitesmoke;
+}
+
+.content {
+  padding-left: 2rem;
+  text-align: left;
+}
