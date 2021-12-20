@@ -24,7 +24,7 @@ import Tail from "./Tail";
 export default function Welcome() {
   return (
     <div>
-      <Header></Header>
+      <Header renderedByWelcome={true}></Header>
       <Content></Content>
       <Tail></Tail>
     </div>

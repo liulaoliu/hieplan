@@ -1,0 +1,12 @@
+
+.task_page_container{
+  display: flex;
+}
+
+.sidebar {
+  width: 90px;
+
+  background-color: #353d40;
+  height: 100vh;
+}
+

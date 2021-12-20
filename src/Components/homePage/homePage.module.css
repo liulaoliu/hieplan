@@ -6,6 +6,15 @@
   align-items: center;
 }
 
+ /* 去除a标签的固有样式 */
+.remove_a_style{
+text-decoration: none;
+color:black;
+}
+.remove_a_style:hover{
+  color:black;
+}
+
 /* banner 左上角的 svg和 产品名称标识 */
 .leftTop {
   /* background-color: red; */

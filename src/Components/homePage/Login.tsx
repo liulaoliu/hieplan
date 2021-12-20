@@ -18,7 +18,7 @@ export default function Login(): ReactElement {
         {/* 根据调用Header时传入的参数 来确定 到底渲染什么 
             不准备更改
         */}
-        <Header ></Header>
+        <Header></Header>
       </div>
       {/*  下面是 登录/注册框 */}
       <div className={styles.login_or_registration}>
