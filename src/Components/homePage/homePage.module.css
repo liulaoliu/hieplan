@@ -12,6 +12,10 @@
   display: flex;
   align-items: center;
 }
+
+.rightTop {
+  display: flex;
+}
 .title {
   font-size: 30px;
   font-weight: lighter;
@@ -47,4 +51,45 @@
 .content {
   padding-left: 2rem;
   text-align: left;
+}
+
+/* login 页面的 样式 */
+.login_page {
+  max-width: 80vw;
+}
+
+.login_or_registration {
+  width: 50vw;
+  
+  height: 50vh;
+  margin: 20vh auto;
+  display: flex;
+}
+
+/* 放置不同的图片 */
+.login_or_registration_image {
+  width: 200px;
+  height: 200px;
+  cursor: zoom-in;
+}
+
+.login_image {
+  background-image: url(../../assets/images/loginImage.jpg);
+  background-position: center;
+  width: 200px;
+  height: 200px;
+}
+
+.register_image {
+  background-image: url(../../assets/images/loginImage.jpg);
+  background-position: right;
+  width: 200px;
+  height: 200px;
+}
+
+.form_panel {
+  margin-left: 1rem;
+  width: 20vw;
+  min-width: 20vw;
+  height: 20vh;
 }

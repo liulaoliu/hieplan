@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./homePage.module.css";
 import Header from "./Header";
 import Content from "./Content";
+import Tail from "./Tail";
 
 /**
  * 
@@ -25,11 +26,7 @@ export default function Welcome() {
     <div>
       <Header></Header>
       <Content></Content>
-      <div className="tail">
-        {/* 
-         everyday quote
-         */}
-      </div>
+      <Tail></Tail>
     </div>
   );
 }
