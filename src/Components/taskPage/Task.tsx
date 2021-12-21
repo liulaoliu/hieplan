@@ -8,8 +8,12 @@ import Note from "./Note";
 interface Props {}
 
 export default function Task({}: Props): ReactElement {
+
+
+
+  
   return (
-    <div className={styles.task_page_container}>
+    <div className={styles.task_container}>
       TASK cONTENT
     </div>
   );

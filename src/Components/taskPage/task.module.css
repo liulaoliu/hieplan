@@ -1,5 +1,4 @@
-
-.task_page_container{
+.main_page_container{
   display: flex;
 }
 
@@ -10,3 +9,11 @@
   height: 100vh;
 }
 
+.main_page_content{
+background-color: tomato;
+width: 100%;
+}
+
+.task_container{
+  /* display: flex; */
+}
