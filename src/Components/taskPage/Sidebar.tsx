@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import SidebarAvatar from "./SidebarAvatar";
 import SidebarBlock from "./SidebarBlock";
 import styles from "./task.module.css";
@@ -22,6 +22,23 @@ export default function Sidebar({
   avatarUrl,
   pluginNames,
 }: sidebarProp): ReactElement {
+  //
+  const [currentActiveBlockUrl, setActiveBlockUrl] = useState("");
+
+  // let matchResult=useMatch(currentUrl||"") !== null;
+
+  function handleTest(currentUrl: string) {
+    setActiveBlockUrl(currentUrl);
+  }
+
+  const sidebarRegularBlocks = [
+    ["task", "任务"],
+    ["note", "便签"],
+    ["project", "项目"],
+    ["position", "地点"],
+    ["label", "标签"],
+  ];
+
   return (
     <div className={styles.sidebar}>
       {/*注意，这个区域的头像图片，应该是从服务器拉过来的 **/}
@@ -34,25 +51,45 @@ export default function Sidebar({
       <div
         className={styles.fixed_area_regular_stuff + " " + styles.thinner_line}
       >
-        <SidebarBlock iconUrl="task_icon" word="任务"></SidebarBlock>
-        <SidebarBlock iconUrl="note_icon" word="便签"></SidebarBlock>
-        <SidebarBlock iconUrl="project_icon" word="项目"></SidebarBlock>
-        <SidebarBlock iconUrl="position_icon" word="地点"></SidebarBlock>
-        <SidebarBlock iconUrl="label_icon" word="标签"></SidebarBlock>
+        {sidebarRegularBlocks.map((block, idx) => {
+          return (
+            <SidebarBlock
+              key={idx}
+              handleTest={handleTest}
+              componentRelatedUrl={`main/${block[0]}`}
+              to={block[0]}
+              iconClassName={block[0] + "_icon"}
+              word={block[1]}
+              activeUrl={currentActiveBlockUrl}
+            ></SidebarBlock>
+          );
+        })}
       </div>
 
       <div className={styles.fixed_area_about}>
         <SidebarBlock
-          iconUrl="search_icon"
+       to={"test"}
+          componentRelatedUrl={"test"}
+          handleTest={handleTest}
+          iconClassName="search_icon"
           optionalContainerClassName="fixed_area_container"
+          activeUrl={currentActiveBlockUrl}
         ></SidebarBlock>
         <SidebarBlock
-          iconUrl="message_icon"
+        to={"test"}
+          handleTest={handleTest}
+          componentRelatedUrl={"test"}
+          iconClassName="message_icon"
           optionalContainerClassName="fixed_area_container"
+          activeUrl={currentActiveBlockUrl}
         ></SidebarBlock>
         <SidebarBlock
-          iconUrl="setting_icon"
+        to={"test"}
+          handleTest={handleTest}
+          componentRelatedUrl={"test"}
+          iconClassName="setting_icon"
           optionalContainerClassName="fixed_area_container"
+          activeUrl={currentActiveBlockUrl}
         ></SidebarBlock>
       </div>
     </div>

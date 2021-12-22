@@ -81,7 +81,7 @@ https://zhuanlan.zhihu.com/p/80800239
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 1rem 0;
+  padding: 0.5rem 0;
 }
 .task_icon {
   background-image: url(../../assets/svg/icons_32/task.svg);
@@ -92,6 +92,7 @@ https://zhuanlan.zhihu.com/p/80800239
 .word_color_ddd {
   color: #ddd;
   font-size: 16px;
+  user-select: none;
 }
 
 .note_icon {

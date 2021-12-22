@@ -23,7 +23,7 @@ function App() {
             <Route path="note" element={<Note />} />
             <Route path="project" element={<Project />} />
             <Route path="position" element={<Position />} />
-            <Route path="tag" element={<Tag />} />
+            <Route path="label" element={<Tag />} />
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="registration" element={<Login />} />
