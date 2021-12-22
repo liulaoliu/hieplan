@@ -7,15 +7,12 @@
 
   background-color: #353d40;
   height: 100vh;
+  position: relative;
 }
 
 .main_page_content {
   background-color: tomato;
   width: 100%;
-}
-
-.task_container {
-  /* display: flex; */
 }
 
 /* *sidebar中头像avatar区域的样式 */
@@ -74,4 +71,79 @@ https://zhuanlan.zhihu.com/p/80800239
 .my_personal_stuff {
   color: #a0a9ad;
   font-size: 12px;
+}
+
+/* *styles.fixed_area_regular_stuff  
+ 包含侧边栏的任务、便签、项目 的内容
+*/
+
+.task_like_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1rem 0;
+}
+.task_icon {
+  background-image: url(../../assets/svg/icons_32/task.svg);
+  width: 32px;
+  height: 32px;
+}
+
+.word_color_ddd {
+  color: #ddd;
+  font-size: 16px;
+}
+
+.note_icon {
+  background-image: url(../../assets/svg/icons_32/note.svg);
+  width: 32px;
+  height: 32px;
+}
+.project_icon {
+  background-image: url(../.././assets/svg/icons_32/project.svg);
+  width: 32px;
+  height: 32px;
+}
+
+.position_icon {
+  background-image: url(../.././assets/svg/icons_32/position.svg);
+  width: 32px;
+  height: 32px;
+}
+.label_icon {
+  background-image: url(../.././assets/svg/icons_32/label.svg);
+  width: 32px;
+  height: 32px;
+}
+
+.fixed_area_about {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.fixed_area_container {
+  display: block;
+}
+.search_icon {
+  background-image: url(../.././assets/svg/icons_32/search.svg);
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px;
+  margin: 1rem auto;
+}
+
+.message_icon {
+  background-image: url(../.././assets/svg/icons_32/message.svg);
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  margin: 1rem auto;
+}
+.setting_icon {
+  background-image: url(../.././assets/svg/icons_32/setting.svg);
+  width: 35px;
+  height: 32px;
+  background-repeat: no-repeat;
+  margin: 1rem auto;
 }

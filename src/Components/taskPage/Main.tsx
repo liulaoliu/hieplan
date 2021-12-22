@@ -16,7 +16,7 @@ export default function Main({}: Props): ReactElement {
   return (
     <div>
       <div className={styles.main_page_container}>
-        <div className={styles.sidebar}>
+        <div >
           <Sidebar></Sidebar>
         </div>
         <div className={styles.main_page_content}>

@@ -21,7 +21,7 @@ export default function Sidebar({
   pluginNames,
 }: sidebarProp): ReactElement {
   return (
-    <div>
+    <div className={styles.sidebar}>
       {/*注意，这个区域的头像图片，应该是从服务器拉过来的 **/}
       {/*注意 这个 styles.1+" "+styles.2 ;就这么写!
        这是为了更简单的复用thinner_line 这个样式(完成比1px还细的线)
@@ -45,8 +45,46 @@ export default function Sidebar({
         <div className={styles.my_personal_stuff}>我的私事</div>
       </div>
 
-      <div className="fixed_area_regular_stuff"></div>
-      <div className="fixed_area_about"></div>
+      <div
+        className={styles.fixed_area_regular_stuff + " " + styles.thinner_line}
+      >
+        <div className={styles.task_like_container}>
+          <div className={styles.task_icon}></div>
+          <div className={styles.word_color_ddd}>任务</div>
+        </div>
+        <div className={styles.task_like_container}>
+          <div className={styles.note_icon}></div>
+          <div className={styles.word_color_ddd}>便签</div>
+        </div>
+        <div className={styles.task_like_container}>
+          <div className={styles.project_icon}></div>
+          <div className={styles.word_color_ddd}>项目</div>
+        </div>
+        <div className={styles.task_like_container}>
+          <div className={styles.position_icon}></div>
+          <div className={styles.word_color_ddd}>地点</div>
+        </div>
+        <div className={styles.task_like_container}>
+          <div className={styles.label_icon}></div>
+          <div className={styles.word_color_ddd}>标签</div>
+        </div>
+      </div>
+
+      <div className={styles.fixed_area_about}>
+        <div className={styles.fixed_area_container}>
+          <div className={styles.search_icon}></div>
+        </div>
+
+        <div className={styles.fixed_area_container}>
+          <div className={styles.message_icon}></div>
+        </div>
+
+        <div
+          className={styles.fixed_area_container + " " + styles.thinner_line}
+        >
+          <div className={styles.setting_icon}></div>
+        </div>
+      </div>
     </div>
   );
 }
