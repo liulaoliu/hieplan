@@ -31,12 +31,23 @@ export default function Sidebar({
     setActiveBlockUrl(currentUrl);
   }
 
+  enum containerClassNames {
+    "task_like_container",
+    "fixed_area_container",
+  }
+
   const sidebarRegularBlocks = [
-    ["task", "任务"],
-    ["note", "便签"],
-    ["project", "项目"],
-    ["position", "地点"],
-    ["label", "标签"],
+    ["task", "任务", containerClassNames[0]],
+    ["note", "便签", containerClassNames[0]],
+    ["project", "项目", containerClassNames[0]],
+    ["position", "地点", containerClassNames[0]],
+    ["label", "标签", containerClassNames[0]],
+  ];
+
+  const sidebarFixedAreaBlocks = [
+    ["search", containerClassNames[1]],
+    ["message", containerClassNames[1]],
+    ["setting", containerClassNames[1]],
   ];
 
   return (
@@ -54,6 +65,7 @@ export default function Sidebar({
         {sidebarRegularBlocks.map((block, idx) => {
           return (
             <SidebarBlock
+              containerClassName={block[2]}
               key={idx}
               handleTest={handleTest}
               componentRelatedUrl={`main/${block[0]}`}
@@ -67,7 +79,22 @@ export default function Sidebar({
       </div>
 
       <div className={styles.fixed_area_about}>
-        <SidebarBlock
+      {sidebarFixedAreaBlocks.map((block, idx) => {
+          return (
+            <SidebarBlock
+              containerClassName={block[1]}
+              key={idx}
+              handleTest={handleTest}
+              componentRelatedUrl={`main/${block[0]}`}
+              
+              iconClassName={block[0] + "_icon"}
+              
+              activeUrl={currentActiveBlockUrl}
+            ></SidebarBlock>
+          );
+        })}
+
+        {/* <SidebarBlock
        to={"test"}
           componentRelatedUrl={"test"}
           handleTest={handleTest}
@@ -90,7 +117,7 @@ export default function Sidebar({
           iconClassName="setting_icon"
           optionalContainerClassName="fixed_area_container"
           activeUrl={currentActiveBlockUrl}
-        ></SidebarBlock>
+        ></SidebarBlock> */}
       </div>
     </div>
   );
