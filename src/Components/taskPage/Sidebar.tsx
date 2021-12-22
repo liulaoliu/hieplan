@@ -1,4 +1,6 @@
 import React, { ReactElement } from "react";
+import SidebarAvatar from "./SidebarAvatar";
+import SidebarBlock from "./SidebarBlock";
 import styles from "./task.module.css";
 
 interface sidebarProp {
@@ -27,63 +29,31 @@ export default function Sidebar({
        这是为了更简单的复用thinner_line 这个样式(完成比1px还细的线)
 
       */}
-      <div className={styles.fixed_area_avatar + " " + styles.thinner_line}>
-        <div className={styles.avatar_hexagon_container}>
-          {/* 对 avatarUrl的判断,如果没有传入一个有效的资源地址，
-          那么应该显示默认的图片 ,或者什么都不显示
-          */}
-          <div className={styles.avatar_hexagon_layer1}>
-            <div className={styles.avatar_hexagon_layer2}>
-              {avatarUrl === undefined ? (
-                <div className={styles.dummy_avatar}></div>
-              ) : (
-                <img src={avatarUrl} alt="头像" />
-              )}
-            </div>
-          </div>
-        </div>
-        <div className={styles.my_personal_stuff}>我的私事</div>
-      </div>
+      <SidebarAvatar></SidebarAvatar>
 
       <div
         className={styles.fixed_area_regular_stuff + " " + styles.thinner_line}
       >
-        <div className={styles.task_like_container}>
-          <div className={styles.task_icon}></div>
-          <div className={styles.word_color_ddd}>任务</div>
-        </div>
-        <div className={styles.task_like_container}>
-          <div className={styles.note_icon}></div>
-          <div className={styles.word_color_ddd}>便签</div>
-        </div>
-        <div className={styles.task_like_container}>
-          <div className={styles.project_icon}></div>
-          <div className={styles.word_color_ddd}>项目</div>
-        </div>
-        <div className={styles.task_like_container}>
-          <div className={styles.position_icon}></div>
-          <div className={styles.word_color_ddd}>地点</div>
-        </div>
-        <div className={styles.task_like_container}>
-          <div className={styles.label_icon}></div>
-          <div className={styles.word_color_ddd}>标签</div>
-        </div>
+        <SidebarBlock iconUrl="task_icon" word="任务"></SidebarBlock>
+        <SidebarBlock iconUrl="note_icon" word="便签"></SidebarBlock>
+        <SidebarBlock iconUrl="project_icon" word="项目"></SidebarBlock>
+        <SidebarBlock iconUrl="position_icon" word="地点"></SidebarBlock>
+        <SidebarBlock iconUrl="label_icon" word="标签"></SidebarBlock>
       </div>
 
       <div className={styles.fixed_area_about}>
-        <div className={styles.fixed_area_container}>
-          <div className={styles.search_icon}></div>
-        </div>
-
-        <div className={styles.fixed_area_container}>
-          <div className={styles.message_icon}></div>
-        </div>
-
-        <div
-          className={styles.fixed_area_container + " " + styles.thinner_line}
-        >
-          <div className={styles.setting_icon}></div>
-        </div>
+        <SidebarBlock
+          iconUrl="search_icon"
+          optionalContainerClassName="fixed_area_container"
+        ></SidebarBlock>
+        <SidebarBlock
+          iconUrl="message_icon"
+          optionalContainerClassName="fixed_area_container"
+        ></SidebarBlock>
+        <SidebarBlock
+          iconUrl="setting_icon"
+          optionalContainerClassName="fixed_area_container"
+        ></SidebarBlock>
       </div>
     </div>
   );
