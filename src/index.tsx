@@ -5,6 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import "./Components/taskPage/task.global.css";
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

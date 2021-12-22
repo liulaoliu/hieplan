@@ -15,7 +15,11 @@ export default function SidebarAvatar({
   avatarUrl?: string;
 }): ReactElement {
   return (
-    <div className={styles.fixed_area_avatar + " " + styles.thinner_line}>
+    <div
+      className={
+        styles.fixed_area_avatar + " " + styles.thinner_line +" cursor_pointer"
+      }
+    >
       <div className={styles.avatar_hexagon_container}>
         {/* 对 avatarUrl的判断,如果没有传入一个有效的资源地址，
           那么应该显示默认的图片 ,或者什么都不显示

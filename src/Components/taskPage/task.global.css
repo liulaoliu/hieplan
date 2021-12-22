@@ -1,0 +1,5 @@
+/*  *如果有（需要）跳出css module之外的内容 */
+
+.cursor_pointer {
+  cursor: pointer;
+}
