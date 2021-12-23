@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import SidebarAvatar from "./SidebarAvatar";
 import SidebarBlock from "./SidebarBlock";
+
 import styles from "./task.module.css";
 
 interface sidebarProp {
@@ -22,7 +23,6 @@ export default function Sidebar({
   avatarUrl,
   pluginNames,
 }: sidebarProp): ReactElement {
-  //
   const [currentActiveBlockUrl, setActiveBlockUrl] = useState("");
 
   // let matchResult=useMatch(currentUrl||"") !== null;
@@ -30,13 +30,23 @@ export default function Sidebar({
   function handleTest(currentUrl: string) {
     setActiveBlockUrl(currentUrl);
   }
+  enum containerClassNames {
+    "task_like_container",
+    "fixed_area_container",
+  }
 
   const sidebarRegularBlocks = [
-    ["task", "任务"],
-    ["note", "便签"],
-    ["project", "项目"],
-    ["position", "地点"],
-    ["label", "标签"],
+    ["task", "任务", containerClassNames[0]],
+    ["note", "便签", containerClassNames[0]],
+    ["project", "项目", containerClassNames[0]],
+    ["position", "地点", containerClassNames[0]],
+    ["label", "标签", containerClassNames[0]],
+  ];
+
+  const sidebarFixedAreaBlocks = [
+    ["search", "search", containerClassNames[1]],
+    ["message", undefined, containerClassNames[1]],
+    ["setting", undefined, containerClassNames[1]],
   ];
 
   return (
@@ -54,6 +64,7 @@ export default function Sidebar({
         {sidebarRegularBlocks.map((block, idx) => {
           return (
             <SidebarBlock
+              containerClassName={block[2]}
               key={idx}
               handleTest={handleTest}
               componentRelatedUrl={`main/${block[0]}`}
@@ -65,32 +76,21 @@ export default function Sidebar({
           );
         })}
       </div>
-
+      <div className={styles.optionalPluginPlace}></div>
       <div className={styles.fixed_area_about}>
-        <SidebarBlock
-       to={"test"}
-          componentRelatedUrl={"test"}
-          handleTest={handleTest}
-          iconClassName="search_icon"
-          optionalContainerClassName="fixed_area_container"
-          activeUrl={currentActiveBlockUrl}
-        ></SidebarBlock>
-        <SidebarBlock
-        to={"test"}
-          handleTest={handleTest}
-          componentRelatedUrl={"test"}
-          iconClassName="message_icon"
-          optionalContainerClassName="fixed_area_container"
-          activeUrl={currentActiveBlockUrl}
-        ></SidebarBlock>
-        <SidebarBlock
-        to={"test"}
-          handleTest={handleTest}
-          componentRelatedUrl={"test"}
-          iconClassName="setting_icon"
-          optionalContainerClassName="fixed_area_container"
-          activeUrl={currentActiveBlockUrl}
-        ></SidebarBlock>
+        {sidebarFixedAreaBlocks.map((block, idx) => {
+          return (
+            <SidebarBlock
+              containerClassName={block[2] as string}
+              key={idx}
+              to={block[1] as string}
+              handleTest={handleTest}
+              componentRelatedUrl={`main/${block[0]}`}
+              iconClassName={block[0] + "_icon"}
+              activeUrl={currentActiveBlockUrl}
+            ></SidebarBlock>
+          );
+        })}
       </div>
     </div>
   );
