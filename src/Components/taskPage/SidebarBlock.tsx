@@ -40,18 +40,6 @@ export default function SidebarBlock({
   let resultOfActiveJudgement = activeUrl === componentRelatedUrl;
 
 
-  // debugger
-  // console.log(containerClassName);
-
-  // debugger
-  // console.log(
-  //   "activeUrl",
-  //   activeUrl,
-  //   "componentRelatedUrl",
-  //   componentRelatedUrl,
-  //   "result",
-  //   result
-  // );
 
   return (
     // 2. 根据当前 url （形如 main/xxxx） 判断是否被点击，被点击 就显示不同的颜色
