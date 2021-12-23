@@ -28,12 +28,12 @@
 
 .fixed_area_regular_stuff {
   height: 260px;
-  background-color: red;
+  /* background-color: red; */
 }
 /* 如果你不知道是什么意思，不要动  */
 .optionalPluginPlace {
   height: 100%;
-  background-color: blue;
+  /* background-color: blue; */
   overflow: scroll;
 }
 /* 如果你不知道是什么意思，不要动  */
@@ -160,14 +160,16 @@ https://zhuanlan.zhihu.com/p/80800239
 
 .message_icon {
   background-image: url(../.././assets/svg/icons_32/message.svg);
-  width: 32px;
+  background-position: center;
+  width: 100%;
   height: 32px;
   background-repeat: no-repeat;
   margin: 1rem auto;
 }
 .setting_icon {
   background-image: url(../.././assets/svg/icons_32/setting.svg);
-  width: 35px;
+  background-position: center;
+  width: 100%;
   height: 32px;
   background-repeat: no-repeat;
   margin: 1rem auto;
