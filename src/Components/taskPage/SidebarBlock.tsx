@@ -5,13 +5,12 @@ import styles from "./task.module.css";
 
 interface sideBarBlock {
   iconClassName: string;
-  containerClassName: string;
   word?: string | undefined;
   optionalContainerClassName?: string;
   componentRelatedUrl: string;
   handleTest: (currentUrl: string) => void;
   activeUrl: string;
-  to?: string;
+  to: string;
 }
 
 /**
@@ -31,7 +30,7 @@ interface sideBarBlock {
 export default function SidebarBlock({
   iconClassName,
   word,
-  containerClassName,
+  optionalContainerClassName,
   componentRelatedUrl,
   handleTest,
   activeUrl,
@@ -39,9 +38,6 @@ export default function SidebarBlock({
 }: sideBarBlock): ReactElement {
   let resultOfActiveJudgement = activeUrl === componentRelatedUrl;
 
-
-  // debugger
-  // console.log(containerClassName);
 
   // debugger
   // console.log(
@@ -54,34 +50,30 @@ export default function SidebarBlock({
   // );
 
   return (
-    // 2. 根据当前 url （形如 main/xxxx） 判断是否被点击，被点击 就显示不同的颜色
-    <div
-      className={
-        resultOfActiveJudgement
-          ? "color_shoud_change"
-          : "nothing_to_show#*magic_number"
-      }
-    >
-      {to === undefined ? (
+     // 2. 根据当前 url （形如 main/xxxx） 判断是否被点击，被点击 就显示不同的颜色
+    <div className={resultOfActiveJudgement?"color_shoud_change":"no_comments"}>
+      <Link
+        onClick={(e) => {
+          handleTest(componentRelatedUrl);
+        }}
+        to={to}
+        //  下面一段内容较多
+        // 1. 根据是否传入 optionalContainerClassName,渲染不同的 siderbar block
+        className={
+          optionalContainerClassName === undefined
+            ? styles.task_like_container + " hover_change_color_and_a_as_div"
+            : styles[
+                optionalContainerClassName + " hover_change_color_and_a_as_div"
+              ]
+        }
+      >
+        {/* (result? " color_shoud_change" : "xxxxx") */}
         <div className={styles[iconClassName]}></div>
-      ) : (
-        <Link
-          onClick={(e) => {
-            handleTest(componentRelatedUrl);
-          }}
-          to={to}
-          className={
-            styles[containerClassName] + " hover_change_color_and_a_as_div"
-          }
-        >
-          {/* (result? " color_shoud_change" : "xxxxx") */}
-          <div className={styles[iconClassName]}></div>
 
-          {word === undefined ? null : (
-            <div className={styles.word_color_ddd}>{word}</div>
-          )}
-        </Link>
-      )}
+        {word === undefined ? null : (
+          <div className={styles.word_color_ddd}>{word}</div>
+        )}
+      </Link>
     </div>
   );
 }
