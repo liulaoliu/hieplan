@@ -30,10 +30,15 @@
   height: 260px;
   background-color: red;
 }
-
+/* 如果你不知道是什么意思，不要动  */
 .optionalPluginPlace {
   height: 100%;
   background-color: blue;
+  overflow: scroll;
+}
+/* 如果你不知道是什么意思，不要动  */
+.optionalPluginPlace::-webkit-scrollbar {
+  display: none;
 }
 
 .fixed_area_about {

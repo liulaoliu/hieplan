@@ -48,7 +48,7 @@ export default function SidebarBlock({
       className={
         resultOfActiveJudgement
           ? "color_shoud_change"
-          : "nothing_to_show#*magic_number"
+          : "nothing_to_show#*need_a_good_name"
       }
     >
       {to === undefined ? (

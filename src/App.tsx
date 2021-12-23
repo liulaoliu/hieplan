@@ -24,6 +24,7 @@ function App() {
             <Route path="project" element={<Project />} />
             <Route path="position" element={<Position />} />
             <Route path="label" element={<Tag />} />
+            <Route path="search" element={<Tag />} />
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="registration" element={<Login />} />

@@ -45,9 +45,9 @@ export default function Sidebar({
   ];
 
   const sidebarFixedAreaBlocks = [
-    ["search", containerClassNames[1]],
-    ["message", containerClassNames[1]],
-    ["setting", containerClassNames[1]],
+    ["search", "search", containerClassNames[1]],
+    ["message", undefined, containerClassNames[1]],
+    ["setting", undefined, containerClassNames[1]],
   ];
 
   return (
@@ -82,8 +82,9 @@ export default function Sidebar({
         {sidebarFixedAreaBlocks.map((block, idx) => {
           return (
             <SideBarBlock
-              containerClassName={block[1]}
+              containerClassName={block[2] as string}
               key={idx}
+              to={block[1]}
               handleTest={handleTest}
               componentRelatedUrl={`main/${block[0]}`}
               iconClassName={block[0] + "_icon"}
