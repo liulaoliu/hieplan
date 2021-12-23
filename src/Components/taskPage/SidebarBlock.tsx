@@ -1,6 +1,7 @@
 import React, { MouseEventHandler, ReactElement } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useMatch } from "react-router-dom";
+import PopOver from "./needName/PopOver/PopOver";
 import styles from "./task.module.css";
 
 interface sideBarBlock {
@@ -51,7 +52,9 @@ export default function SidebarBlock({
       }
     >
       {to === undefined ? (
-        <div className={styles[iconClassName]}></div>
+        <div className={styles[iconClassName]}>
+
+        </div>
       ) : (
         <Link
           onClick={(e) => {

@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import SidebarAvatar from "./SidebarAvatar";
-import SidebarBlock from "./SidebarBlock";
+import SideBarBlock from "./SideBarBlock";
+
 import styles from "./task.module.css";
 
 interface sidebarProp {
@@ -22,7 +23,6 @@ export default function Sidebar({
   avatarUrl,
   pluginNames,
 }: sidebarProp): ReactElement {
-  //
   const [currentActiveBlockUrl, setActiveBlockUrl] = useState("");
 
   // let matchResult=useMatch(currentUrl||"") !== null;
@@ -64,7 +64,7 @@ export default function Sidebar({
       >
         {sidebarRegularBlocks.map((block, idx) => {
           return (
-            <SidebarBlock
+            <SideBarBlock
               containerClassName={block[2]}
               key={idx}
               handleTest={handleTest}
@@ -73,51 +73,24 @@ export default function Sidebar({
               iconClassName={block[0] + "_icon"}
               word={block[1]}
               activeUrl={currentActiveBlockUrl}
-            ></SidebarBlock>
+            ></SideBarBlock>
           );
         })}
       </div>
-
+      <div className={styles.optionalPluginPlace}></div>
       <div className={styles.fixed_area_about}>
-      {sidebarFixedAreaBlocks.map((block, idx) => {
+        {sidebarFixedAreaBlocks.map((block, idx) => {
           return (
-            <SidebarBlock
+            <SideBarBlock
               containerClassName={block[1]}
               key={idx}
               handleTest={handleTest}
               componentRelatedUrl={`main/${block[0]}`}
-              
               iconClassName={block[0] + "_icon"}
-              
               activeUrl={currentActiveBlockUrl}
-            ></SidebarBlock>
+            ></SideBarBlock>
           );
         })}
-
-        {/* <SidebarBlock
-       to={"test"}
-          componentRelatedUrl={"test"}
-          handleTest={handleTest}
-          iconClassName="search_icon"
-          optionalContainerClassName="fixed_area_container"
-          activeUrl={currentActiveBlockUrl}
-        ></SidebarBlock>
-        <SidebarBlock
-        to={"test"}
-          handleTest={handleTest}
-          componentRelatedUrl={"test"}
-          iconClassName="message_icon"
-          optionalContainerClassName="fixed_area_container"
-          activeUrl={currentActiveBlockUrl}
-        ></SidebarBlock>
-        <SidebarBlock
-        to={"test"}
-          handleTest={handleTest}
-          componentRelatedUrl={"test"}
-          iconClassName="setting_icon"
-          optionalContainerClassName="fixed_area_container"
-          activeUrl={currentActiveBlockUrl}
-        ></SidebarBlock> */}
       </div>
     </div>
   );

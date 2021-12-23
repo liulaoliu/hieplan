@@ -2,17 +2,19 @@
   display: flex;
 }
 
+.main_page_content {
+  background-color: tomato;
+  width: 100%;
+}
+
 .sidebar {
   width: 90px;
 
   background-color: #353d40;
   height: 100vh;
   position: relative;
-}
-
-.main_page_content {
-  background-color: tomato;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* *sidebar中头像avatar区域的样式 */
@@ -22,6 +24,23 @@
   height: 90px;
   background-color: #353d40;
   padding-top: 10px;
+}
+
+.fixed_area_regular_stuff {
+  height: 260px;
+  background-color: red;
+}
+
+.optionalPluginPlace {
+  height: 100%;
+  background-color: blue;
+}
+
+.fixed_area_about {
+  height: 150px;
+  bottom: 0;
+  width: 100%;
+  background-color: brown;
 }
 /*  这是 网上的关于
 如何实现比 1px 更细的线的样例
@@ -118,7 +137,7 @@ https://zhuanlan.zhihu.com/p/80800239
 }
 
 .fixed_area_about {
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   width: 100%;
 }
@@ -148,5 +167,3 @@ https://zhuanlan.zhihu.com/p/80800239
   background-repeat: no-repeat;
   margin: 1rem auto;
 }
-
-
