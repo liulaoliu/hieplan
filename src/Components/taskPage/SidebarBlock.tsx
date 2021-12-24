@@ -1,4 +1,4 @@
-import React, {  ReactElement } from "react";
+import React, { ReactElement } from "react";
 
 import { Link } from "react-router-dom";
 import PopOver from "./needName/PopOver/PopOver";
@@ -40,6 +40,9 @@ export default function SidebarBlock({
 }: sideBarBlock): ReactElement {
   let resultOfActiveJudgement = activeUrl === componentRelatedUrl;
 
+  //  对 setting项目, 使用自定义高度的 popover
+  let settingOrNot = iconClassName.includes("setting");
+  const settingChildSiderBarHeight = 200;
   return (
     // 2. 根据当前 url （形如 main/xxxx） 判断是否被点击，被点击 就显示不同的颜色
 
@@ -51,11 +54,9 @@ export default function SidebarBlock({
       }
     >
       {to === undefined ? (
-        <PopOver >
-        <div className={styles[iconClassName]}>
-          
-        </div>
-        </PopOver >
+        <PopOver height={settingOrNot ? settingChildSiderBarHeight : undefined}>
+          <div className={styles[iconClassName]}></div>
+        </PopOver>
       ) : (
         <Link
           onClick={(e) => {

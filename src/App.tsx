@@ -11,6 +11,7 @@ import Note from "./Components/taskPage/Note";
 import Project from "./Components/taskPage/Project";
 import Position from "./Components/taskPage/Position";
 import Tag from "./Components/taskPage/Tag";
+import Nowhere from "./Components/404/Nowhere";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="registration" element={<Login />} />
           <Route path="/" element={<Welcome />} />
+          <Route path="*" element={<Nowhere/>}/>
+       
         </Routes>
       </BrowserRouter>
     </div>
