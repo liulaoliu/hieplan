@@ -3,7 +3,7 @@
 }
 
 .main_page_content {
-  background-color: tomato;
+  background-color: white;
   width: 100%;
 }
 
@@ -45,7 +45,7 @@
   height: 150px;
   bottom: 0;
   width: 100%;
-  background-color: brown;
+  /* background-color: brown; */
 }
 /*  这是 网上的关于
 如何实现比 1px 更细的线的样例
