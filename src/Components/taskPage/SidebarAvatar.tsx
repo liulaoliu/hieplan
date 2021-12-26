@@ -16,7 +16,7 @@ export default function SidebarAvatar({
   avatarUrl?: string;
 }): ReactElement {
   return (
-    <PopOver>
+    <PopOver displayType="sparseList">
       <div
         className={
           styles.fixed_area_avatar +

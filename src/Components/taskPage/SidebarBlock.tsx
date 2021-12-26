@@ -40,9 +40,19 @@ export default function SidebarBlock({
 }: sideBarBlock): ReactElement {
   let resultOfActiveJudgement = activeUrl === componentRelatedUrl;
 
-  //  对 setting项目, 使用自定义高度的 popover
+  const settingList = ["账号设置", "群组管理", "使用帮助", "退出登录"];
+  const onlyPassListItemsWhenRenderSettingPopOver =
+    iconClassName.includes("setting") && settingList;
+  const opliwrsp = onlyPassListItemsWhenRenderSettingPopOver;
+  // 判断是不是setting
+  const isRenderingSetting = iconClassName.includes("setting");
+  // 判断是不是message
+  const isRenderingMessage = iconClassName.includes("message");
+  //  对 setting这个小块儿, 使用自定义高度的 popover
   let settingOrNot = iconClassName.includes("setting");
   const settingChildSiderBarHeight = 200;
+
+  
   return (
     // 2. 根据当前 url （形如 main/xxxx） 判断是否被点击，被点击 就显示不同的颜色
 
@@ -54,7 +64,17 @@ export default function SidebarBlock({
       }
     >
       {to === undefined ? (
-        <PopOver height={settingOrNot ? settingChildSiderBarHeight : undefined}>
+        <PopOver
+          height={settingOrNot ? settingChildSiderBarHeight : undefined}
+          displayType={
+            isRenderingMessage
+              ? "sparseList"
+              : isRenderingSetting
+              ? "compactList"
+              : undefined
+          }
+          compactList={opliwrsp ? settingList : undefined}
+        >
           <div className={styles[iconClassName]}></div>
         </PopOver>
       ) : (

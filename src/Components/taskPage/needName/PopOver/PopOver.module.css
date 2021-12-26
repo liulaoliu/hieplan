@@ -29,10 +29,9 @@
   /* opacity: 0.2; */
 }
 
-
 /* (看上去)侧边栏上弹出的子侧边栏 */
 .popover_inactive {
-  display: none
+  display: none;
 }
 .popover_active {
   position: fixed;
@@ -41,6 +40,23 @@
   width: 220px;
   height: 100vh;
   /* height: 130px; */
-  background-color: #D6F4FE;
+  background-color: #d6f4fe;
   z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+}
+
+/* 子侧边栏的 固定内容 */
+.child_side_bar_header {
+  height: 50px;
+  /* background-color: blue; */
+}
+.child_side_bar_content {
+  height: 100%;
+  /* background: blueviolet; */
+}
+.child_side_bar_tail {
+  height: 50px;
+  /* background-color: red; */
 }

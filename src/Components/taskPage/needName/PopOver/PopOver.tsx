@@ -4,11 +4,15 @@ import styles from "./PopOver.module.css";
 interface PopOverProps {
   children: React.ReactNode;
   height?: number;
+  displayType?: "sparseList" | "compactList";
+  compactList?: string[];
 }
 
 export default function PopOver({
   children,
   height,
+  displayType,
+  compactList,
 }: PopOverProps): ReactElement {
   const [status, setstate] = useState(false);
 
@@ -43,7 +47,21 @@ export default function PopOver({
         className={
           status === true ? styles.popover_active : styles.popover_inactive
         }
-      ></div>
+      >
+        {/* sparseList */}
+        {displayType === "sparseList" && (
+          <>
+            <div className={styles.child_side_bar_header}>标题栏</div>
+            <div className={styles.child_side_bar_content}>内容</div>
+            <div className={styles.child_side_bar_tail}>底部</div>
+          </>
+        )}
+
+        {displayType === "compactList" &&
+          compactList?.map((item, idx) => {
+            return <div key={idx}>{item}</div>;
+          })}
+      </div>
     </div>
   );
 }
