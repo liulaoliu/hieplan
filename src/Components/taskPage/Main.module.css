@@ -1,0 +1,9 @@
+.main_page_container {
+    display: flex;
+  }
+  
+  .main_page_content {
+    background-color: white;
+    width: 100%;
+  }
+  

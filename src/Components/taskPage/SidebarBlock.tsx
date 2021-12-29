@@ -2,15 +2,17 @@ import React, { ReactElement } from "react";
 
 import { Link } from "react-router-dom";
 import PopOver from "./needName/PopOver/PopOver";
-import styles from "./task.module.css";
+import styles from "./SidebarBlock.module.css";
 
 interface sideBarBlock {
+  // 形如 search_icon
   iconClassName: string;
+  // 形如
   containerClassName: string;
   word?: string | undefined;
   optionalContainerClassName?: string;
   componentRelatedUrl: string;
-  handleTest: (currentUrl: string) => void;
+  changeSidebarBlockUrl: (currentUrl: string) => void;
   activeUrl: string;
   to?: string;
 }
@@ -34,7 +36,7 @@ export default function SidebarBlock({
   word,
   containerClassName,
   componentRelatedUrl,
-  handleTest,
+  changeSidebarBlockUrl,
   activeUrl,
   to,
 }: sideBarBlock): ReactElement {
@@ -59,7 +61,7 @@ export default function SidebarBlock({
     <div
       className={
         resultOfActiveJudgement
-          ? "color_shoud_change"
+          ? styles.color_shoud_change
           : "nothing_to_show#*need_a_good_name"
       }
     >
@@ -80,11 +82,11 @@ export default function SidebarBlock({
       ) : (
         <Link
           onClick={(e) => {
-            handleTest(componentRelatedUrl);
+            changeSidebarBlockUrl(componentRelatedUrl);
           }}
           to={to}
           className={
-            styles[containerClassName] + " hover_change_color_and_a_as_div"
+            styles[containerClassName] + " "+styles.hover_change_color_and_a_as_div
           }
         >
           {/* (result? " color_shoud_change" : "xxxxx") */}

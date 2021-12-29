@@ -1,0 +1,56 @@
+/* .thinner_line{
+
+  
+} */
+.thinner_line::after {
+    content: "";
+    display: block;
+    height: 1px;
+    transform: scaleY(0.2);
+    background: #ccc;
+  }
+
+  .fixed_area_avatar {
+    width: 100%;
+    height: 90px;
+    background-color: #353d40;
+    padding-top: 10px;
+  }
+  
+  .avatar_hexagon_container {
+    width: 45px;
+    height: 50px;
+  
+    margin: 0 auto;
+    /*  六边形战士*/
+    overflow: hidden;
+    transform: rotate(120deg);
+  }
+  
+  .avatar_hexagon_layer1 {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: rotate(-60deg);
+  }
+  
+  .avatar_hexagon_layer2 {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: rotate(-60deg);
+  }
+  
+/*  假头像 */
+.dummy_avatar {
+    background-image: url(../../assets/images/dummy_avatar.jpg);
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  
+  .my_personal_stuff {
+    color: #a0a9ad;
+    font-size: 12px;
+  }

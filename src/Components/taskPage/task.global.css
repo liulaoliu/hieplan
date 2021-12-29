@@ -4,17 +4,4 @@
   cursor: pointer;
 }
 
-.hover_change_color_and_a_as_div {
-  text-decoration: none;
-}
 
-.hover_change_color_and_a_as_div:hover {
-  opacity: 0.2;
-  filter: alpha(opacity=1);
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.color_shoud_change {
-  background-color: #2C3032;
-}

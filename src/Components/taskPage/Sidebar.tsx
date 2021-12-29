@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from "react";
 import SidebarAvatar from "./SidebarAvatar";
 import SidebarBlock from "./SidebarBlock";
 
-import styles from "./task.module.css";
+import styles from "./Sidebar.module.css";
 
 interface sidebarProp {
   avatarUrl?: string;
@@ -27,7 +27,7 @@ export default function Sidebar({
 
   // let matchResult=useMatch(currentUrl||"") !== null;
 
-  function handleTest(currentUrl: string) {
+  function changeSidebarActiveBlockUrl(currentUrl: string) {
     setActiveBlockUrl(currentUrl);
   }
   enum containerClassNames {
@@ -66,7 +66,7 @@ export default function Sidebar({
             <SidebarBlock
               containerClassName={block[2]}
               key={idx}
-              handleTest={handleTest}
+              changeSidebarBlockUrl={changeSidebarActiveBlockUrl}
               componentRelatedUrl={`main/${block[0]}`}
               to={block[0]}
               iconClassName={block[0] + "_icon"}
@@ -84,7 +84,7 @@ export default function Sidebar({
               containerClassName={block[2] as string}
               key={idx}
               to={block[1] as string}
-              handleTest={handleTest}
+              changeSidebarBlockUrl={changeSidebarActiveBlockUrl}
               componentRelatedUrl={`main/${block[0]}`}
               iconClassName={block[0] + "_icon"}
               activeUrl={currentActiveBlockUrl}

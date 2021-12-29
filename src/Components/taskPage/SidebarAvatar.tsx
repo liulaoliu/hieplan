@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import PopOver from "./needName/PopOver/PopOver";
-import styles from "./task.module.css";
+import styles from "./SidebarAvatar.module.css";
 
 /**
  *

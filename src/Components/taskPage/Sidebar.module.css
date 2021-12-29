@@ -1,0 +1,45 @@
+.sidebar {
+    width: 90px;
+  
+    background-color: #353d40;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .fixed_area_regular_stuff {
+    height: 260px;
+    /* background-color: red; */
+  }
+
+  .thinner_line::after {
+    content: "";
+    display: block;
+    height: 1px;
+    transform: scaleY(0.2);
+    background: #ccc;
+  }
+
+
+/* .thinner_line{
+
+} */
+
+
+/* 如果你不知道是什么意思，不要改  */
+.optionalPluginPlace::-webkit-scrollbar {
+    display: none;
+  }
+
+
+.fixed_area_about {
+  height: 150px;
+  bottom: 0;
+  width: 100%;
+  /* background-color: brown; */
+}
+/*  这是 网上的关于
+如何实现比 1px 更细的线的样例
+https://zhuanlan.zhihu.com/p/80800239
+*/

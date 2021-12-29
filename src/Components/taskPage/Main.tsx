@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import styles from "./task.module.css";
+import styles from "./Main.module.css";
 
 interface Props {}
 /**
