@@ -1,8 +1,14 @@
 import React, { ReactElement, useState } from "react";
 import SidebarAvatar from "./SidebarAvatar";
-import SidebarBlock from "./SidebarBlock";
+import SidebarBlock from "./SidebarBlockChangeByUrl";
 
 import styles from "./Sidebar.module.css";
+import {
+  sidebarRegularBlocks as srb,
+  sidebarFixedAreaBlocks as sfab,
+} from "./sidebar.config";
+import SidebarBlockChangeByUrl from "./SidebarBlockChangeByUrl";
+import SidebarBlockChangeByClick from "./SidebarBlockChangeByClick";
 
 interface sidebarProp {
   avatarUrl?: string;
@@ -25,72 +31,51 @@ export default function Sidebar({
 }: sidebarProp): ReactElement {
   const [currentActiveBlockUrl, setActiveBlockUrl] = useState("");
 
-  // let matchResult=useMatch(currentUrl||"") !== null;
-
   function changeSidebarActiveBlockUrl(currentUrl: string) {
     setActiveBlockUrl(currentUrl);
   }
-  enum containerClassNames {
-    "task_like_container",
-    "fixed_area_container",
-  }
-
-  const sidebarRegularBlocks = [
-    ["task", "任务", containerClassNames[0]],
-    ["note", "便签", containerClassNames[0]],
-    ["project", "项目", containerClassNames[0]],
-    ["position", "地点", containerClassNames[0]],
-    ["label", "标签", containerClassNames[0]],
-  ];
-
-  const sidebarFixedAreaBlocks = [
-    ["search", "search", containerClassNames[1]],
-    ["message", undefined, containerClassNames[1]],
-    ["setting", undefined, containerClassNames[1]],
-  ];
 
   return (
     <div className={styles.sidebar}>
-      {/*注意，这个区域的头像图片，应该是从服务器拉过来的 **/}
-      {/*注意 这个 styles.1+" "+styles.2 ;就这么写!
-       这是为了更简单的复用thinner_line 这个样式(完成比1px还细的线)
-
-      */}
       <SidebarAvatar></SidebarAvatar>
 
       <div
         className={styles.fixed_area_regular_stuff + " " + styles.thinner_line}
       >
-        {sidebarRegularBlocks.map((block, idx) => {
+        {srb.map((block, idx) => {
           return (
             <SidebarBlock
               // containerClassName={block[2]}
               key={idx}
               changeSidebarBlockUrl={changeSidebarActiveBlockUrl}
-            
               to={block[0]}
-              iconClassName={block[0] + "_icon"}
-              word={block[1]}
               activeUrl={currentActiveBlockUrl}
-            ></SidebarBlock>
+            >
+              <div className={styles[block[0] + "_icon"]}></div>
+              <div className={styles.word_color_ddd}>{block[1]}</div>
+            </SidebarBlock>
           );
         })}
       </div>
+
       <div className={styles.optionalPluginPlace}></div>
+
       <div className={styles.fixed_area_about}>
-        {/* {sidebarFixedAreaBlocks.map((block, idx) => {
-          return (
-            <SidebarBlock
-              // containerClassName={block[2] as string}
-              key={idx}
-              to={block[1] as string}
-              changeSidebarBlockUrl={changeSidebarActiveBlockUrl}
-              componentRelatedUrl={`main/${block[0]}`}
-              iconClassName={block[0] + "_icon"}
-              activeUrl={currentActiveBlockUrl}
-            ></SidebarBlock>
-          );
-        })} */}
+        <SidebarBlockChangeByUrl
+          changeSidebarBlockUrl={changeSidebarActiveBlockUrl}
+          activeUrl={currentActiveBlockUrl}
+          to={"search"}
+        >
+          <div className={styles[sfab[0][0] + "_icon"]}></div>
+        </SidebarBlockChangeByUrl>
+
+        <SidebarBlockChangeByClick>
+          <div className={styles[sfab[1][0] + "_icon"]}></div>
+        </SidebarBlockChangeByClick>
+
+        <SidebarBlockChangeByClick>
+          <div className={styles[sfab[2][0] + "_icon"]}></div>
+        </SidebarBlockChangeByClick>
       </div>
     </div>
   );

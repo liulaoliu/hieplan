@@ -5,39 +5,6 @@
   margin: 0.5rem 0;
   height: 32px;
 }
-.task_icon {
-  background-image: url(../../assets/svg/icons_32/task.svg);
-  width: 32px;
-  height: 32px;
-}
-
-.word_color_ddd {
-  color: #ddd;
-  font-size: 16px;
-  user-select: none;
-}
-
-.note_icon {
-  background-image: url(../../assets/svg/icons_32/note.svg);
-  width: 32px;
-  height: 32px;
-}
-.project_icon {
-  background-image: url(../.././assets/svg/icons_32/project.svg);
-  width: 32px;
-  height: 32px;
-}
-
-.position_icon {
-  background-image: url(../.././assets/svg/icons_32/position.svg);
-  width: 32px;
-  height: 32px;
-}
-.label_icon {
-  background-image: url(../.././assets/svg/icons_32/label.svg);
-  width: 32px;
-  height: 32px;
-}
 
 .fixed_area_about {
   /* position: absolute; */
@@ -86,4 +53,9 @@
   filter: alpha(opacity=1);
   border-radius: 10px;
   cursor: pointer;
+}
+.word_color_ddd {
+  color: #ddd;
+  font-size: 16px;
+  user-select: none;
 }

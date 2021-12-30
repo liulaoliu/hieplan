@@ -1,40 +1,38 @@
 .sidebar {
-    width: 90px;
-  
-    background-color: #353d40;
-    height: 100vh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .fixed_area_regular_stuff {
-    height: 260px;
-    /* background-color: red; */
-  }
+  width: 90px;
 
-  .thinner_line::after {
-    content: "";
-    display: block;
-    height: 1px;
-    transform: scaleY(0.2);
-    background: #ccc;
-  }
+  background-color: #353d40;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
 
+.fixed_area_regular_stuff {
+  height: 260px;
+  /* background-color: red; */
+}
+
+.thinner_line::after {
+  content: "";
+  display: block;
+  height: 1px;
+  transform: scaleY(0.2);
+  background: #ccc;
+}
 
 /* .thinner_line{
 
 } */
 
-
 /* 如果你不知道是什么意思，不要改  */
 .optionalPluginPlace::-webkit-scrollbar {
-    display: none;
-  }
+  display: none;
+}
 
-  .optionalPluginPlace{
-    height: 100%;
-  }
+.optionalPluginPlace {
+  height: 100%;
+}
 .fixed_area_about {
   height: 150px;
   bottom: 0;
@@ -45,3 +43,62 @@
 如何实现比 1px 更细的线的样例
 https://zhuanlan.zhihu.com/p/80800239
 */
+
+.task_icon {
+  background-image: url(../../assets/svg/icons_32/task.svg);
+  width: 32px;
+  height: 32px;
+}
+
+.word_color_ddd {
+  color: #ddd;
+  font-size: 16px;
+  user-select: none;
+}
+
+.note_icon {
+  background-image: url(../../assets/svg/icons_32/note.svg);
+  width: 32px;
+  height: 32px;
+}
+.project_icon {
+  background-image: url(../.././assets/svg/icons_32/project.svg);
+  width: 32px;
+  height: 32px;
+}
+
+.position_icon {
+  background-image: url(../.././assets/svg/icons_32/position.svg);
+  width: 32px;
+  height: 32px;
+}
+.label_icon {
+  background-image: url(../.././assets/svg/icons_32/label.svg);
+  width: 32px;
+  height: 32px;
+}
+
+.search_icon {
+  background-image: url(../.././assets/svg/icons_32/search.svg);
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px;
+  margin: 1rem auto;
+}
+
+.message_icon {
+  background-image: url(../.././assets/svg/icons_32/message.svg);
+  background-position: center;
+  width: 100%;
+  height: 32px;
+  background-repeat: no-repeat;
+  /* margin: 1rem auto; */
+}
+.setting_icon {
+  background-image: url(../.././assets/svg/icons_32/setting.svg);
+  background-position: center;
+  width: 100%;
+  height: 32px;
+  background-repeat: no-repeat;
+  /* margin: 1rem auto; */
+}
