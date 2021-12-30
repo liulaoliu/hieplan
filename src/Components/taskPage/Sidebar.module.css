@@ -32,7 +32,9 @@
     display: none;
   }
 
-
+  .optionalPluginPlace{
+    height: 100%;
+  }
 .fixed_area_about {
   height: 150px;
   bottom: 0;

@@ -64,10 +64,10 @@ export default function Sidebar({
         {sidebarRegularBlocks.map((block, idx) => {
           return (
             <SidebarBlock
-              containerClassName={block[2]}
+              // containerClassName={block[2]}
               key={idx}
               changeSidebarBlockUrl={changeSidebarActiveBlockUrl}
-              componentRelatedUrl={`main/${block[0]}`}
+            
               to={block[0]}
               iconClassName={block[0] + "_icon"}
               word={block[1]}
@@ -78,10 +78,10 @@ export default function Sidebar({
       </div>
       <div className={styles.optionalPluginPlace}></div>
       <div className={styles.fixed_area_about}>
-        {sidebarFixedAreaBlocks.map((block, idx) => {
+        {/* {sidebarFixedAreaBlocks.map((block, idx) => {
           return (
             <SidebarBlock
-              containerClassName={block[2] as string}
+              // containerClassName={block[2] as string}
               key={idx}
               to={block[1] as string}
               changeSidebarBlockUrl={changeSidebarActiveBlockUrl}
@@ -90,7 +90,7 @@ export default function Sidebar({
               activeUrl={currentActiveBlockUrl}
             ></SidebarBlock>
           );
-        })}
+        })} */}
       </div>
     </div>
   );

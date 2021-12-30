@@ -7,14 +7,12 @@ import styles from "./SidebarBlock.module.css";
 interface sideBarBlock {
   // 形如 search_icon
   iconClassName: string;
-  // 形如
-  containerClassName: string;
-  word?: string | undefined;
-  optionalContainerClassName?: string;
-  componentRelatedUrl: string;
+
   changeSidebarBlockUrl: (currentUrl: string) => void;
+
   activeUrl: string;
-  to?: string;
+  to: string;
+  word?: string | undefined;
 }
 
 /**
@@ -34,13 +32,13 @@ interface sideBarBlock {
 export default function SidebarBlock({
   iconClassName,
   word,
-  containerClassName,
-  componentRelatedUrl,
+  // containerClassName,
+  // componentRelatedUrl,
   changeSidebarBlockUrl,
   activeUrl,
   to,
 }: sideBarBlock): ReactElement {
-  let resultOfActiveJudgement = activeUrl === componentRelatedUrl;
+  let resultOfActiveJudgement = activeUrl.includes(to);
 
   const settingList = ["账号设置", "群组管理", "使用帮助", "退出登录"];
   const onlyPassListItemsWhenRenderSettingPopOver =
@@ -82,11 +80,12 @@ export default function SidebarBlock({
       ) : (
         <Link
           onClick={(e) => {
-            changeSidebarBlockUrl(componentRelatedUrl);
+            changeSidebarBlockUrl(to);
           }}
           to={to}
           className={
-            styles[containerClassName] + " "+styles.hover_change_color_and_a_as_div
+            styles["task_like_container"] + " "+
+            styles.hover_change_color_and_a_as_div
           }
         >
           {/* (result? " color_shoud_change" : "xxxxx") */}
