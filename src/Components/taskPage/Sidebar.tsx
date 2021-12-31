@@ -4,9 +4,9 @@ import SidebarBlock from "./SidebarBlockChangeByUrl";
 
 import styles from "./Sidebar.module.css";
 import {
-  sidebarRegularBlocks as srb,
-  sidebarFixedAreaBlocks as sfab,
-} from "./sidebar.config";
+  sidebarRegularBlocks as SRB,
+  sidebarFixedAreaBlocks as SFAB,
+} from "./sidebarBlocks.config";
 import SidebarBlockChangeByUrl from "./SidebarBlockChangeByUrl";
 import SidebarBlockChangeByClick from "./SidebarBlockChangeByClick";
 
@@ -42,7 +42,7 @@ export default function Sidebar({
       <div
         className={styles.fixed_area_regular_stuff + " " + styles.thinner_line}
       >
-        {srb.map((block, idx) => {
+        {SRB.map((block, idx) => {
           return (
             <SidebarBlock
               // containerClassName={block[2]}
@@ -66,15 +66,15 @@ export default function Sidebar({
           activeUrl={currentActiveBlockUrl}
           to={"search"}
         >
-          <div className={styles[sfab[0][0] + "_icon"]}></div>
+          <div className={styles[SFAB[0][0] + "_icon"]}></div>
         </SidebarBlockChangeByUrl>
 
         <SidebarBlockChangeByClick>
-          <div className={styles[sfab[1][0] + "_icon"]}></div>
+          <div className={styles[SFAB[1][0] + "_icon"]}></div>
         </SidebarBlockChangeByClick>
 
         <SidebarBlockChangeByClick>
-          <div className={styles[sfab[2][0] + "_icon"]}></div>
+          <div className={styles[SFAB[2][0] + "_icon"]}></div>
         </SidebarBlockChangeByClick>
       </div>
     </div>
