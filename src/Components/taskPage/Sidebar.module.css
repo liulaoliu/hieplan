@@ -35,9 +35,8 @@
 }
 .fixed_area_about {
   height: 150px;
-  bottom: 0;
   width: 100%;
-  /* background-color: brown; */
+  margin-bottom: 1rem;
 }
 /*  这是 网上的关于
 如何实现比 1px 更细的线的样例

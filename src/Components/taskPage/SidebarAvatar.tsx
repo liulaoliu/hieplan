@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import PopOver from "./needName/PopOver/PopOver";
 import styles from "./SidebarAvatar.module.css";
 
@@ -15,8 +15,13 @@ export default function SidebarAvatar({
 }: {
   avatarUrl?: string;
 }): ReactElement {
+  const [status, setstate] = useState(false);
+
+  const setActive = () => setstate(true);
+  const setInactive = () => setstate(false);
+
   return (
-    <PopOver displayType="sparseList">
+    <PopOver active={status} setActive={setActive} setInactive={setInactive}>
       <div
         className={
           styles.fixed_area_avatar +
@@ -44,6 +49,7 @@ export default function SidebarAvatar({
           <div className={styles.my_personal_stuff}>我的私事</div>
         </div>
       </div>
+      <div>test</div>
     </PopOver>
   );
 }

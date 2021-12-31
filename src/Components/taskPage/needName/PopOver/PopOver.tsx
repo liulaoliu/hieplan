@@ -2,26 +2,27 @@ import { AnyARecord } from "dns";
 import React, { ReactElement, ReactPropTypes, useState } from "react";
 import styles from "./PopOver.module.css";
 interface PopOverProps {
-  children: React.ReactNode;
+  children: ReactElement[] | ReactElement;
   height?: number;
-  displayType?: "sparseList" | "compactList";
-  compactList?: string[];
+  active: boolean;
+  setActive: () => void;
+  setInactive: () => void;
 }
 
 export default function PopOver({
   children,
   height,
-  displayType,
-  compactList,
+  active,
+  setActive,
+  setInactive,
 }: PopOverProps): ReactElement {
-  const [status, setstate] = useState(false);
+  // const [status, setstate] = useState(false);
 
-  const setActive = () => setstate(true);
-  const setInactive = () => setstate(false);
+  // const setActive = () => setstate(true);
+  // const setInactive = () => setstate(false);
   const heightOverWrite = height === undefined ? "" : height + "px";
 
   return (
-  
     <div
       onClick={setActive}
       className={styles.popover_container_as_place_holder}
@@ -35,7 +36,7 @@ export default function PopOver({
           setInactive();
         }}
         className={
-          status === true ? styles.overlay_active : styles.overlay_inactive
+          active === true ? styles.overlay_active : styles.overlay_inactive
         }
       ></div>
       {/* 蓦然弹出的子侧边栏 */}
@@ -46,11 +47,12 @@ export default function PopOver({
           // console.log("popover的overlay_active click(子侧边栏)");
         }}
         className={
-          status === true ? styles.popover_active : styles.popover_inactive
+          active === true ? styles.popover_active : styles.popover_inactive
         }
       >
         {/* sparseList */}
-        {displayType === "sparseList" && (
+        {/* 具体渲染什么东西，从外部传，但是也没有依赖关系，不传就不渲染 */}
+        {/* {displayType === "sparseList" && (
           <>
             <div className={styles.child_side_bar_header}>标题栏</div>
             <div className={styles.child_side_bar_content}>内容</div>
@@ -61,7 +63,7 @@ export default function PopOver({
         {displayType === "compactList" &&
           compactList?.map((item, idx) => {
             return <div key={idx}>{item}</div>;
-          })}
+          })} */}
       </div>
     </div>
   );

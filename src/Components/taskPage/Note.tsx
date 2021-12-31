@@ -5,5 +5,5 @@ interface Props {}
 export default function Note({}: Props): ReactElement {
  
 
-  return <div>note cONTENT</div>;
+  return <div className="dark_side">note cONTENT</div>;
 }

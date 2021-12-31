@@ -4,4 +4,8 @@
   cursor: pointer;
 }
 
-
+.dark_side {
+  background-color: black;
+  height: 100vh;
+  color: blanchedalmond;
+}

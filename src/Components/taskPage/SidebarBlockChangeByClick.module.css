@@ -42,8 +42,14 @@
 }
 .color_shoud_change {
   background-color: #2c3032;
+  margin: 1rem 0;
+  z-index: 12;
 }
-
+.normal{
+  margin: 1rem 0;
+  z-index: 99999;
+  
+}
 .hover_change_color_and_a_as_div {
   text-decoration: none;
 }

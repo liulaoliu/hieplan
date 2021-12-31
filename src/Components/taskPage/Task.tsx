@@ -10,7 +10,7 @@ export default function Task({}: Props): ReactElement {
 
   
   return (
-    <div >
+    <div className="dark_side">
       TASK cONTENT
     </div>
   );

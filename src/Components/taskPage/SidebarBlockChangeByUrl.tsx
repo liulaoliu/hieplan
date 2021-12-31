@@ -8,7 +8,7 @@ interface sidebarBlock {
   changeSidebarBlockUrl: (currentUrl: string) => void;
   activeUrl: string;
   to: string;
-  children?: ReactElement[] | ReactElement;
+  children: ReactElement[] | ReactElement;
 }
 
 /**
@@ -25,9 +25,7 @@ export default function SidebarBlockChangeByUrl({
   to,
   children,
 }: sidebarBlock): ReactElement {
-  let resultOfActiveJudgement = activeUrl.includes(to);
-
-  const settingList = ["账号设置", "群组管理", "使用帮助", "退出登录"];
+  const active = activeUrl.includes(to);
   // const onlyPassListItemsWhenRenderSettingPopOver =
   //   iconClassName.includes("setting") && settingList;
   // const opliwrsp = onlyPassListItemsWhenRenderSettingPopOver;
@@ -38,32 +36,21 @@ export default function SidebarBlockChangeByUrl({
   //  对 setting这个小块儿, 使用自定义高度的 popover
   // let settingOrNot = iconClassName.includes("setting");
 
-
   return (
-   
-
-    <div
-      className={
-        resultOfActiveJudgement ? styles.color_shoud_change : styles.normal
-      }
-    >
-      {to === undefined ? (
-        <PopOver>{children}</PopOver>
-      ) : (
-        <Link
-          onClick={(e) => {
-            changeSidebarBlockUrl(to);
-          }}
-          to={to}
-          className={
-            styles["task_like_container"] +
-            " " +
-            styles.hover_change_color_and_a_as_div
-          }
-        >
-          {children}
-        </Link>
-      )}
+    <div className={active?styles.color_shoud_change:styles.normal}>
+      <Link
+        onClick={(e) => {
+          changeSidebarBlockUrl(to);
+        }}
+        to={to}
+        className={
+          styles["task_like_container"] +
+          " " +
+          styles.hover_change_color_and_a_as_div
+        }
+      >
+        {children}
+      </Link>
     </div>
   );
 }
