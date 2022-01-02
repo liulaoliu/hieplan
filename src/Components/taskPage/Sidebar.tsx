@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import SidebarAvatar from "./SidebarAvatar";
+import SidebarAvatar from "./UE/SidebarAvatar";
 import SidebarBlock from "./SidebarBlockChangeByUrl";
 
 import styles from "./Sidebar.module.css";
@@ -8,7 +8,9 @@ import {
   sidebarFixedAreaBlocks as SFAB,
 } from "./sidebarBlocks.config";
 import SidebarBlockChangeByUrl from "./SidebarBlockChangeByUrl";
-import SidebarBlockChangeByClick from "./SidebarBlockChangeByClick";
+import SidebarBlockChangeByClick from "./SidebarBlockChangeByClickWithPopOver";
+import SidebarAvatarWithPopOver from "./SidebarAvatarWithPopOver";
+import SidebarBlockChangeByClickWithPopOver from "./SidebarBlockChangeByClickWithPopOver";
 
 interface sidebarProp {
   avatarUrl?: string;
@@ -16,14 +18,9 @@ interface sidebarProp {
 }
 
 /**
- *
- * @param
- * 第一个参数是(如果用户设置了)头像图片的资源地址url,第二个参数是可能的插件的名称(暂定),也就是说应该考虑扩展性,
- * 侧边栏应该可以直接显示更多更多内容,对溢出显示区域的内容,
- * 应该可以滚动显示
- * 但是几个分栏区域是固定的，最上面的头像区，紧随头像区域的常规区，底部相关区
- * @returns
- * 渲染一个侧边栏
+侧边栏
+包含了侧边栏上面的条目 
+头像、设置、任务etc.
  */
 export default function Sidebar({
   avatarUrl,
@@ -37,8 +34,7 @@ export default function Sidebar({
 
   return (
     <div className={styles.sidebar}>
-      <SidebarAvatar></SidebarAvatar>
-
+      <SidebarAvatarWithPopOver></SidebarAvatarWithPopOver>
       <div
         className={styles.fixed_area_regular_stuff + " " + styles.thinner_line}
       >
@@ -69,13 +65,13 @@ export default function Sidebar({
           <div className={styles[SFAB[0][0] + "_icon"]}></div>
         </SidebarBlockChangeByUrl>
 
-        <SidebarBlockChangeByClick>
+        <SidebarBlockChangeByClickWithPopOver>
           <div className={styles[SFAB[1][0] + "_icon"]}></div>
-        </SidebarBlockChangeByClick>
+        </SidebarBlockChangeByClickWithPopOver>
 
-        <SidebarBlockChangeByClick>
+        <SidebarBlockChangeByClickWithPopOver>
           <div className={styles[SFAB[2][0] + "_icon"]}></div>
-        </SidebarBlockChangeByClick>
+        </SidebarBlockChangeByClickWithPopOver>
       </div>
     </div>
   );

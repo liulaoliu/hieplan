@@ -1,0 +1,7 @@
+- 404 里边是 404 页面
+- homePage 里边是 欢迎页
+- taskPage 里边是 main 页面的各项内容
+  - UE 里边放置的是 没有封装的原始文件
+  - mayReUse 里边放的是 可以在其他地方复用的 东西
+  - sidebarBlocks.config.ts 是侧边栏上面要渲染的内容的 配置
+- utils 是一个 quote 组件,想要各处复用

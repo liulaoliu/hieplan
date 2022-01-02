@@ -6,6 +6,7 @@
   /* filter: blur(1px); */
   position: relative;
   cursor: pointer;
+
 }
 
 .overlay_inactive {
@@ -15,7 +16,7 @@
   top: 0;
   left: 0;
   display: none;
-  background-color: coral;
+  /* background-color: coral; */
 }
 .overlay_active {
   width: 100vw;
@@ -25,14 +26,15 @@
   left: 0;
   display: show;
   z-index: 9;
-  background-color: coral;
-  opacity: 0.2;
+  /* 调试 用途 */
+  /* background-color: coral; */
+  /* opacity: 0.2; */
+  /* pointer-events: none; */
 }
 
 /* (看上去)侧边栏上弹出的子侧边栏 */
 .popover_inactive {
   display: none;
-
 }
 .popover_active {
   position: fixed;
@@ -46,7 +48,6 @@
   display: flex;
   flex-direction: column;
   cursor: default;
-  
 }
 
 /* 子侧边栏的 固定内容 */

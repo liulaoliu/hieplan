@@ -3,31 +3,31 @@ import React, { ReactElement, ReactPropTypes, useState } from "react";
 import styles from "./PopOver.module.css";
 interface PopOverProps {
   children: ReactElement[] | ReactElement;
-  height?: number;
+
   active: boolean;
   setActive: () => void;
   setInactive: () => void;
 }
-
+/**
+ * Popover依赖于使用该组件的容器组件中保存的 状态和处理函数
+ *
+ */
 export default function PopOver({
   children,
-  height,
+
   active,
   setActive,
   setInactive,
 }: PopOverProps): ReactElement {
-  // const [status, setstate] = useState(false);
-
-  // const setActive = () => setstate(true);
-  // const setInactive = () => setstate(false);
-  const heightOverWrite = height === undefined ? "" : height + "px";
-
   return (
     <div
       onClick={setActive}
       className={styles.popover_container_as_place_holder}
     >
+      {/* 穿什么 */}
       {children}
+
+      {/* 遮罩整个页面的 overlay */}
       <div
         onClick={(e) => {
           e.stopPropagation();
@@ -41,7 +41,6 @@ export default function PopOver({
       ></div>
       {/* 蓦然弹出的子侧边栏 */}
       <div
-        style={{ height: heightOverWrite }}
         onClick={(e) => {
           e.stopPropagation();
           // console.log("popover的overlay_active click(子侧边栏)");
@@ -49,22 +48,7 @@ export default function PopOver({
         className={
           active === true ? styles.popover_active : styles.popover_inactive
         }
-      >
-        {/* sparseList */}
-        {/* 具体渲染什么东西，从外部传，但是也没有依赖关系，不传就不渲染 */}
-        {/* {displayType === "sparseList" && (
-          <>
-            <div className={styles.child_side_bar_header}>标题栏</div>
-            <div className={styles.child_side_bar_content}>内容</div>
-            <div className={styles.child_side_bar_tail}>底部</div>
-          </>
-        )}
-
-        {displayType === "compactList" &&
-          compactList?.map((item, idx) => {
-            return <div key={idx}>{item}</div>;
-          })} */}
-      </div>
+      ></div>
     </div>
   );
 }

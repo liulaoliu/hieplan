@@ -43,14 +43,19 @@
   
 /*  假头像 */
 .dummy_avatar {
-    background-image: url(../../assets/images/dummy_avatar.jpg);
+    background-image: url(../../../assets/images/dummy_avatar.jpg);
     width: 100%;
     height: 100%;
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
   
-  .my_personal_stuff {
+  .my_personal_stuff_inactive {
     color: #a0a9ad;
+    font-size: 12px;
+  }
+
+  .my_personal_stuff_active {
+    color: #0089c4;
     font-size: 12px;
   }
