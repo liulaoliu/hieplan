@@ -2,7 +2,7 @@ import { AnyARecord } from "dns";
 import React, { ReactElement, ReactPropTypes, useState } from "react";
 import styles from "./PopOver.module.css";
 interface PopOverProps {
-  children: ReactElement[] | ReactElement;
+  children: ReactElement[] ;
 
   active: boolean;
   setActive: () => void;
@@ -12,9 +12,9 @@ interface PopOverProps {
  * Popover依赖于使用该组件的容器组件中保存的 状态和处理函数
  *
  */
+
 export default function PopOver({
   children,
-
   active,
   setActive,
   setInactive,
@@ -24,8 +24,8 @@ export default function PopOver({
       onClick={setActive}
       className={styles.popover_container_as_place_holder}
     >
-      {/* 穿什么 */}
-      {children}
+      {/* 图标区域 */}
+      {(children as ReactElement[]).slice(0)[0]}
 
       {/* 遮罩整个页面的 overlay */}
       <div
@@ -48,7 +48,10 @@ export default function PopOver({
         className={
           active === true ? styles.popover_active : styles.popover_inactive
         }
-      ></div>
+      >
+        {/* 子侧边栏区域 */}
+        {(children as ReactElement[]).slice(0)[1]}
+      </div>
     </div>
   );
 }

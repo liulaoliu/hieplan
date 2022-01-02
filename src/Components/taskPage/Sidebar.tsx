@@ -67,10 +67,12 @@ export default function Sidebar({
 
         <SidebarBlockChangeByClickWithPopOver>
           <div className={styles[SFAB[1][0] + "_icon"]}></div>
+          <div>子侧边栏</div>
         </SidebarBlockChangeByClickWithPopOver>
 
         <SidebarBlockChangeByClickWithPopOver>
           <div className={styles[SFAB[2][0] + "_icon"]}></div>
+          <div>子侧边栏</div>
         </SidebarBlockChangeByClickWithPopOver>
       </div>
     </div>

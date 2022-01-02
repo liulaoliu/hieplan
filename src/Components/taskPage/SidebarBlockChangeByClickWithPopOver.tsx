@@ -4,12 +4,13 @@ import PopOver from "./mayReUse/PopOver/PopOver";
 import SidebarBlockChangeByClick from "./UE/SidebarBlockChangeByClick";
 
 interface currentProp {
-  children: ReactElement[] | ReactElement;
+  children: ReactElement[];
 }
 
 /**
  *
- * 状态用于在激活 /普通状态之间切换
+ * 状态用于在激活 /普通状态之间切换。
+ * 传入两个child ,第一个是图标,第二个是子侧边栏的内容
  *
  */
 export default function SidebarBlockChangeByClickWithPopOver({
@@ -24,8 +25,9 @@ export default function SidebarBlockChangeByClickWithPopOver({
   return (
     <PopOver active={status} setActive={setActive} setInactive={setInactive}>
       <SidebarBlockChangeByClick status={status}>
-        {children}
+        {(children as ReactElement[]).slice(0)[0]}
       </SidebarBlockChangeByClick>
+      {(children as ReactElement[]).slice(0)[1]}
     </PopOver>
   );
 }
