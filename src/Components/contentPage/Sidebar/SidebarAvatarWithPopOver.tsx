@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from "react";
-import PopOver from "./mayReUse/PopOver/PopOver";
-import SidebarAvatar from "./UE/SidebarAvatar";
+
+import PopOver from "../mayReUse/PopOver/PopOver";
+import SidebarAvatar from "../UE/SidebarAvatar";
 
 interface Props {}
 /**

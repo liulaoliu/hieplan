@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import SidebarAvatar from "./UE/SidebarAvatar";
+import SidebarAvatar from "../UE/SidebarAvatar";
 import SidebarBlock from "./SidebarBlockChangeByUrl";
 
 import styles from "./Sidebar.module.css";

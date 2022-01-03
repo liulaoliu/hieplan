@@ -44,7 +44,7 @@ https://zhuanlan.zhihu.com/p/80800239
 */
 
 .task_icon {
-  background-image: url(../../assets/svg/icons_32/task.svg);
+  background-image: url(../../../assets/svg/icons_32/task.svg);
   width: 32px;
   height: 32px;
 }
@@ -56,29 +56,29 @@ https://zhuanlan.zhihu.com/p/80800239
 }
 
 .note_icon {
-  background-image: url(../../assets/svg/icons_32/note.svg);
+  background-image: url(../../../assets/svg/icons_32/note.svg);
   width: 32px;
   height: 32px;
 }
 .project_icon {
-  background-image: url(../.././assets/svg/icons_32/project.svg);
+  background-image: url(../../../assets/svg/icons_32/project.svg);
   width: 32px;
   height: 32px;
 }
 
 .position_icon {
-  background-image: url(../.././assets/svg/icons_32/position.svg);
+  background-image: url(../../../assets/svg/icons_32/position.svg);
   width: 32px;
   height: 32px;
 }
 .label_icon {
-  background-image: url(../.././assets/svg/icons_32/label.svg);
+  background-image: url(../../../assets/svg/icons_32/label.svg);
   width: 32px;
   height: 32px;
 }
 
 .search_icon {
-  background-image: url(../.././assets/svg/icons_32/search.svg);
+  background-image: url(../../../assets/svg/icons_32/search.svg);
   background-repeat: no-repeat;
   width: 32px;
   height: 32px;
@@ -86,16 +86,16 @@ https://zhuanlan.zhihu.com/p/80800239
 }
 
 .message_icon {
-  background-image: url(../.././assets/svg/icons_32/message.svg);
+  background-image: url(../../../assets/svg/icons_32/message.svg);
   background-position: center;
   width: 100%;
   height: 32px;
   background-repeat: no-repeat;
- 
+
   /* margin: 1rem auto; */
 }
 .setting_icon {
-  background-image: url(../.././assets/svg/icons_32/setting.svg);
+  background-image: url(../../../assets/svg/icons_32/setting.svg);
   background-position: center;
   width: 100%;
   height: 32px;

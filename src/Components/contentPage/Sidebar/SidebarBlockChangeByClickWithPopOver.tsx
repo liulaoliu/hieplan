@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from "react";
 
-import PopOver from "./mayReUse/PopOver/PopOver";
-import SidebarBlockChangeByClick from "./UE/SidebarBlockChangeByClick";
+import PopOver from "../mayReUse/PopOver/PopOver";
+import SidebarBlockChangeByClick from "../UE/SidebarBlockChangeByClick";
 
 interface currentProp {
   children: ReactElement[];

@@ -10,7 +10,7 @@
   display: block;
 }
 .search_icon {
-  background-image: url(../.././assets/svg/icons_32/search.svg);
+  background-image: url(../../../assets/svg/icons_32/search.svg);
   background-repeat: no-repeat;
   width: 32px;
   height: 32px;
@@ -18,7 +18,7 @@
 }
 
 .message_icon {
-  background-image: url(../.././assets/svg/icons_32/message.svg);
+  background-image: url(../../../assets/svg/icons_32/message.svg);
   background-position: center;
   width: 100%;
   height: 32px;
@@ -26,7 +26,7 @@
   /* margin: 1rem auto; */
 }
 .setting_icon {
-  background-image: url(../.././assets/svg/icons_32/setting.svg);
+  background-image: url(../../../assets/svg/icons_32/setting.svg);
   background-position: center;
   width: 100%;
   height: 32px;
