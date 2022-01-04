@@ -5,7 +5,7 @@ interface Props {
   status: boolean;
 }
 
-export default function SidebarBlockChangeByClickc({
+export default function SidebarBlockChangeByClick({
   children,
   status,
 }: Props): ReactElement {
