@@ -8,7 +8,6 @@ import {
   sidebarFixedAreaBlocks as SFAB,
 } from "./sidebarBlocks.config";
 import SidebarBlockChangeByUrl from "./SidebarBlockChangeByUrl";
-import SidebarBlockChangeByClick from "./SidebarBlockChangeByClickWithPopOver";
 import SidebarAvatarWithPopOver from "./SidebarAvatarWithPopOver";
 import SidebarBlockChangeByClickWithPopOver from "./SidebarBlockChangeByClickWithPopOver";
 
