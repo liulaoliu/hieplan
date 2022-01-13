@@ -17,7 +17,17 @@ const SidebarAvatarWithPopOver = function ({}: Props): ReactElement {
   return (
     <PopOver active={status} setActive={setActive} setInactive={setInactive}>
       <SidebarAvatar active={status}></SidebarAvatar>
-      <>子侧边栏</>
+      <>
+        <div className="title_bar">切换工作空间</div>
+        <div className="content">
+          <div className="row">我的私事</div>
+          <div className="row">新建群组</div>
+        </div>
+        <div className="tail">
+          <div className="item">搜索群组</div>
+          <div className="item">群组管理</div>
+        </div>
+      </>
     </PopOver>
   );
 };
