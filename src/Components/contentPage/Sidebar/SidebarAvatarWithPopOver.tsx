@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from "react";
 
 import PopOver from "../mayReUse/PopOver/PopOver";
 import SidebarAvatar from "../UE/SidebarAvatar";
-
+import styles from "./SidebarAvatarWithPopOver.module.css";
 interface Props {}
 /**
  *  状态用于在激活 /普通状态之间切换
@@ -17,17 +17,19 @@ const SidebarAvatarWithPopOver = function ({}: Props): ReactElement {
   return (
     <PopOver active={status} setActive={setActive} setInactive={setInactive}>
       <SidebarAvatar active={status}></SidebarAvatar>
-      <>
-        <div className="title_bar">切换工作空间</div>
-        <div className="content">
-          <div className="row">我的私事</div>
-          <div className="row">新建群组</div>
+      {/* sawpo_container 是当前文件的 首字母缩写 */}
+      <div className={styles.sawpo_container}>
+        <div className={styles.title_bar}>切换工作空间</div>
+        <div className={styles.content}>
+          <div className={styles.row}>我的私事</div>
+          <div className={styles.row}>新建群组</div>
         </div>
-        <div className="tail">
-          <div className="item">搜索群组</div>
-          <div className="item">群组管理</div>
+        <div className={styles.tail}>
+          <div className={styles.item}>搜索群组</div>
+          <div className={styles.vertical_line}></div>
+          <div className={styles.item}>群组管理</div>
         </div>
-      </>
+      </div>
     </PopOver>
   );
 };
