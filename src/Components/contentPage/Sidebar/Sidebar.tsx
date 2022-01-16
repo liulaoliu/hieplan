@@ -67,8 +67,11 @@ export default function Sidebar({
         <SidebarBlockChangeByClickWithPopOver>
           <div className={styles[SFAB[1][0] + "_icon"]}></div>
           <div>
-            <div className="title_bar">新消息</div>
-            <div className="content"></div>
+            <div className={styles.title_bar}>新消息</div>
+            <div className="content">
+              <div>无新消息</div>
+              <div>前往消息中心</div>
+            </div>
           </div>
         </SidebarBlockChangeByClickWithPopOver>
 
