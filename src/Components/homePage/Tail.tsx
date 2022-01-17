@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import Quote from "../utils/Quote";
 
 interface Props {}
 /**
@@ -17,6 +18,7 @@ export default function Tail({}: Props): ReactElement {
         {/* 
          everyday quote
          */}
+        <Quote></Quote>
       </div>
     </div>
   );

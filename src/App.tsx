@@ -5,12 +5,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 //  log 页面
 import Login from "./Components/homePage/Login";
 // Main 页面
-import Main from "./Components/taskPage/Main";
-import Task from "./Components/taskPage/Task";
-import Note from "./Components/taskPage/Note";
-import Project from "./Components/taskPage/Project";
-import Position from "./Components/taskPage/Position";
-import Tag from "./Components/taskPage/Tag";
+import Main from "./Components/contentPage/Main";
+import Task from "./Components/contentPage/Task";
+import Note from "./Components/contentPage/Note";
+import Project from "./Components/contentPage/Project";
+import Position from "./Components/contentPage/Position";
+import Tag from "./Components/contentPage/Tag";
+import Nowhere from "./Components/404/Nowhere";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="registration" element={<Login />} />
           <Route path="/" element={<Welcome />} />
+          <Route path="*" element={<Nowhere/>}/>
+       
         </Routes>
       </BrowserRouter>
     </div>

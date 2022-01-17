@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 
-import styles from "./task.module.css";
+// import styles from "./task.module.css";
 
 interface Props {}
 
@@ -8,9 +8,10 @@ export default function Task({}: Props): ReactElement {
 
 
 
+
   
   return (
-    <div className={styles.task_container}>
+    <div className="dark_side">
       TASK cONTENT
     </div>
   );

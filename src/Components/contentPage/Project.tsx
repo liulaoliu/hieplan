@@ -6,7 +6,7 @@ interface Props {
 
 export default function Project({}: Props): ReactElement {
     return (
-        <div>
+        <div className="dark_side">
             project c0tent
         </div>
     )

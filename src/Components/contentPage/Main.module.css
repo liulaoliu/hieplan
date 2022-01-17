@@ -1,0 +1,12 @@
+.main_page_container {
+    display: flex;
+  }
+  
+  .main_page_content {
+    background-color: black
+    
+    
+    ;
+    width: 100%;
+  }
+  

@@ -1,0 +1,11 @@
+/*  *如果有（需要）跳出css module之外的内容 */
+
+.cursor_pointer {
+  cursor: pointer;
+}
+
+.dark_side {
+  background-color: black;
+  height: 100vh;
+  color: blanchedalmond;
+}
