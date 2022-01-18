@@ -1,5 +1,17 @@
-
 /* 这是sidebar的宽度 */
-.width{
-width: 240px;
+.sidebar {
+  width: 200px;
+  background-color: #212121;
+  height: 100vh;
+  color: #ffffff;
+
+
+}
+
+.thinner_line::after {
+  content: "";
+  display: block;
+  height: 1px;
+  transform: scaleY(0.2);
+  background: #ccc;
 }

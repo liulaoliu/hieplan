@@ -1,0 +1,70 @@
+/*
+这是自动生成的css module文件
+*/
+
+/*              z-index 
+  cover_left      20
+  p_container     19
+  cover_content   18
+ */
+.p_container {
+  height: 100px;
+  position: relative;
+}
+
+.pic {
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.cover_left {
+  width: 200px;
+  height: 100vh;
+  /* background-color: orange; */
+  position: fixed;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  z-index: 20;
+  cursor: pointer;
+}
+.cover_content {
+  background-color: black;
+  left: 200px;
+  top: 0;
+  opacity: 0.1;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 18;
+  cursor: pointer;
+}
+
+.no_display {
+  display: none;
+}
+
+.text_blue {
+  color: #25a8d5;
+  font-size: 6px;
+}
+.text_white {
+  color: white;
+  font-size: 6px;
+}
+
+.offcanvas_show {
+  position: absolute;
+  right: -300px;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: red;
+  z-index: 2200;
+}
+
+.offcanvas_hidden {
+  display: hidden;
+}

@@ -12,7 +12,7 @@ export default function Main({}: Props): ReactElement {
   return (
     <div>
       <div className={styles.main_page_container}>
-        <div>
+        <div style={{zIndex:200}}>
           <Sidebar></Sidebar>
         </div>
         <div className={styles.main_page_content}>
