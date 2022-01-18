@@ -5,6 +5,7 @@ interface Props {
   imgUrl?: string;
   text?: string;
   children?: React.ReactNode;
+  height?: number;
 }
 
 /**
@@ -16,6 +17,7 @@ export default function Profile({
   imgUrl,
   text,
   children,
+  height = 100,
 }: Props): ReactElement {
   const [state, setstate] = useState(false);
   const changeState = () => {
@@ -37,8 +39,11 @@ export default function Profile({
   const offcanvasClass = active
     ? styles.offcanvas_show
     : styles.offcanvas_hidden;
+
   return (
-    <div className={styles.p_container} onClick={changeState}>
+    <div className={styles.p_container} style={{
+      height:height+"px"
+    }} onClick={changeState}>
       {imgUrl ? (
         <div>
           {/* 这是头像图片 */}

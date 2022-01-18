@@ -29,13 +29,13 @@ export default function Sidebar({}: Props): ReactElement {
       <div className={styles.bottom}>
         {/* 这是底部 */}
 
-        <Profile>
+        <Profile height={30}>
           <FaSearch />
         </Profile>
-        <Profile>
+        <Profile height={30}>
           <FaEnvelope />
         </Profile>
-        <Profile>
+        <Profile height={30}>
           <FaEllipsisH />
         </Profile>
       </div>
