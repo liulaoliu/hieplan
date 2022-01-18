@@ -1,10 +1,22 @@
 import React, { ReactElement, SyntheticEvent, useState } from "react";
 import styles from "./Profile.module.css";
 
-import img from "../../../assets/images/dummy_avatar.jpg";
-interface Props {}
+interface Props {
+  imgUrl?: string;
+  text?: string;
+  children?: React.ReactNode;
+}
 
-export default function Profile({}: Props): ReactElement {
+/**
+ *
+ * 自己维护状态，能在激动/平淡之间切换，是一个豁达的函数
+ *
+ */
+export default function Profile({
+  imgUrl,
+  text,
+  children,
+}: Props): ReactElement {
   const [state, setstate] = useState(false);
   const changeState = () => {
     setstate(!state);
@@ -27,18 +39,27 @@ export default function Profile({}: Props): ReactElement {
     : styles.offcanvas_hidden;
   return (
     <div className={styles.p_container} onClick={changeState}>
-      <div>
-        {/* 这是头像图片 */}
-        <img src={img} alt="none" className={styles.pic} />
-      </div>
-      <div className={textColorClass}>我的私事</div>
+      {imgUrl ? (
+        <div>
+          {/* 这是头像图片 */}
+          <img src={imgUrl} alt="none" className={styles.pic} />
+        </div>
+      ) : null}
+      {text ? <div className={textColorClass}>{text}</div> : null}
+
+      {children ? (
+        <div>
+          {/* 这是通过children 传入的图标 */}
+          {children}
+        </div>
+      ) : null}
       <div className={sidebarCoverClass} onClick={changeState}>
         {/* 这是遮住sidebar的cover */}
       </div>
       <div className={contentCoverClass} onClick={changeState}>
         {/* 这是遮住content的cover */}
       </div>
-      {/* 阻止offcanvas点击穿透 */}
+      {/* 阻止offcanvas点击穿透到contentCover */}
       <div
         className={offcanvasClass}
         onClick={(e) => {

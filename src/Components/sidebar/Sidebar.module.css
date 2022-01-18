@@ -15,3 +15,7 @@
   transform: scaleY(0.2);
   background: #ccc;
 }
+.bottom{
+  height: 130px;
+  background-color: orange;
+}
