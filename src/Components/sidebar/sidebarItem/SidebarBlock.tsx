@@ -5,10 +5,9 @@ interface Props {
   activeItemName: string;
   changeActiveItemFn: (value: React.SetStateAction<string>) => void;
   itemName: string;
-  imgUrl?: string;
-  text?: string;
   children?: React.ReactNode;
   height?: number;
+  disableHoverChangeColor?: boolean;
 }
 
 /**
@@ -18,13 +17,12 @@ interface Props {
  *
  */
 export default function SidebarBlock({
-  imgUrl,
-  text,
   children,
   height = 100,
   itemName,
   activeItemName,
   changeActiveItemFn,
+  disableHoverChangeColor,
 }: Props): ReactElement {
   // 判断当前的这个 ITEM是不是 被激活
   const active = activeItemName === itemName;
@@ -56,14 +54,6 @@ export default function SidebarBlock({
         activeOrNot(itemName, activeItemName, changeActiveItemFn);
       }}
     >
-      {imgUrl ? (
-        <div>
-          {/* 这是头像图片 */}
-          <img src={imgUrl} alt="none" className={styles.pic} />
-        </div>
-      ) : null}
-      {text ? <div className={textColorClass}>{text}</div> : null}
-
       {children ? (
         <div className={iconColorClass}>
           {/* react Icon 提供了 color API ，说明可以通过 文字颜色 color 来改变图标颜色 */}
@@ -105,7 +95,6 @@ function activeOrNot(
   if (containerActiveItemName !== thisItemName) {
     containerStateChangeHandler(thisItemName);
   } else {
-
     containerStateChangeHandler("");
   }
 }

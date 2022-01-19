@@ -21,8 +21,9 @@ test("当传入text'测试按钮后' 该组件应该渲染 测试按钮", () => 
         changeActiveItemFn(itemNames[0]);
       }}
       itemName={itemNames[0]}
-      text={"测试按钮"}
-    ></SidebarBlock>
+    >
+      测试按钮
+    </SidebarBlock>
   );
 
   const aBlockToClick = screen.getByText(/测试按钮/i);
@@ -48,8 +49,9 @@ test("假设某处维护状态activeItem 为'nullllll'，为该组件传入0x，
               changeActiveItemFn(item);
             }}
             itemName={item}
-            text={item}
-          ></SidebarBlock>
+          >
+            {item}
+          </SidebarBlock>
         );
       })}
     </div>

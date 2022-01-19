@@ -4,8 +4,12 @@
   background-color: #212121;
   height: 100vh;
   color: #ffffff;
-
-
+}
+.pic {
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .thinner_line::after {
@@ -15,7 +19,21 @@
   transform: scaleY(0.2);
   background: #ccc;
 }
-.bottom{
+.bottom {
   height: 130px;
-  background-color: orange;
+}
+
+.should_be_flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  /* background-color: burlywood; */
+}
+.should_be_flex:hover {
+  background-color: burlywood;
+}
+.no_user_select {
+  user-select: none;
+  margin-left: 1rem;
 }

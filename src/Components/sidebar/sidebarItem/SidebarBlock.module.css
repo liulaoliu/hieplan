@@ -11,12 +11,7 @@
   position: relative;
 }
 
-.pic {
-  height: 50px;
-  width: 50px;
-  border-radius: 10px;
-  cursor: pointer;
-}
+
 
 .cover_left {
   width: 200px;
@@ -62,6 +57,7 @@
 .icon_white {
   color: white;
 }
+
 .child_sidebar_show {
   position: fixed;
   left: 200px;

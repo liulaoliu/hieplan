@@ -28,12 +28,13 @@ export default function Sidebar({}: Props): ReactElement {
       <div className={styles.thinner_line}>
         {/* 这是头像区 */}
         <SidebarBlock
-          imgUrl={img}
-          text="我的私事"
           itemName="avatar"
           activeItemName={activeItem}
           changeActiveItemFn={setItem}
-        ></SidebarBlock>
+        >
+          <img src={img} alt="avatar" className={styles.pic} />
+          <div className={styles.no_user_select}>我的私事</div>
+        </SidebarBlock>
       </div>
       <div className={styles.thinner_line}>这是 常用项区</div>
       <div className={styles.thinner_line}>这是插件区</div>
@@ -50,8 +51,10 @@ export default function Sidebar({}: Props): ReactElement {
               activeItemName={activeItem}
               changeActiveItemFn={setItem}
             >
-              <div>文字</div>
-              {<item.icon></item.icon>}
+              <div className={styles.should_be_flex}>
+                <item.icon></item.icon>
+                <div className={styles.no_user_select}>文字</div>
+              </div>
             </SidebarBlock>
           );
         })}
