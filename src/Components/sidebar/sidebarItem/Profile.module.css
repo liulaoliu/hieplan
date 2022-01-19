@@ -21,13 +21,14 @@
 .cover_left {
   width: 200px;
   height: 100vh;
-  /* background-color: orange; */
+  background-color: orange;
   position: fixed;
   left: 0;
   top: 0;
-  opacity: 1;
+  opacity: 0.1;
   z-index: 20;
   cursor: pointer;
+  overflow: auto;
 }
 .cover_content {
   background-color: black;
@@ -53,8 +54,13 @@
   color: white;
   font-size: 6px;
 }
-
-.offcanvas_show {
+.icon_blue {
+  color: #25a8d5;
+}
+.icon_white {
+  color: white;
+}
+.child_sidebar_show {
   position: fixed;
   left: 200px;
   top: 0;
@@ -64,6 +70,6 @@
   z-index: 2200;
 }
 
-.offcanvas_hidden {
+.child_sidebar_hidden {
   display: hidden;
 }
