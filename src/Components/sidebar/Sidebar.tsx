@@ -2,8 +2,6 @@ import React, { ReactElement, useState } from "react";
 import styles from "./Sidebar.module.css";
 import SidebarBlock from "./sidebarItem/SidebarBlock";
 
-import { FaSearch, FaEnvelope, FaEllipsisH } from "react-icons/fa";
-
 import img from "../../assets/images/dummy_avatar.jpg";
 import { SIDEBARbottomDATA } from "./SidebarData.config";
 interface Props {}
@@ -19,17 +17,12 @@ interface Props {}
  */
 export default function Sidebar({}: Props): ReactElement {
   //  *保存被激活的 Item 的状态，这一组和URL无关
-  const [activeItem, setItem] = useState("search");
+  const [activeItem, setItem] = useState("");
   //  !保存被激活的 Item 的状态，这一组和URL有关
   const [activeUrl, setUrl] = useState("");
 
   return (
-    <div
-      className={styles.sidebar}
-      onClick={() => {
-        console.log("wo!");
-      }}
-    >
+    <div className={styles.sidebar}>
       {/* 我是sidebar 以下是 sidebar items */}
 
       <div className={styles.thinner_line}>
@@ -39,7 +32,7 @@ export default function Sidebar({}: Props): ReactElement {
           text="我的私事"
           itemName="avatar"
           activeItemName={activeItem}
-          changeActiveItem={setItem}
+          changeActiveItemFn={setItem}
         ></SidebarBlock>
       </div>
       <div className={styles.thinner_line}>这是 常用项区</div>
@@ -55,8 +48,9 @@ export default function Sidebar({}: Props): ReactElement {
               height={30}
               itemName={item.itemName}
               activeItemName={activeItem}
-              changeActiveItem={setItem}
+              changeActiveItemFn={setItem}
             >
+              <div>文字</div>
               {<item.icon></item.icon>}
             </SidebarBlock>
           );

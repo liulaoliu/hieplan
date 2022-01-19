@@ -1,9 +1,9 @@
-import React, { ReactElement, SyntheticEvent, useState } from "react";
+import React, { ReactElement } from "react";
 import styles from "./SidebarBlock.module.css";
 
 interface Props {
   activeItemName: string;
-  changeActiveItem: (value: React.SetStateAction<string>) => void;
+  changeActiveItemFn: (value: React.SetStateAction<string>) => void;
   itemName: string;
   imgUrl?: string;
   text?: string;
@@ -12,6 +12,7 @@ interface Props {
 }
 
 /**
+ *
  *
  * 自己维护状态，能在激动/平淡之间切换，是一个豁达的函数
  *
@@ -23,7 +24,7 @@ export default function SidebarBlock({
   height = 100,
   itemName,
   activeItemName,
-  changeActiveItem,
+  changeActiveItemFn,
 }: Props): ReactElement {
   // 判断当前的这个 ITEM是不是 被激活
   const active = activeItemName === itemName;
@@ -52,7 +53,7 @@ export default function SidebarBlock({
         height: height + "px",
       }}
       onClick={() => {
-        activeOrNot(itemName, activeItemName, changeActiveItem);
+        activeOrNot(itemName, activeItemName, changeActiveItemFn);
       }}
     >
       {imgUrl ? (
@@ -79,7 +80,7 @@ export default function SidebarBlock({
       <div
         className={contentCoverClass}
         onClick={() => {
-          activeOrNot(itemName, activeItemName, changeActiveItem);
+          activeOrNot(itemName, activeItemName, changeActiveItemFn);
         }}
       >
         {/* 这是遮住content的cover */}
@@ -102,11 +103,9 @@ function activeOrNot(
   containerStateChangeHandler: (val: React.SetStateAction<string>) => void
 ) {
   if (containerActiveItemName !== thisItemName) {
-    console.log("some");
     containerStateChangeHandler(thisItemName);
   } else {
-    console.log('yes');
-    
+
     containerStateChangeHandler("");
   }
 }

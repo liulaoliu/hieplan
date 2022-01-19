@@ -48,11 +48,13 @@
 
 .text_blue {
   color: #25a8d5;
-  font-size: 6px;
+  font-size: 12px;
+  user-select: none;
 }
 .text_white {
   color: white;
-  font-size: 6px;
+  font-size: 12px;
+  user-select: none;
 }
 .icon_blue {
   color: #25a8d5;
