@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { FaSearch, FaEnvelope, FaEllipsisH } from "react-icons/fa";
 
-const SIDEBARDATA: any = [
+export const SIDEBARbottomDATA: any = [
   {
     itemName: "search",
     path: "/search",
@@ -22,4 +22,4 @@ const SIDEBARDATA: any = [
   },
 ];
 
-export default SIDEBARDATA;
+

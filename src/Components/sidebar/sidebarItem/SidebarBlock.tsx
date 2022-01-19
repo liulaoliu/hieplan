@@ -1,14 +1,14 @@
 import React, { ReactElement, SyntheticEvent, useState } from "react";
-import styles from "./Profile.module.css";
+import styles from "./SidebarBlock.module.css";
 
 interface Props {
   activeItemName: string;
-  changeActiveItem: any;
+  changeActiveItem: (value: React.SetStateAction<string>) => void;
+  itemName: string;
   imgUrl?: string;
   text?: string;
   children?: React.ReactNode;
   height?: number;
-  itemName: string;
 }
 
 /**
@@ -16,7 +16,7 @@ interface Props {
  * 自己维护状态，能在激动/平淡之间切换，是一个豁达的函数
  *
  */
-export default function Profile({
+export default function SidebarBlock({
   imgUrl,
   text,
   children,
@@ -31,7 +31,7 @@ export default function Profile({
   // 如果state 为true 那么是active状态
   // const active = state === true;
 
-  //  根据state 选择 遮罩层是否存在 并读取Profile.module.css中的 样式
+  //  根据state 选择 遮罩层是否存在 并读取SidebarBlock.module.css中的 样式
   //   如果active 为true ，那么 needCover 否则 no_display
   const sidebarCoverClass = active ? styles.cover_left : styles.no_display;
   const contentCoverClass = active ? styles.cover_content : styles.no_display;
@@ -51,7 +51,9 @@ export default function Profile({
       style={{
         height: height + "px",
       }}
-      onClick={changeActiveItem}
+      onClick={() => {
+        activeOrNot(itemName, activeItemName, changeActiveItem);
+      }}
     >
       {imgUrl ? (
         <div>
@@ -62,12 +64,7 @@ export default function Profile({
       {text ? <div className={textColorClass}>{text}</div> : null}
 
       {children ? (
-        <div
-          className={iconColorClass}
-          style={{
-            zIndex: 66666,
-          }}
-        >
+        <div className={iconColorClass}>
           {/* react Icon 提供了 color API ，说明可以通过 文字颜色 color 来改变图标颜色 */}
           {/* 这是通过children 传入的图标 */}
           {children}
@@ -79,7 +76,12 @@ export default function Profile({
    
       </div> */}
 
-      <div className={contentCoverClass} onClick={changeActiveItem}>
+      <div
+        className={contentCoverClass}
+        onClick={() => {
+          activeOrNot(itemName, activeItemName, changeActiveItem);
+        }}
+      >
         {/* 这是遮住content的cover */}
       </div>
       {/* 阻止offcanvas点击穿透到contentCover */}
@@ -91,4 +93,20 @@ export default function Profile({
       ></div>
     </div>
   );
+}
+
+// 一个helper function 根据 本组件的itemName和 父容器的 activeName 判断 是该激活还是平淡
+function activeOrNot(
+  thisItemName: string,
+  containerActiveItemName: string,
+  containerStateChangeHandler: (val: React.SetStateAction<string>) => void
+) {
+  if (containerActiveItemName !== thisItemName) {
+    console.log("some");
+    containerStateChangeHandler(thisItemName);
+  } else {
+    console.log('yes');
+    
+    containerStateChangeHandler("");
+  }
 }

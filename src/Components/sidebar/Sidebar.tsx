@@ -1,11 +1,11 @@
 import React, { ReactElement, useState } from "react";
 import styles from "./Sidebar.module.css";
-import Profile from "./sidebarItem/Profile";
+import SidebarBlock from "./sidebarItem/SidebarBlock";
 
 import { FaSearch, FaEnvelope, FaEllipsisH } from "react-icons/fa";
 
 import img from "../../assets/images/dummy_avatar.jpg";
-import SIDEBARDATA from "./SidebarData.config";
+import { SIDEBARbottomDATA } from "./SidebarData.config";
 interface Props {}
 /**
  *
@@ -24,18 +24,23 @@ export default function Sidebar({}: Props): ReactElement {
   const [activeUrl, setUrl] = useState("");
 
   return (
-    <div className={styles.sidebar}>
+    <div
+      className={styles.sidebar}
+      onClick={() => {
+        console.log("wo!");
+      }}
+    >
       {/* 我是sidebar 以下是 sidebar items */}
 
       <div className={styles.thinner_line}>
         {/* 这是头像区 */}
-        <Profile
+        <SidebarBlock
           imgUrl={img}
           text="我的私事"
-          itemName="头像"
-          activeItemName="search"
-          changeActiveItem={()=>{setItem("头像")}}
-        ></Profile>
+          itemName="avatar"
+          activeItemName={activeItem}
+          changeActiveItem={setItem}
+        ></SidebarBlock>
       </div>
       <div className={styles.thinner_line}>这是 常用项区</div>
       <div className={styles.thinner_line}>这是插件区</div>
@@ -43,17 +48,17 @@ export default function Sidebar({}: Props): ReactElement {
       <div className={styles.bottom}>
         {/* 这是底部 */}
 
-        {SIDEBARDATA.map((item: any, idx: number) => {
+        {SIDEBARbottomDATA.map((item: any, idx: number) => {
           return (
-            <Profile
+            <SidebarBlock
               key={idx}
               height={30}
               itemName={item.itemName}
-              activeItemName="search"
-              changeActiveItem={()=>{setItem(item.itemName)}}
+              activeItemName={activeItem}
+              changeActiveItem={setItem}
             >
               {<item.icon></item.icon>}
-            </Profile>
+            </SidebarBlock>
           );
         })}
       </div>
