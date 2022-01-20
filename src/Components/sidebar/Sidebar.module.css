@@ -5,12 +5,7 @@
   height: 100vh;
   color: #ffffff;
 }
-.pic {
-  height: 50px;
-  width: 50px;
-  border-radius: 10px;
-  cursor: pointer;
-}
+
 
 .thinner_line::after {
   content: "";
@@ -28,12 +23,7 @@
   align-items: center;
   justify-content: center;
   width: auto;
+  margin: auto;
   /* background-color: burlywood; */
 }
-.should_be_flex:hover {
-  background-color: burlywood;
-}
-.no_user_select {
-  user-select: none;
-  margin-left: 1rem;
-}
+

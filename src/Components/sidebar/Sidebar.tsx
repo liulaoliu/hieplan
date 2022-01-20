@@ -31,9 +31,10 @@ export default function Sidebar({}: Props): ReactElement {
           itemName="avatar"
           activeItemName={activeItem}
           changeActiveItemFn={setItem}
+          pic={img}
+          text={"我的私事"}
         >
-          <img src={img} alt="avatar" className={styles.pic} />
-          <div className={styles.no_user_select}>我的私事</div>
+         
         </SidebarBlock>
       </div>
       <div className={styles.thinner_line}>这是 常用项区</div>
@@ -46,15 +47,14 @@ export default function Sidebar({}: Props): ReactElement {
           return (
             <SidebarBlock
               key={idx}
-              height={30}
+              height={50}
               itemName={item.itemName}
               activeItemName={activeItem}
               changeActiveItemFn={setItem}
+              icon={<item.icon></item.icon>}
+              
             >
-              <div className={styles.should_be_flex}>
-                <item.icon></item.icon>
-                <div className={styles.no_user_select}>文字</div>
-              </div>
+              
             </SidebarBlock>
           );
         })}
