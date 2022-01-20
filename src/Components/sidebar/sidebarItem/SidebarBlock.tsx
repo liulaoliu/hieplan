@@ -2,16 +2,23 @@ import React, { ReactElement } from "react";
 import { IconType } from "react-icons";
 import styles from "./SidebarBlock.module.css";
 
-interface Props {
-  activeItemName: string;
-  changeActiveItemFn: (value: React.SetStateAction<string>) => void;
-  itemName: string;
+export interface SidebarBlockProps {
+  passWhenChangeByOuterState: {
+    activeItemName: string;
+    changeActiveItemFn: (value: React.SetStateAction<string>) => void;
+    itemName: string;
+  };
+
   height?: number;
   // 类型是一个bypass 并不准确
   icon?: ReactElement<IconType>;
   pic?: string;
   text?: string;
   iconText?: string;
+  // 默认为true
+  hasChildSidebar?: boolean;
+  // 默认为false
+  changeByUrl?: boolean;
 }
 
 /**
@@ -22,14 +29,16 @@ interface Props {
  */
 export default function SidebarBlock({
   height = 100,
-  itemName,
-  activeItemName,
-  changeActiveItemFn,
+  passWhenChangeByOuterState,
   icon,
   pic,
   text,
   iconText,
-}: Props): ReactElement {
+  hasChildSidebar = true,
+  changeByUrl = false,
+}: SidebarBlockProps): ReactElement {
+  const { activeItemName, itemName, changeActiveItemFn } =
+    passWhenChangeByOuterState;
   // 判断当前的这个 ITEM是不是 被激活
   const active = activeItemName === itemName;
 
@@ -53,16 +62,21 @@ export default function SidebarBlock({
 
   // 当组件 状态由外部维护的 state决定，调用这个函数
   const useWhenChangeByOuterState = () => {
-    activeOrNot(itemName, activeItemName, changeActiveItemFn);
+    activeOrNotNoUrl(itemName, activeItemName, changeActiveItemFn);
   };
 
+  const useWhenChangeByUrl = () => {
+    activeOrNotByUrl(itemName, activeItemName);
+    console.log("url version itemName==>", itemName, "****");
+    console.log("url version activeURL==>", activeItemName, "****");
+  };
   return (
     <div
       className={pContainerClass}
       style={{
         height: height + "px",
       }}
-      onClick={useWhenChangeByOuterState}
+      onClick={changeByUrl ? useWhenChangeByUrl : useWhenChangeByOuterState}
     >
       <div className={styles.for_pic_and_text}>
         {
@@ -92,22 +106,33 @@ export default function SidebarBlock({
         }
       </div>
 
-      <div className={contentCoverClass} onClick={useWhenChangeByOuterState}>
+      <div
+        className={contentCoverClass}
+        onClick={changeByUrl ? useWhenChangeByUrl : useWhenChangeByOuterState}
+      >
         {/* 这是遮住content的cover */}
       </div>
-      {/* 阻止offcanvas点击穿透到contentCover */}
-      <div
-        className={childSidebarClass}
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      ></div>
+
+      {
+        // 条件渲染 childSiderbar ，也就是条件渲染子侧边栏
+        hasChildSidebar ? (
+          <div
+            className={childSidebarClass}
+            onClick={(e) => {
+              {
+                /* 阻止offcanvas点击穿透到contentCover */
+              }
+              e.stopPropagation();
+            }}
+          ></div>
+        ) : null
+      }
     </div>
   );
 }
 
 // 一个helper function 根据 本组件的itemName和 父容器的 activeName 判断 是该激活还是平淡
-function activeOrNot(
+function activeOrNotNoUrl(
   thisItemName: string,
   containerActiveItemName: string,
   containerStateChangeHandler: (val: React.SetStateAction<string>) => void
@@ -116,5 +141,13 @@ function activeOrNot(
     containerStateChangeHandler(thisItemName);
   } else {
     containerStateChangeHandler("");
+  }
+}
+// 一个helper function 根据 本组件的itemName和 本应用的地址栏url 判断 是该激活还是平淡
+function activeOrNotByUrl(thisItemUrl: string, appLevelUrl: string) {
+  if (thisItemUrl === appLevelUrl) {
+    return true;
+  } else {
+    return false;
   }
 }

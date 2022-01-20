@@ -95,9 +95,11 @@
 }
 .icon_blue {
   color: #25a8d5;
+  user-select: none;
 }
 .icon_white {
   color: white;
+  user-select: none;  
 }
 
 .child_sidebar_show {
