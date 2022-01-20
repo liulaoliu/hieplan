@@ -6,7 +6,6 @@ interface Props {
   activeItemName: string;
   changeActiveItemFn: (value: React.SetStateAction<string>) => void;
   itemName: string;
-  children?: React.ReactNode;
   height?: number;
   // 一个bypass 并不准确
   icon?: ReactElement<IconType>;
@@ -18,11 +17,10 @@ interface Props {
 /**
  *
  *
- * 自己维护状态，能在激动/平淡之间切换，是一个豁达的函数
- *
+ * 自己维护状态，能在激动/平淡之间切换，是一个豁达的函数。
+ * 可以渲染一个头像+文字;一个icon;一个icon+文字
  */
 export default function SidebarBlock({
-  children,
   height = 100,
   itemName,
   activeItemName,
@@ -78,15 +76,15 @@ export default function SidebarBlock({
 
       <div className={styles.for_icon_and_text}>
         {
-          // 条件渲染 icon 左边的文字
-          iconText ? <div className={iconColorClass+" "+styles.m_5_horizontal}>{iconText}</div> : null
-        }
-        {
           // 条件渲染 icon
           // react Icon 提供了 color API ，说明可以通过 文字颜色 color 来改变图标颜色
           // 这是通过icon 传入的图标
 
           icon ? <div className={iconColorClass}>{icon}</div> : null
+        }
+        {
+          // 条件渲染 icon 左边的文字
+          iconText ? <div className={iconColorClass}>{iconText}</div> : null
         }
       </div>
 

@@ -3,7 +3,7 @@ import styles from "./Sidebar.module.css";
 import SidebarBlock from "./sidebarItem/SidebarBlock";
 
 import img from "../../assets/images/dummy_avatar.jpg";
-import { SIDEBARbottomDATA } from "./SidebarData.config";
+import { SIDEBARbottomDATA, SIDEBARREGULARDATA } from "./SidebarData.config";
 interface Props {}
 /**
  *
@@ -33,11 +33,24 @@ export default function Sidebar({}: Props): ReactElement {
           changeActiveItemFn={setItem}
           pic={img}
           text={"我的私事"}
-        >
-         
-        </SidebarBlock>
+        />
       </div>
-      <div className={styles.thinner_line}>这是 常用项区</div>
+      <div className={styles.thinner_line}>
+        {SIDEBARREGULARDATA.map((item: any, idx: number) => {
+          return (
+            <SidebarBlock
+              changeActiveItemFn={setUrl}
+              itemName={item.itemName}
+              activeItemName={activeUrl}
+              icon={<item.icon />}
+              iconText={item.text}
+              key={idx}
+              height={50}
+            />
+          );
+        })}
+        这是 常用项区
+      </div>
       <div className={styles.thinner_line}>这是插件区</div>
 
       <div className={styles.bottom}>
@@ -52,10 +65,7 @@ export default function Sidebar({}: Props): ReactElement {
               activeItemName={activeItem}
               changeActiveItemFn={setItem}
               icon={<item.icon></item.icon>}
-              
-            >
-              
-            </SidebarBlock>
+            />
           );
         })}
       </div>
