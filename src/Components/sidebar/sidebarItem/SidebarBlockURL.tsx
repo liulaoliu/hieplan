@@ -1,21 +1,16 @@
-import styles from "./SidebarBlockURL.module.css";
-import React, { Component } from "react";
-import SidebarBlock, {
-  SidebarBlockClassProps,
-} from "./SidebarBlockClassVersion";
 
-interface Props extends SidebarBlockClassProps {
-  URL: string;
+import React, { ReactElement } from 'react'
+import styles from "./SidebarBlockUrl.module.css"
+interface Props {
+    
 }
 
-interface State {}
-/**
- * deprecated
- */
-export default class SidebarBlockURL extends SidebarBlock implements Props {
-  state = {};
-  public URL: string = "";
-  constructor(props: Props) {
-    super(props);
-  }
+export default function SidebarBlockUrl({}: Props): ReactElement {
+    return (
+        <div>
+            
+        </div>
+    )
 }
+
+    

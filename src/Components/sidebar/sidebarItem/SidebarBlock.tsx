@@ -7,7 +7,7 @@ interface Props {
   changeActiveItemFn: (value: React.SetStateAction<string>) => void;
   itemName: string;
   height?: number;
-  // 一个bypass 并不准确
+  // 类型是一个bypass 并不准确
   icon?: ReactElement<IconType>;
   pic?: string;
   text?: string;
@@ -33,12 +33,13 @@ export default function SidebarBlock({
   // 判断当前的这个 ITEM是不是 被激活
   const active = activeItemName === itemName;
 
-  // 如果state 为true 那么是active状态
-  // const active = state === true;
+  // 判断是否激活，如果激活，那么p_container背景颜色要深一点
+  const pContainerClass = active
+    ? styles.p_container_active
+    : styles.p_container;
 
   //  根据state 选择 遮罩层是否存在 并读取SidebarBlock.module.css中的 样式
   //   如果active 为true ，那么 needCover 否则 no_display
-  const sidebarCoverClass = active ? styles.cover_left : styles.no_display;
   const contentCoverClass = active ? styles.cover_content : styles.no_display;
 
   // 根据state 让文字有不同的颜色
@@ -50,15 +51,18 @@ export default function SidebarBlock({
     ? styles.child_sidebar_show
     : styles.child_sidebar_hidden;
 
+  // 当组件 状态由外部维护的 state决定，调用这个函数
+  const useWhenChangeByOuterState = () => {
+    activeOrNot(itemName, activeItemName, changeActiveItemFn);
+  };
+
   return (
     <div
-      className={styles.p_container}
+      className={pContainerClass}
       style={{
         height: height + "px",
       }}
-      onClick={() => {
-        activeOrNot(itemName, activeItemName, changeActiveItemFn);
-      }}
+      onClick={useWhenChangeByOuterState}
     >
       <div className={styles.for_pic_and_text}>
         {
@@ -88,12 +92,7 @@ export default function SidebarBlock({
         }
       </div>
 
-      <div
-        className={contentCoverClass}
-        onClick={() => {
-          activeOrNot(itemName, activeItemName, changeActiveItemFn);
-        }}
-      >
+      <div className={contentCoverClass} onClick={useWhenChangeByOuterState}>
         {/* 这是遮住content的cover */}
       </div>
       {/* 阻止offcanvas点击穿透到contentCover */}
