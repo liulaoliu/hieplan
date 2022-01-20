@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import { IconType } from "react-icons";
 import styles from "./SidebarBlock.module.css";
 
 interface Props {
@@ -7,7 +8,11 @@ interface Props {
   itemName: string;
   children?: React.ReactNode;
   height?: number;
-  disableHoverChangeColor?: boolean;
+  // 一个bypass 并不准确
+  icon?: ReactElement<IconType>;
+  pic?: string;
+  text?: string;
+  iconText?: string;
 }
 
 /**
@@ -22,7 +27,10 @@ export default function SidebarBlock({
   itemName,
   activeItemName,
   changeActiveItemFn,
-  disableHoverChangeColor,
+  icon,
+  pic,
+  text,
+  iconText,
 }: Props): ReactElement {
   // 判断当前的这个 ITEM是不是 被激活
   const active = activeItemName === itemName;
@@ -54,18 +62,33 @@ export default function SidebarBlock({
         activeOrNot(itemName, activeItemName, changeActiveItemFn);
       }}
     >
-      {children ? (
-        <div className={iconColorClass}>
-          {/* react Icon 提供了 color API ，说明可以通过 文字颜色 color 来改变图标颜色 */}
-          {/* 这是通过children 传入的图标 */}
-          {children}
-        </div>
-      ) : null}
+      <div className={styles.for_pic_and_text}>
+        {
+          // 条件渲染 头像图片
+          pic ? <img className={styles.pic} src={pic} alt="none" /> : null
+        }
 
-      {/* 这是遮住sidebar的cover */}
-      {/* <div className={sidebarCoverClass} onClick={changeState}>
-   
-      </div> */}
+        {
+          // 条件渲染 头像下方的文字
+          text ? (
+            <div className={textColorClass + " " + styles.m_5}>{text}</div>
+          ) : null
+        }
+      </div>
+
+      <div className={styles.for_icon_and_text}>
+        {
+          // 条件渲染 icon 左边的文字
+          iconText ? <div className={iconColorClass+" "+styles.m_5_horizontal}>{iconText}</div> : null
+        }
+        {
+          // 条件渲染 icon
+          // react Icon 提供了 color API ，说明可以通过 文字颜色 color 来改变图标颜色
+          // 这是通过icon 传入的图标
+
+          icon ? <div className={iconColorClass}>{icon}</div> : null
+        }
+      </div>
 
       <div
         className={contentCoverClass}

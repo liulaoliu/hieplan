@@ -9,9 +9,31 @@
  */
 .p_container {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.for_pic_and_text {
+  display: flex;
+  flex-direction: column;
+}
+.pic {
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
+.m_5 {
+  margin: 5px 0;
+}
+.m_5_horizontal {
+  margin: 0 1rem;
+}
 
+.p_container:hover {
+  background-color: rgb(88, 81, 81);
+}
 
 .cover_left {
   width: 200px;
@@ -41,6 +63,11 @@
   display: none;
 }
 
+.for_icon_and_text {
+  display: flex;
+  justify-content: start;
+}
+
 .text_blue {
   color: #25a8d5;
   font-size: 12px;
@@ -64,8 +91,8 @@
   top: 0;
   width: 300px;
   height: 100vh;
-  background-color: red;
-  z-index: 2200;
+  background-color: white;
+  z-index: 22;
 }
 
 .child_sidebar_hidden {

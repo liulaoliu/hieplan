@@ -7,19 +7,20 @@ export const SIDEBARbottomDATA: any = [
     path: "/search",
     icon: FaSearch,
     urlRealated: true,
+    text: null,
   },
   {
     itemName: "message",
     path: null,
     icon: FaEnvelope,
     urlRelated: false,
+    text: null,
   },
   {
     itemName: "ellipsis",
     path: null,
     icon: FaEllipsisH,
     urlRelated: false,
+    text: null,
   },
 ];
-
-
