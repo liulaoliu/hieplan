@@ -3,6 +3,9 @@ import { IconType } from "react-icons";
 import styles from "./SidebarBlock.module.css";
 
 export interface SidebarBlockProps {
+  /**
+   * OuterState 可能是自定义的state ,或者是应用级别的 Url
+   */
   passWhenChangeByOuterState: {
     activeItemName: string;
     changeActiveItemFn: (value: React.SetStateAction<string>) => void;
@@ -62,21 +65,16 @@ export default function SidebarBlock({
 
   // 当组件 状态由外部维护的 state决定，调用这个函数
   const useWhenChangeByOuterState = () => {
-    activeOrNotNoUrl(itemName, activeItemName, changeActiveItemFn);
+    activeOrNotNoUrl(itemName, activeItemName, changeActiveItemFn, changeByUrl);
   };
 
-  const useWhenChangeByUrl = () => {
-    activeOrNotByUrl(itemName, activeItemName);
-    console.log("url version itemName==>", itemName, "****");
-    console.log("url version activeURL==>", activeItemName, "****");
-  };
   return (
     <div
       className={pContainerClass}
       style={{
         height: height + "px",
       }}
-      onClick={changeByUrl ? useWhenChangeByUrl : useWhenChangeByOuterState}
+      onClick={useWhenChangeByOuterState}
     >
       <div className={styles.for_pic_and_text}>
         {
@@ -106,10 +104,7 @@ export default function SidebarBlock({
         }
       </div>
 
-      <div
-        className={contentCoverClass}
-        onClick={changeByUrl ? useWhenChangeByUrl : useWhenChangeByOuterState}
-      >
+      <div className={contentCoverClass} onClick={useWhenChangeByOuterState}>
         {/* 这是遮住content的cover */}
       </div>
 
@@ -131,23 +126,21 @@ export default function SidebarBlock({
   );
 }
 
-// 一个helper function 根据 本组件的itemName和 父容器的 activeName 判断 是该激活还是平淡
+// 一个helper function 根据 本组件的itemName和 父容器的 activeName或者 appLevel的url 判断 是该激活还是平淡
 function activeOrNotNoUrl(
   thisItemName: string,
   containerActiveItemName: string,
-  containerStateChangeHandler: (val: React.SetStateAction<string>) => void
+  containerStateChangeHandler: (val: React.SetStateAction<string>) => void,
+  shouldDoNothingBecauseChangeByUrl: boolean
 ) {
+  if (shouldDoNothingBecauseChangeByUrl) {
+    // changeByUrl
+    return;
+  }
+  // changeByState
   if (containerActiveItemName !== thisItemName) {
     containerStateChangeHandler(thisItemName);
   } else {
     containerStateChangeHandler("");
-  }
-}
-// 一个helper function 根据 本组件的itemName和 本应用的地址栏url 判断 是该激活还是平淡
-function activeOrNotByUrl(thisItemUrl: string, appLevelUrl: string) {
-  if (thisItemUrl === appLevelUrl) {
-    return true;
-  } else {
-    return false;
   }
 }

@@ -24,14 +24,13 @@ function App() {
             <Route path="note" element={<Note />} />
             <Route path="project" element={<Project />} />
             <Route path="position" element={<Position />} />
-            <Route path="label" element={<Tag />} />
+            <Route path="tag" element={<Tag />} />
             <Route path="search" element={<Tag />} />
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="registration" element={<Login />} />
           <Route path="/" element={<Welcome />} />
-          <Route path="*" element={<Nowhere/>}/>
-       
+          <Route path="*" element={<Nowhere />} />
         </Routes>
       </BrowserRouter>
     </div>

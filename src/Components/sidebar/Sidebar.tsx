@@ -4,8 +4,10 @@ import SidebarBlock from "./sidebarItem/SidebarBlock";
 
 import img from "../../assets/images/dummy_avatar.jpg";
 import { SIDEBARbottomDATA, SIDEBARREGULARDATA } from "./SidebarData.config";
-import SidebarBlockUrl from "./sidebarItem/SidebarBlockURL";
+
 import { useLocation } from "react-router-dom";
+import SidebarBlockUrl from "./sidebarItem/SidebarBlockUrl";
+import { FaTasks } from "react-icons/fa";
 interface Props {}
 /**
  *
@@ -39,16 +41,26 @@ export default function Sidebar({}: Props): ReactElement {
           pic={img}
           text={"我的私事"}
         />
-        {SidebarBlockUrl("project", location)}
+        {/* {
+          <SidebarBlockUrl
+            iconText={"文字"}
+            icon={<FaTasks />}
+            passWhenChangeByOuterState={{
+              itemName: "task",
+              activeItemName: location,
+              changeActiveItemFn: () => {},
+            }}
+          ></SidebarBlockUrl>
+        } */}
       </div>
       <div className={styles.thinner_line}>
         {SIDEBARREGULARDATA.map((item: any, idx: number) => {
           return (
-            <SidebarBlock
+            <SidebarBlockUrl
               passWhenChangeByOuterState={{
-                changeActiveItemFn: setUrl,
+                changeActiveItemFn: () => {},
                 itemName: item.itemName,
-                activeItemName: activeUrl,
+                activeItemName: location,
               }}
               icon={<item.icon />}
               iconText={item.text}

@@ -4,27 +4,36 @@ import { Link, useLocation, useResolvedPath } from "react-router-dom";
 import SidebarBlock, { SidebarBlockProps } from "./SidebarBlock";
 import styles from "./SidebarBlockUrl.module.css";
 
-interface Props {
-  url: string;
-}
-type typeOfSidebarBlock = typeof SidebarBlock;
-
-export default function SidebarBlockUrl(
-  itemUrl: string,
-  activeUrl: string
-): ReactElement {
-  const passWhenChangeByOuterState = {
-    activeItemName: activeUrl,
-    changeActiveItemFn: () => {},
-    itemName: itemUrl,
+interface Props extends SidebarBlockProps {
+  readonly changeByUrl?: true;
+  passWhenChangeByOuterState: {
+    activeItemName: string;
+    /**
+     * SidebarBlockUrl 此处必须传一个空函数
+     */
+    changeActiveItemFn: () => void;
+    itemName: string;
   };
+}
+/**
+ *
+ * 复用SidebarBlock的逻辑 ,但是外层是Link
+ * 也就是可以点击跳转
+ * 注意 已经把 changeByUrl=true 写定了。
+ */
+export default function SidebarBlockUrl(props: Props): ReactElement {
   return (
-    <Link to={itemUrl}>
+    <Link
+      to={props.passWhenChangeByOuterState.itemName}
+      style={{
+        textDecoration: "none",
+      }}
+    >
       <SidebarBlock
+        {...props}
+        passWhenChangeByOuterState={props.passWhenChangeByOuterState}
         height={30}
-        icon={<FaTasks />}
         changeByUrl={true}
-        passWhenChangeByOuterState={passWhenChangeByOuterState}
         hasChildSidebar={false}
       ></SidebarBlock>{" "}
     </Link>
