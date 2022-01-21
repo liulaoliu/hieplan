@@ -6,14 +6,7 @@ import styles from "./SidebarBlockUrl.module.css";
 
 interface Props extends SidebarBlockProps {
   readonly changeByUrl?: true;
-  passWhenChangeByOuterState: {
-    activeItemName: string;
-    /**
-     * SidebarBlockUrl 此处必须传一个空函数
-     */
-    changeActiveItemFn: () => void;
-    itemName: string;
-  };
+  
 }
 /**
  *

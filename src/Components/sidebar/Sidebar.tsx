@@ -48,7 +48,7 @@ export default function Sidebar({}: Props): ReactElement {
           return (
             <SidebarBlockUrl
               passWhenChangeByOuterState={{
-                changeActiveItemFn: () => {},
+                changeActiveItemFn: setItem,
                 itemName: item.itemName,
                 activeItemName: location,
               }}

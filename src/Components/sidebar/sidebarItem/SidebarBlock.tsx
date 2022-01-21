@@ -135,6 +135,7 @@ function activeOrNotNoUrl(
 ) {
   if (shouldDoNothingBecauseChangeByUrl) {
     // changeByUrl
+    containerStateChangeHandler("");
     return;
   }
   // changeByState
