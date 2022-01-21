@@ -4,8 +4,9 @@
   background-color: #212121;
   height: 100vh;
   color: #ffffff;
+  display: flex;
+  flex-direction: column;
 }
-
 
 .thinner_line::after {
   content: "";
@@ -13,6 +14,9 @@
   height: 1px;
   transform: scaleY(0.2);
   background: #ccc;
+}
+.top{
+  height: 100px;
 }
 .bottom {
   height: 130px;
@@ -27,3 +31,7 @@
   /* background-color: burlywood; */
 }
 
+.plugins {
+  background-color: chocolate;
+  height: 100%;
+}

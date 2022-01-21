@@ -30,7 +30,7 @@ export default function Sidebar({}: Props): ReactElement {
     <div className={styles.sidebar}>
       {/* 我是sidebar 以下是 sidebar items */}
 
-      <div className={styles.thinner_line}>
+      <div className={styles.thinner_line+" "+styles.top}>
         {/* 这是头像区 */}
         <SidebarBlock
           passWhenChangeByOuterState={{
@@ -41,19 +41,9 @@ export default function Sidebar({}: Props): ReactElement {
           pic={img}
           text={"我的私事"}
         />
-        {/* {
-          <SidebarBlockUrl
-            iconText={"文字"}
-            icon={<FaTasks />}
-            passWhenChangeByOuterState={{
-              itemName: "task",
-              activeItemName: location,
-              changeActiveItemFn: () => {},
-            }}
-          ></SidebarBlockUrl>
-        } */}
       </div>
       <div className={styles.thinner_line}>
+        {/* 这是 常用项区 */}
         {SIDEBARREGULARDATA.map((item: any, idx: number) => {
           return (
             <SidebarBlockUrl
@@ -70,9 +60,8 @@ export default function Sidebar({}: Props): ReactElement {
             />
           );
         })}
-        这是 常用项区
       </div>
-      <div className={styles.thinner_line}>这是插件区</div>
+      <div className={styles.thinner_line+" "+styles.plugins}>{/* 这是插件区 */}</div>
 
       <div className={styles.bottom}>
         {/* 这是底部 */}

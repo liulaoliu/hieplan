@@ -1,5 +1,14 @@
 import { ReactElement } from "react";
-import { FaSearch, FaEnvelope, FaEllipsisH, FaTasks } from "react-icons/fa";
+import {
+  FaSearch,
+  FaEnvelope,
+  FaEllipsisH,
+  FaTasks,
+  FaAlignJustify,
+  FaRegFile,
+  FaBuromobelexperte,
+  FaRegCompass,
+} from "react-icons/fa";
 
 export const SIDEBARREGULARDATA: any = [
   {
@@ -12,28 +21,28 @@ export const SIDEBARREGULARDATA: any = [
   {
     itemName: "note",
     path: "/note",
-    icon: FaTasks,
+    icon: FaAlignJustify,
     urlRealated: true,
     text: "便签",
   },
   {
     itemName: "project",
     path: "/project",
-    icon: FaTasks,
+    icon: FaRegFile,
     urlRealated: true,
     text: "项目",
   },
   {
     itemName: "position",
     path: "/position",
-    icon: FaTasks,
+    icon: FaRegCompass,
     urlRealated: true,
     text: "地点",
   },
   {
     itemName: "tag",
     path: "/tag",
-    icon: FaTasks,
+    icon: FaBuromobelexperte,
     urlRealated: true,
     text: "标签",
   },
