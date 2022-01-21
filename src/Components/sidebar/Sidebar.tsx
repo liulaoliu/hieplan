@@ -30,7 +30,7 @@ export default function Sidebar({}: Props): ReactElement {
     <div className={styles.sidebar}>
       {/* 我是sidebar 以下是 sidebar items */}
 
-      <div className={styles.thinner_line+" "+styles.top}>
+      <div className={styles.thinner_line + " " + styles.top}>
         {/* 这是头像区 */}
         <SidebarBlock
           passWhenChangeByOuterState={{
@@ -52,7 +52,7 @@ export default function Sidebar({}: Props): ReactElement {
                 itemName: item.itemName,
                 activeItemName: location,
               }}
-              icon={<item.icon />}
+              icon={<item.icon size={"20px"} />}
               iconText={item.text}
               key={idx}
               height={50}
@@ -61,16 +61,34 @@ export default function Sidebar({}: Props): ReactElement {
           );
         })}
       </div>
-      <div className={styles.thinner_line+" "+styles.plugins}>{/* 这是插件区 */}</div>
+      <div className={styles.thinner_line + " " + styles.plugins}>
+        {/* 这是插件区 */}
+      </div>
 
       <div className={styles.bottom}>
         {/* 这是底部 */}
 
         {SIDEBARbottomDATA.map((item: any, idx: number) => {
+          if (item.urlRelated) {
+            return (
+              <SidebarBlockUrl
+                passWhenChangeByOuterState={{
+                  changeActiveItemFn: setItem,
+                  itemName: item.itemName,
+                  activeItemName: location,
+                }}
+                icon={<item.icon size={"20px"} />}
+                iconText={item.text}
+                key={idx}
+                height={50}
+                hasChildSidebar={false}
+              />
+            );
+          }
           return (
             <SidebarBlock
               key={idx}
-              height={50}
+              height={40}
               passWhenChangeByOuterState={{
                 itemName: item.itemName,
                 activeItemName: activeItem,

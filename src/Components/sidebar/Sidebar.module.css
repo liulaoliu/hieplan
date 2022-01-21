@@ -15,11 +15,17 @@
   transform: scaleY(0.2);
   background: #ccc;
 }
-.top{
+.regular {
+  /* not necessary */
+  height: 500px;
+}
+.top {
   height: 100px;
+  /* background-color: chartreuse; */
 }
 .bottom {
-  height: 130px;
+  display: block;
+  /* background-color: brown; */
 }
 
 .should_be_flex {
@@ -32,6 +38,6 @@
 }
 
 .plugins {
-  background-color: chocolate;
+  /* background-color: chocolate; */
   height: 100%;
 }

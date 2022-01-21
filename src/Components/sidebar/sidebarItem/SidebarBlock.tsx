@@ -135,6 +135,8 @@ function activeOrNotNoUrl(
 ) {
   if (shouldDoNothingBecauseChangeByUrl) {
     // changeByUrl
+    console.log('fuck');
+    
     containerStateChangeHandler("");
     return;
   }
