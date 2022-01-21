@@ -8,6 +8,9 @@ export interface SidebarBlockProps {
    */
   passWhenChangeByOuterState: {
     activeItemName: string;
+    /**对changeByUrl,
+     * 也正常传 (setItem....),内部自己会做清理
+     */
     changeActiveItemFn: (value: React.SetStateAction<string>) => void;
     itemName: string;
   };
@@ -134,9 +137,6 @@ function activeOrNotNoUrl(
   shouldDoNothingBecauseChangeByUrl: boolean
 ) {
   if (shouldDoNothingBecauseChangeByUrl) {
-    // changeByUrl
-    console.log('fuck');
-    
     containerStateChangeHandler("");
     return;
   }

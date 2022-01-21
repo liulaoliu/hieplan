@@ -1,13 +1,11 @@
 import React, { ReactElement, useState } from "react";
 import styles from "./Sidebar.module.css";
 import SidebarBlock from "./sidebarItem/SidebarBlock";
-
 import img from "../../assets/images/dummy_avatar.jpg";
 import { SIDEBARbottomDATA, SIDEBARREGULARDATA } from "./SidebarData.config";
-
 import { useLocation } from "react-router-dom";
 import SidebarBlockUrl from "./sidebarItem/SidebarBlockUrl";
-import { FaTasks } from "react-icons/fa";
+
 interface Props {}
 /**
  *
@@ -23,7 +21,7 @@ export default function Sidebar({}: Props): ReactElement {
   //  *保存被激活的 Item 的状态，这一组和URL无关
   const [activeItem, setItem] = useState("");
   //  !保存被激活的 Item 的状态，这一组和URL有关
-  const [activeUrl, setUrl] = useState("");
+  // const [activeUrl, setUrl] = useState("");
   //  ! 使用applevel的 url 而不是自己维护状态
   const location = useLocation().pathname.replace("/main/", "");
   return (
