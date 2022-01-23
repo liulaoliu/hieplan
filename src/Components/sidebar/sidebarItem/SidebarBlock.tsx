@@ -25,6 +25,7 @@ export interface SidebarBlockProps {
   hasChildSidebar?: boolean;
   // 默认为false
   changeByUrl?: boolean;
+  childSidebar?: ReactElement;
 }
 
 /**
@@ -106,10 +107,18 @@ export default function SidebarBlock({
           iconText ? <div className={iconColorClass}>{iconText}</div> : null
         }
       </div>
+      {
+        // 条件渲染 contentCover
 
-      <div className={contentCoverClass} onClick={useWhenChangeByOuterState}>
-        {/* 这是遮住content的cover */}
-      </div>
+        hasChildSidebar ? (
+          <div
+            className={contentCoverClass}
+            onClick={useWhenChangeByOuterState}
+          >
+            {/* 这是遮住content的cover */}
+          </div>
+        ) : null
+      }
 
       {
         // 条件渲染 childSiderbar ，也就是条件渲染子侧边栏
