@@ -7,13 +7,13 @@ import Login from "./Components/homePage/Login";
 // Main 页面
 import Main from "./Components/contentPage/Main";
 
-
 import Note from "./Components/contentPage/Note";
 import Project from "./Components/contentPage/Project";
 import Position from "./Components/contentPage/Position";
 import Tag from "./Components/contentPage/Tag";
 import Nowhere from "./Components/404/Nowhere";
-import Task from "./Components/contentPage/task/Task";
+
+const Task = React.lazy(() => import("./Components/contentPage/task/Task"));
 
 function App() {
   return (
@@ -22,7 +22,15 @@ function App() {
         {/*  还没有4o4 */}
         <Routes>
           <Route path="main" element={<Main />}>
-            <Route path="task" element={<Task />} />
+            <Route
+              path="task"
+              element={
+                <React.Suspense fallback={<>...</>}>
+                  <Task />
+                </React.Suspense>
+              }
+            />
+
             <Route path="note" element={<Note />} />
             <Route path="project" element={<Project />} />
             <Route path="position" element={<Position />} />
