@@ -12,8 +12,8 @@ export default function Main({}: Props): ReactElement {
   return (
     <div>
       <div className={styles.main_page_container}>
-        <div style={{zIndex:200}}>
-          <Sidebar></Sidebar>
+        <div style={{ zIndex: 200 }}>
+          <Sidebar inWhatRoute="main"></Sidebar>
         </div>
         <div className={styles.main_page_content}>
           <Outlet></Outlet>

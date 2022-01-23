@@ -25,7 +25,7 @@ export interface SidebarBlockProps {
   hasChildSidebar?: boolean;
   // 默认为false
   changeByUrl?: boolean;
-  childSidebar?: ReactElement;
+  childSidebarContent?: ReactElement;
 }
 
 /**
@@ -42,6 +42,7 @@ export default function SidebarBlock({
   text,
   iconText,
   hasChildSidebar = true,
+  childSidebarContent,
   changeByUrl = false,
 }: SidebarBlockProps): ReactElement {
   const { activeItemName, itemName, changeActiveItemFn } =
@@ -131,7 +132,9 @@ export default function SidebarBlock({
               }
               e.stopPropagation();
             }}
-          ></div>
+          >
+            {childSidebarContent}
+          </div>
         ) : null
       }
     </div>

@@ -19,7 +19,6 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/*  还没有4o4 */}
         <Routes>
           <Route path="main" element={<Main />}>
             <Route

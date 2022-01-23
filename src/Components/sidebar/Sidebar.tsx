@@ -6,7 +6,9 @@ import { SIDEBARbottomDATA, SIDEBARREGULARDATA } from "./SidebarData.config";
 import { useLocation } from "react-router-dom";
 import SidebarBlockUrl from "./sidebarItem/SidebarBlockUrl";
 
-interface Props {}
+interface Props {
+  inWhatRoute: string;
+}
 /**
  *
  *
@@ -17,13 +19,12 @@ interface Props {}
  * 4.底部三狗 +offcanvas
  *
  */
-export default function Sidebar({}: Props): ReactElement {
+export default function Sidebar({ inWhatRoute }: Props): ReactElement {
   //  *保存被激活的 Item 的状态，这一组和URL无关
   const [activeItem, setItem] = useState("");
-  //  !保存被激活的 Item 的状态，这一组和URL有关
-  // const [activeUrl, setUrl] = useState("");
-  //  ! 使用applevel的 url 而不是自己维护状态
-  const location = useLocation().pathname.replace("/main/", "");
+
+  //  ! 使用appLevel的 url 而不是自己维护状态
+  const location = useLocation().pathname.replace(`/${inWhatRoute}/`, "");
   return (
     <div className={styles.sidebar}>
       {/* 我是sidebar 以下是 sidebar items */}
@@ -87,6 +88,18 @@ export default function Sidebar({}: Props): ReactElement {
             <SidebarBlock
               key={idx}
               height={40}
+              childSidebarContent={
+                <div
+                  style={{
+                    color: "black",
+                  }}
+                >
+                  <h1> 我是子侧边栏的内容</h1>
+                  <h1> 我是子侧边栏的内容2</h1>
+                  <h1> 我是子侧边栏的内容3</h1>
+                  <h1> 我是子侧边栏的内容4</h1>
+                </div>
+              }
               passWhenChangeByOuterState={{
                 itemName: item.itemName,
                 activeItemName: activeItem,
