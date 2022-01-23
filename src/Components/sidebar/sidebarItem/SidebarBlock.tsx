@@ -25,7 +25,7 @@ export interface SidebarBlockProps {
   hasChildSidebar?: boolean;
   // 默认为false
   changeByUrl?: boolean;
-  childSidebarContent?: ReactElement;
+  childSidebarContent?: ReactElement<any>;
 }
 
 /**
@@ -133,7 +133,13 @@ export default function SidebarBlock({
               e.stopPropagation();
             }}
           >
-            {childSidebarContent}
+            <div
+              style={{
+                color: "black",
+              }}
+            >
+              {childSidebarContent}
+            </div>
           </div>
         ) : null
       }

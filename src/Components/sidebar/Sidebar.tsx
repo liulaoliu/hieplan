@@ -84,21 +84,17 @@ export default function Sidebar({ inWhatRoute }: Props): ReactElement {
               />
             );
           }
+
           return (
             <SidebarBlock
               key={idx}
               height={40}
               childSidebarContent={
-                <div
-                  style={{
-                    color: "black",
-                  }}
-                >
-                  <h1> 我是子侧边栏的内容</h1>
-                  <h1> 我是子侧边栏的内容2</h1>
-                  <h1> 我是子侧边栏的内容3</h1>
-                  <h1> 我是子侧边栏的内容4</h1>
-                </div>
+                item.childSidebar ? (
+                  <item.childSidebar />
+                ) : (
+                  <div>"没提供子侧边栏内容,你瞎传什么呢? 赶紧删了"</div>
+                )
               }
               passWhenChangeByOuterState={{
                 itemName: item.itemName,

@@ -10,6 +10,8 @@ import {
   FaRegCompass,
 } from "react-icons/fa";
 
+import Test from "./Test";
+
 export const SIDEBARREGULARDATA: any = [
   {
     itemName: "task",
@@ -62,6 +64,7 @@ export const SIDEBARbottomDATA: any = [
     icon: FaEnvelope,
     urlRelated: false,
     text: null,
+    childSidebar: Test,
   },
   {
     itemName: "ellipsis",
