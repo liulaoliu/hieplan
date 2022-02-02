@@ -5,6 +5,11 @@ interface Props {
   content?: ReactElement;
 }
 
+/**
+ *
+ * 规定main 路由中，不同子页面要显示 标题和 内容
+ * 接受的title和content是 要渲染的 子组件
+ * */
 export default function ContentLayout({ title, content }: Props): ReactElement {
   return (
     <div className={styles.container}>
