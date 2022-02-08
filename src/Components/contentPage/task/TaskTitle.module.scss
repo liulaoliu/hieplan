@@ -1,0 +1,43 @@
+$flex: flex;
+$border: 1px solid beige;
+$height: 30px;
+
+// 这是title 中各项的 container
+.title_container {
+  display: $flex;
+  align-items: center;
+
+  height: $height;
+  margin-left: 2rem;
+}
+// 这是date 项的container
+.date_container {
+  margin-right: 2rem;
+
+  line-height: $height;
+}
+.arrow_container {
+  margin-right: 2rem;
+
+  display: $flex;
+  line-height: $height;
+}
+
+.calendar_container {
+  display: $flex;
+
+  line-height: $height;
+}
+.flex_container {
+  display: $flex;
+}
+.m2 {
+  margin-right: 2rem;
+}
+.w40{
+  width: 40px;
+}
+.w40_border {
+  border: $border;
+  width: 40px;
+}

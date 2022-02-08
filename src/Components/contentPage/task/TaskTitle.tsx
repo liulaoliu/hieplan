@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import styles from "./TaskTitle.module.css";
+import styles from "./TaskTitle.module.scss";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 interface Props {}
 
@@ -18,10 +18,24 @@ export default function TaskTitle({}: Props): ReactElement {
   const [state, setstate] = useState(formattedDate);
   return (
     <div className={styles.title_container}>
-      <div className={styles.date}>{state}</div>
-      <div className={styles.change_day}>
-        <FaLongArrowAltLeft />
-        <FaLongArrowAltRight />
+      <div className={styles.date_container }>{state}</div>
+      <div className={styles.arrow_container }>
+        <div className={styles.w40}>
+          <FaLongArrowAltLeft />
+        </div>
+        <div className={styles.w40}>
+          <FaLongArrowAltRight />
+        </div>
+      </div>
+      <div className={styles.calendar_container}>
+        <div className={styles.m2}>
+        <div className={styles.w40_border}>今天</div>
+        </div>
+        <div className={styles.flex_container}>
+          <div className={styles.w40_border}>日</div>
+          <div className={styles.w40_border}>周</div>
+          <div className={styles.w40_border}>月</div>
+        </div>
       </div>
     </div>
   );
