@@ -1,7 +1,8 @@
 $flex: flex;
 $border: 1px solid beige;
 $height: 30px;
-
+$pointer: pointer;
+$w40: 40px;
 // 这是title 中各项的 container
 .title_container {
   display: $flex;
@@ -13,16 +14,20 @@ $height: 30px;
 // 这是date 项的container
 .date_container {
   margin-right: 2rem;
-
   line-height: $height;
 }
 .arrow_container {
   margin-right: 2rem;
-
+  cursor: $pointer;
   display: $flex;
   line-height: $height;
 }
-
+.arrow {
+  width: $w40;
+}
+.arrow:hover{
+  color:aqua
+}
 .calendar_container {
   display: $flex;
 
@@ -34,10 +39,11 @@ $height: 30px;
 .m2 {
   margin-right: 2rem;
 }
-.w40{
-  width: 40px;
+.w40 {
+  width: $w40;
 }
 .w40_border {
   border: $border;
-  width: 40px;
+  width: $w40;
+  cursor: $pointer;
 }

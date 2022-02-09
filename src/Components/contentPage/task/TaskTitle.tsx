@@ -20,10 +20,10 @@ export default function TaskTitle({}: Props): ReactElement {
     <div className={styles.title_container}>
       <div className={styles.date_container }>{state}</div>
       <div className={styles.arrow_container }>
-        <div className={styles.w40}>
+        <div className={styles.arrow}>
           <FaLongArrowAltLeft />
         </div>
-        <div className={styles.w40}>
+        <div className={styles.arrow}>
           <FaLongArrowAltRight />
         </div>
       </div>
