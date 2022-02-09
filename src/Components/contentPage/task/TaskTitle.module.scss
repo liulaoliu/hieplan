@@ -3,6 +3,11 @@ $border: 1px solid beige;
 $height: 30px;
 $pointer: pointer;
 $w40: 40px;
+$active_color: #41a5ee;
+
+@mixin no-select {
+  user-select:none
+}
 // 这是title 中各项的 container
 .title_container {
   display: $flex;
@@ -24,13 +29,14 @@ $w40: 40px;
 }
 .arrow {
   width: $w40;
+  @include no-select;
 }
-.arrow:hover{
-  color:aqua
+.arrow:hover {
+  color: $active_color;
 }
 .calendar_container {
   display: $flex;
-
+  @include no-select;
   line-height: $height;
 }
 .flex_container {
@@ -42,8 +48,20 @@ $w40: 40px;
 .w40 {
   width: $w40;
 }
-.w40_border {
+
+@mixin maybe_i_mistake {
   border: $border;
   width: $w40;
   cursor: $pointer;
+  border-radius: 5px;
+}
+.w40_border {
+  @include maybe_i_mistake;
+  @include no-select;
+}
+
+.w40_border_active {
+  @include maybe_i_mistake;
+  background-color: $active_color;
+ @include no-select()
 }
