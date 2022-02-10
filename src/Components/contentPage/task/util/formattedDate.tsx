@@ -13,6 +13,7 @@ export const patterns = {
 export type pattern = keyof typeof patterns;
 /**
  * 一个特殊的 用与在Task页面显示日期字符串的 类
+ * 可以生成日期字符串，还能进行特定的处理
  *
  */
 export default class FormattedDate {
@@ -114,15 +115,15 @@ export default class FormattedDate {
    *
    * 那一天，杨坤遇见了你
    */
-  static getPreviousDateByPattern(pattern: pattern,date:string):string {
+  static getPreviousDateByPattern(pattern: pattern, date: string): string {
     /**
      * 设置一个错误的 初始化值
      */
-    let newDate="错误的 初始化值"
+    let newDate = "错误的 初始化值";
     /**
      * 判断的pattern内容是 本组件维护的state pattern中的内容
      */
-    
+
     switch (pattern) {
       case patterns.day:
         newDate = FormattedDate.dayMinus(date);
@@ -142,17 +143,17 @@ export default class FormattedDate {
    * 接受一个模式字符串，接受一个date字符串 (形如YYYY-MM-DD)
    * 判断模式为 日/周/月 ，返回向未来方向 一天/一周/一月的 那一天
    *
-   * 
+   *
    */
-   static getFutureDateByPattern(pattern: pattern,date:string):string {
+  static getFutureDateByPattern(pattern: pattern, date: string): string {
     /**
      * 设置一个错误的 初始化值
      */
-    let newDate="错误的 初始化值"
+    let newDate = "错误的 初始化值";
     /**
      * 判断的pattern内容是 本组件维护的state pattern中的内容
      */
-    
+
     switch (pattern) {
       case patterns.day:
         newDate = FormattedDate.dayPlus(date);
@@ -167,5 +168,37 @@ export default class FormattedDate {
         break;
     }
     return newDate;
+  }
+
+  /**
+ * 根据传入的不同的pattern，对state做操作，输出的字符串的显示格式会有不同
+ * 但是不会变动原始的state和pattern
+  按日显示是默认状态
+  比如 按月显示 只显示月份
+  按周显示 ，则是2022-2-10~16
+  但是注意，state中必须 保存 YYYY-MM-DD形式的字符串。
+ */
+  static getDateByPattern(pattern: pattern, state: string) {
+    // state的形式一定是 YYYY-MM-DD (指中间肯定有连字符 -)
+    let stateToShow: string = state;
+    //  结果一定是 [年,月,日]; 这不是严谨的，没做逻辑检查
+    const [year, month, day] = stateToShow.split("-").map((item) => {
+      return parseInt(item);
+    });
+    switch (pattern) {
+      case patterns.day:
+        // 什么也不做
+        break;
+      case patterns.week:
+        stateToShow = `${stateToShow}~${day + 6}`;
+        break;
+      case patterns.month:
+        stateToShow = `${year}-${month}`;
+        break;
+
+      default:
+        break;
+    }
+    return stateToShow;
   }
 }
