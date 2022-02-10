@@ -19,7 +19,7 @@ export default class FormattedDate {
   /**
    * 获取格式化完毕的当天日期 形式为 : "年_月_日" 比如:"2022_2_9"
    */
-  public getDate() {
+  public getTodayDate() {
     /**
      * 这是 ISO 格式  也就是 YYYY-MM-DD
      * 这个很方便的就能通过Date 转换为 date实例
