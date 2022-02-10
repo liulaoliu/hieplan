@@ -2,9 +2,12 @@ import React, { ReactElement, useState } from "react";
 import styles from "./TaskTitle.module.scss";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import FormattedDate from "./util/formattedDate";
-
+import { pattern, patterns } from "./util/formattedDate";
 interface Props {}
 
+/**
+ * 这是 显示在task的 title 区域的 函数
+ */
 export default function TaskTitle({}: Props): ReactElement {
   // 一旦初始化 通过getDate暴露的值 就不会变
   const formattedDate = new FormattedDate().getTodayDate();
@@ -12,34 +15,32 @@ export default function TaskTitle({}: Props): ReactElement {
   //  这是 状态 ,会变;默认state就是今天 的 字符串。
   const [state, setstate] = useState(formattedDate);
 
-  /**
-   * 日期显示的三种格式 ,只能是全显示/显示年月/显示年
-   */
-  type pattern = "day" | "week" | "month";
-  /**
-   * pattern 数组 模拟enum
-   */
-  const patterns: pattern[] = ["day", "week", "month"];
-  /**
-   * 这是 显示在task的 title 区域的 函数
-   */
-  // 这是 日期显示格式的状态
+  // 这是 日期显示格式的状态，默认是显示到day 也就是YYYY-MM-DD;
+
   const [pattern, setpattern]: [
     pattern,
     React.Dispatch<React.SetStateAction<pattern>>
-  ] = useState(patterns[0]);
+  ] = useState(patterns.day as pattern);
+
+  //  根据pattern不同， 实际显示的日期(state)的格式要不同
+  const displayState = FormattedDate.getDateByPattern(pattern, state);
+
+
   return (
     <div className={styles.title_container}>
       <div className={styles.date_container}>
         {/* 显示date */}
-        {state}
+        {displayState}
       </div>
       <div className={styles.arrow_container}>
-        {/* 两个箭头 */}
+        {/* 两个箭头 向前或者向后*/}
         <div
           className={styles.arrow}
           onClick={() => {
-            const newDate = FormattedDate.dayMinus(state);
+            /**初始化一个错误的值 这是向过去 */
+            let newDate = "未正确的设置日期";
+            newDate = FormattedDate.getPreviousDateByPattern(pattern, state);
+
             setstate(newDate);
           }}
         >
@@ -48,7 +49,9 @@ export default function TaskTitle({}: Props): ReactElement {
         <div
           className={styles.arrow}
           onClick={() => {
-            const newDate = FormattedDate.dayPlus(state);
+            /**初始化一个错误的值  这是向未来*/
+            let newDate = "未正确的设置日期";
+            newDate = FormattedDate.getFutureDateByPattern(pattern, state);
             setstate(newDate);
           }}
         >
