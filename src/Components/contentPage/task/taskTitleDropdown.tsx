@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import styles from "./taskTitleDropdown.module.scss";
+import styles from "./TaskTitleDropdown.module.scss";
 type Props = {};
 
 const dropdownConfig1 = {

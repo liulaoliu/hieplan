@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FormattedDate from "./util/formattedDate";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import { pattern, patterns } from "./util/formattedDate";
-import styles from "./taskTitleCalendar.module.scss";
+import styles from "./TaskTitleCalendar.module.scss";
 
 /**
  *

@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
-import styles from "./taskTitle.module.scss";
-import TaskTitleCalendar from "./taskTitleCalendar";
-import TaskTitleDropdown from "./taskTitleDropdown";
+import styles from "./TaskTitle.module.scss";
+import TaskTitleCalendar from "./TaskTitleCalendar";
+import TaskTitleDropdown from "./TaskTitleDropdown";
 
 /**
  * 这是 显示在task的 title 区域的 函数
