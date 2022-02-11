@@ -30,7 +30,6 @@ export default function TaskTitleOffcanvas() {
   // 这是 taskinput的类名 根据 radioValue变化
   const taskInputClassName = styles[`task_input_` + radios[radioValue].variant];
 
-
   // task_input_success
   return (
     <div>
@@ -46,6 +45,7 @@ export default function TaskTitleOffcanvas() {
             <div
               contentEditable="true"
               className={taskInputClassName}
+              placeholder="任务内容 按shift+enter换行 "
             ></div>
           </div>
           <div className={styles.item}>

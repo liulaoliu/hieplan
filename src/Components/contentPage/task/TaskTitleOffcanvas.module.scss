@@ -49,6 +49,14 @@ $color: aliceblue;
   background-color: rgba(255, 205, 57, 0.5);
   @include task_input;
 }
+
+.task_input_danger[placeholder]:empty:before,
+.task_input_warning[placeholder]:empty:before,
+.task_input_info[placeholder]:empty:before,
+.task_input_success[placeholder]:empty:before {
+  content: attr(placeholder);
+  color: rgb(186, 170, 144);
+}
 .radio_desc {
   color: $color;
 }
