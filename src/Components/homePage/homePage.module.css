@@ -6,14 +6,14 @@
   align-items: center;
 }
 
- /* 去除a标签的固有样式 */
-.remove_a_style{
-text-decoration: none;
-/* color:black; */
-color: beige;
+/* 去除a标签的固有样式 */
+.remove_a_style {
+  text-decoration: none;
+  /* color:black; */
+  color: beige;
 }
-.remove_a_style:hover{
-  color:black;
+.remove_a_style:hover {
+  color: black;
 }
 
 /* banner 左上角的 svg和 产品名称标识 */
@@ -29,7 +29,6 @@ color: beige;
 .title {
   font-size: 30px;
   font-weight: lighter;
- 
 }
 .todoSvg {
   background-image: url(../../assets/svg/TODO_INFO.svg);
@@ -38,13 +37,15 @@ color: beige;
 }
 
 .background {
-  height: 600px;
+  max-height: 60vh;
   width: 100%;
 
   background-color: #41a5ee;
 }
 .innerImage {
-  height: 600px;
+  height: 60vh;
+  max-height: 60vh;
+
   width: 60vw;
   margin: 0 auto;
   background-image: url(../../assets/images/welcome.jpg);
@@ -58,7 +59,12 @@ color: beige;
 .white {
   color: whitesmoke;
 }
-
+.white_word {
+  color: whitesmoke;
+  /* background-color: black; */
+  /* opacity: 0.5; */
+  background-color: rgba(1,1,1,0.7)
+}
 .content {
   padding-left: 2rem;
   text-align: left;
@@ -71,7 +77,7 @@ color: beige;
 
 .login_or_registration {
   width: 50vw;
-  
+
   height: 50vh;
   margin: 20vh auto;
   display: flex;
