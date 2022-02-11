@@ -1,0 +1,19 @@
+.container {
+}
+$background_color: #212529;
+
+.plus {
+  // background-color: aliceblue;
+  display: block;
+  position: absolute;
+  right: 2rem;
+  cursor: pointer;
+}
+.header {
+  background-color: rgb(149, 165, 166);
+}
+.title {
+}
+.body {
+  background-color: $background_color;
+}

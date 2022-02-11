@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Dropdown } from "react-bootstrap";
+import Dropdown from "react-bootstrap/Dropdown";
 import styles from "./TaskTitleDropdown.module.scss";
-type Props = {};
 
 const dropdownConfig1 = {
   fourQudrants: "四象限" as const,
@@ -24,8 +23,11 @@ type keysOfConfig2 = keyof typeof dropdownConfig2;
  *下拉菜单2 的值
  */
 type valuesOfConfig2 = typeof dropdownConfig2[keysOfConfig2];
-
-export default function TaskTitleDropdown({}: Props) {
+/**
+ *
+ * 这是 taskTitle中显示下拉菜单的 函数
+ */
+export default function TaskTitleDropdown() {
   /**
    * 下拉菜单1的状态
    */
