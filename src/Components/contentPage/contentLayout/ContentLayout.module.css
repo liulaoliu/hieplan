@@ -15,6 +15,7 @@
   /* background-color: red; */
   align-items: center;
   display: flex;
+  position: relative;
 }
 .content {
   /* background-color: saddlebrown; */
