@@ -3,4 +3,18 @@
   position: absolute;
   right: 5rem;
   top: 0;
+  display: flex;
+}
+
+.dropdown_menu{
+background-color: darkblue;
+}
+
+
+.styles.dropdown_item {
+  color: antiquewhite!important;
+}
+
+styles.dropdown_item:hover {
+  color: blue;
 }
