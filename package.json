@@ -21,9 +21,9 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "st": "react-scripts start",
+    "bd": "react-scripts build",
+    "ts": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

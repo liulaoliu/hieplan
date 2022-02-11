@@ -9,7 +9,8 @@
  /* 去除a标签的固有样式 */
 .remove_a_style{
 text-decoration: none;
-color:black;
+/* color:black; */
+color: beige;
 }
 .remove_a_style:hover{
   color:black;
@@ -28,6 +29,7 @@ color:black;
 .title {
   font-size: 30px;
   font-weight: lighter;
+ 
 }
 .todoSvg {
   background-image: url(../../assets/svg/TODO_INFO.svg);
