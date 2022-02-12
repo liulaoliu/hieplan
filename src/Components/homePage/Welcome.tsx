@@ -28,9 +28,11 @@ import Tail from "./Tail";
 */
 export default function Welcome() {
   return (
-    <div style={{
-      height:"100vh"
-    }}>
+    <div
+      style={{
+        height: "100vh",
+      }}
+    >
       <Header renderedByWelcome={true}></Header>
       <Content></Content>
       <Tail></Tail>

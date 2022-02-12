@@ -1,0 +1,74 @@
+@mixin thinner_line {
+  content: "";
+  display: block;
+  height: 1px;
+  transform: scaleY(0.2);
+  background: #ccc;
+}
+
+@mixin sidebar_normal {
+  width: 200px;
+  background-color: #212529;
+  height: 100vh;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  // 给 sidebar的 减小按钮提供定位基准
+  position: relative;
+}
+
+/* 这是sidebar的宽度 */
+.sidebar_normal {
+  @include sidebar_normal;
+  transition: all 0.5s;
+}
+.sidebar_less {
+  @include sidebar_normal;
+  width: 50px;
+  transition: all 0.5s;
+}
+
+.top {
+  height: 100px;
+  /* background-color: chartreuse; */
+}
+
+.bottom {
+  display: block;
+  /* background-color: brown; */
+}
+
+.should_be_flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin: auto;
+  /* background-color: burlywood; */
+}
+
+.plugins {
+  //  background-color: chocolate;
+  height: 100%;
+}
+
+.top::after {
+  @include thinner_line;
+}
+
+
+.regular::after {
+  @include thinner_line;
+}
+.bottom::before {
+  @include thinner_line;
+}
+.btn {
+  position: absolute;
+  right: 0;
+  top: 50vh;
+  cursor: pointer;
+}
+.btn:hover {
+  color: orange;
+}

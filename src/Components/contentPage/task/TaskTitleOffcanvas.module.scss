@@ -1,6 +1,10 @@
+
 // .container {
 // }
+
+
 $background_color: #212529;
+$color: aliceblue;
 
 .plus {
   // background-color: aliceblue;
@@ -14,6 +18,51 @@ $background_color: #212529;
 }
 // .title {
 // }
+// offcanvas body
 .body {
   background-color: $background_color;
+  padding: 0;
+}
+// body>task_input
+@mixin task_input {
+  caret-color: hsl(0, 97%, 50%);
+  padding-left: 1rem;
+  line-height: 40px;
+  width: 100%;
+  border: none;
+  // background-color: rgb(55, 25, 12);
+  color: aliceblue;
+  outline: 0px solid transparent;
+}
+//  task_input 四种颜色
+.task_input_danger {
+  @include task_input;
+  background-color: rgba(176, 42, 55, 0.5);
+}
+.task_input_success {
+  background-color: rgba(25, 135, 84, 0.5);
+  @include task_input;
+}
+.task_input_info {
+  background-color: rgba(13, 202, 240, 0.5);
+  @include task_input;
+}
+.task_input_warning {
+  background-color: rgba(255, 205, 57, 0.5);
+  @include task_input;
+}
+
+.task_input_danger[placeholder]:empty:before,
+.task_input_warning[placeholder]:empty:before,
+.task_input_info[placeholder]:empty:before,
+.task_input_success[placeholder]:empty:before {
+  content: attr(placeholder);
+  color: rgb(186, 170, 144);
+}
+.radio_desc {
+  color: $color;
+}
+.item {
+  display: flex;
+  align-items: center;
 }
