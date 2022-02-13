@@ -1,12 +1,12 @@
-/*
-这是自动生成的css module文件
-*/
-
-/*              z-index 
-  cover_left      20
-  p_container     19
-  cover_content   18
- */
+@mixin child_sidebar {
+  position: fixed;
+  left: 200px;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: white;
+  z-index: 22;
+}
 .p_container {
   position: relative;
   display: flex;
@@ -103,15 +103,14 @@
 }
 
 .child_sidebar_show {
-  position: fixed;
-  left: 200px;
-  top: 0;
-  width: 300px;
-  height: 100vh;
-  background-color: white;
-  z-index: 22;
+  @include child_sidebar;
 }
 
 .child_sidebar_hidden {
   display: none;
+}
+.child_sidebar_show_less {
+  @include child_sidebar;
+  // width: 50px;
+  left: 50px;
 }

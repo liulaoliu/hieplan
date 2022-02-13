@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { IconType } from "react-icons";
-import styles from "./SidebarBlock.module.css";
+import styles from "./SidebarBlock.module.scss";
 
 export interface SidebarBlockProps {
   /**
@@ -26,6 +26,7 @@ export interface SidebarBlockProps {
   // 默认为false
   changeByUrl?: boolean;
   childSidebarContent?: ReactElement<any>;
+  less?: boolean;
 }
 
 /**
@@ -44,7 +45,9 @@ export default function SidebarBlock({
   hasChildSidebar = true,
   childSidebarContent,
   changeByUrl = false,
+  less,
 }: SidebarBlockProps): ReactElement {
+
   const { activeItemName, itemName, changeActiveItemFn } =
     passWhenChangeByOuterState;
   // 判断当前的这个 ITEM是不是 被激活
@@ -64,8 +67,13 @@ export default function SidebarBlock({
   // 根据state 让图标(的容器)有不同的颜色
   const iconColorClass = active ? styles.icon_blue : styles.icon_white;
   // 根据state 让offcanvas 显示或隐藏
+  const useLessOrNormalChildbar = less
+    ? styles.child_sidebar_show_less
+    : styles.child_sidebar_show;
+    console.log(useLessOrNormalChildbar);
+    
   const childSidebarClass = active
-    ? styles.child_sidebar_show
+    ? useLessOrNormalChildbar
     : styles.child_sidebar_hidden;
 
   // 当组件 状态由外部维护的 state决定，调用这个函数

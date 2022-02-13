@@ -5,7 +5,7 @@ import img from "../../assets/images/dummy_avatar.jpg";
 import { SIDEBARbottomDATA, SIDEBARREGULARDATA } from "./SidebarData.config";
 import { useLocation } from "react-router-dom";
 import SidebarBlockUrl from "./sidebarItem/SidebarBlockUrl";
-import { GoArrowLeft ,GoArrowRight} from "react-icons/go";
+import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 interface Props {
   inWhatRoute: string;
 }
@@ -43,13 +43,14 @@ export default function Sidebar({ inWhatRoute }: Props): ReactElement {
           setwidth(!less);
         }}
       >
-      {less? <GoArrowRight /> : <GoArrowLeft /> }
+        {less ? <GoArrowRight /> : <GoArrowLeft />}
       </div>
       {/* 我是sidebar 以下是 sidebar items */}
 
       <div className={styles.top}>
         {/* 这是头像区 */}
         <SidebarBlock
+          less={less}
           passWhenChangeByOuterState={{
             itemName: "avatar",
             activeItemName: activeItem,
@@ -105,6 +106,7 @@ export default function Sidebar({ inWhatRoute }: Props): ReactElement {
             <SidebarBlock
               key={idx}
               height={40}
+              less={less}
               childSidebarContent={
                 item.childSidebar ? (
                   <item.childSidebar />
