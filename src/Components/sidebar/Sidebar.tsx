@@ -1,10 +1,10 @@
-import React, { ReactElement, SetStateAction, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import styles from "./Sidebar.module.scss";
 import SidebarBlock from "./sidebarItem/SidebarBlock";
 import img from "../../assets/images/dummy_avatar.jpg";
 import { SIDEBARbottomDATA, SIDEBARREGULARDATA } from "./SidebarData.config";
 import { useLocation } from "react-router-dom";
-import SidebarBlockUrl from "./sidebarItem/SidebarBlockUrl";
+import SidebarBlockUrl from "./sidebarItem/SidebarBlockURL";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 interface Props {
   inWhatRoute: string;

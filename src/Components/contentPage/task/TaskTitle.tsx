@@ -12,9 +12,8 @@ export default function TaskTitle(): ReactElement {
   return (
     <div className={styles.title_container}>
       <TaskTitleCalendar />
-      <TaskTitleDropdown/>
-      <TaskTitleOffcanvas/>
+      <TaskTitleDropdown />
+      <TaskTitleOffcanvas />
     </div>
   );
 }
-
