@@ -14,7 +14,9 @@ export interface SidebarBlockProps {
     changeActiveItemFn: (value: React.SetStateAction<string>) => void;
     itemName: string;
   };
-
+//  pic 要删掉
+// hasChildSidebar 要尝试去掉
+// changeByUrl 要去掉
   height?: number;
   // 类型是一个bypass 并不准确
   icon?: ReactElement<IconType>;
