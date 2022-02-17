@@ -13,7 +13,7 @@ export default function Main({}: Props): ReactElement {
     <div>
       <div className={styles.main_page_container}>
         <div>
-          <Sidebar inWhatRoute="main"></Sidebar>
+          <Sidebar></Sidebar>
         </div>
         <div className={styles.main_page_content}>
           <Outlet></Outlet>
