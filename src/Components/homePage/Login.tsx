@@ -1,11 +1,12 @@
 import React, { ReactElement } from "react";
 import styles from "./homePage.module.css";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+
 import Header from "./Header";
 import { useLocation } from "react-router-dom";
 
-// 这是登录或者注册页面
+/**
+ * 这是登录或者注册页面
+ */
 export default function Login(): ReactElement {
   //  根据当前URL的地址  来确定是应该显示 注册 ? 登录页面
   // 并且strip 掉 /login 中的 ‘/’
@@ -30,29 +31,7 @@ export default function Login(): ReactElement {
             <div title="猜猜我是谁?" className={styles.register_image}></div>
           )}
         </div>
-        <div className={styles.form_panel}>
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>账户名称</Form.Label>
-              <Form.Control type="email" placeholder="输入账户名称" />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>密码</Form.Label>
-              <Form.Control type="password" placeholder="输入密码" />
-            </Form.Group>
-
-            {onLoginPage === true ? (
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="记住我" />
-              </Form.Group>
-            ) : null}
-
-            <Button variant="primary" type="submit">
-              登录
-            </Button>
-          </Form>
-        </div>
+        <div className={styles.form_panel}></div>
       </div>
     </div>
   );

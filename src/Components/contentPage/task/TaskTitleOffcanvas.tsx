@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import styles from "./TaskTitleOffcanvas.module.scss";
-import Button from "react-bootstrap/Button";
-import Offcanvas from "react-bootstrap/Offcanvas";
+
 import { FcPlus } from "react-icons/fc";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import ToggleButton from "react-bootstrap/ToggleButton";
+
 type Props = {};
 
 /**
@@ -35,47 +33,7 @@ export default function TaskTitleOffcanvas() {
     <div>
       <FcPlus onClick={handleShow} size="30px" className={styles.plus}></FcPlus>
 
-      <Offcanvas show={show} onHide={handleClose} placement="end">
-        <Offcanvas.Header className={styles.header}>
-          <Offcanvas.Title className={styles.title}>新增任务</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body className={styles.body}>
-          <div className={styles.item}>
-            {/* 任务输入框 */}
-            <div
-              contentEditable="true"
-              className={taskInputClassName}
-              placeholder="任务内容 按shift+enter换行 "
-            ></div>
-          </div>
-          <div className={styles.item}>
-            <ButtonGroup>
-              {radios.map((radio, idx) => (
-                <ToggleButton
-                  key={idx}
-                  id={`radio-${idx}`}
-                  type="radio"
-                  variant={radio.variant}
-                  name="radio"
-                  value={radio.value}
-                  checked={radioValue === radio.value}
-                  onChange={(e) =>
-                    setRadioValue(parseInt(e.currentTarget.value))
-                  }
-                >
-                  {radio.name}
-                </ToggleButton>
-              ))}
-            </ButtonGroup>
-            <div className={styles.radio_desc}>{radios[radioValue].desc}</div>
-          </div>
-          <div className={styles.item}></div>
-          <div className={styles.item}></div>
-          <div className={styles.item}></div>
-          <div className={styles.item}></div>
-          <div className={styles.item}></div>
-        </Offcanvas.Body>
-      </Offcanvas>
+     
     </div>
   );
 }

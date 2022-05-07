@@ -13,14 +13,20 @@ const someSayings = [
 ];
 
 export default function Quote({}: Props): ReactElement {
-  const len = someSayings.length-1
+  // const [quote, setQuote] = React.useState();
+  const len = someSayings.length - 1;
   const idx = Math.floor(Math.random() * (len - 0 + 1) + 0);
-  const saying = someSayings[idx].split("/")[0];
-  const sourcE = someSayings[idx].split("/")[1];
+
+  const compound = React.useMemo(() => {
+    const saying = someSayings[idx].split("/")[0];
+    const sourcE = someSayings[idx].split("/")[1];
+    return { saying, sourcE };
+  }, []);
+
   return (
     <div>
-      <div className="saying">{saying}</div>
-      <div className="sourcE">{sourcE}</div>
+      <div className="saying">{compound.saying}</div>
+      <div className="sourcE">{"---" + compound.sourcE}</div>
     </div>
   );
 }

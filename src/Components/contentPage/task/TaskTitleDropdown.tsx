@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Dropdown from "react-bootstrap/Dropdown";
+
 import styles from "./TaskTitleDropdown.module.scss";
 
 const dropdownConfig1 = {
@@ -47,62 +47,9 @@ export default function TaskTitleDropdown() {
   return (
     <div className={styles.container}>
       {/* 完成 /未完成的 下拉菜单 */}
-      <div className="by_arrangement">
-        <Dropdown className="me-2">
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            {dropdown1State}
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu variant="dark">
-            <Dropdown.Item
-              onClick={() => {
-                setdropdown1(dropdownConfig1.fourQudrants);
-              }}
-            >
-              {dropdownConfig1.fourQudrants}
-            </Dropdown.Item>
-            <Dropdown.Item
-              onClick={() => {
-                setdropdown1(dropdownConfig1.timeline);
-              }}
-            >
-              {dropdownConfig1.timeline}
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </div>
+      <div className="by_arrangement">{/*  */}</div>
       {/* 不同状态的下拉菜单 */}
-      <div className="by_status">
-        <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            {dropdown2State}
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu variant="dark">
-            <Dropdown.Item
-              onClick={() => {
-                setdropdown2(dropdownConfig2.all);
-              }}
-            >
-              {dropdownConfig2.all}
-            </Dropdown.Item>
-            <Dropdown.Item
-              onClick={() => {
-                setdropdown2(dropdownConfig2.finished);
-              }}
-            >
-              {dropdownConfig2.finished}
-            </Dropdown.Item>
-            <Dropdown.Item
-              onClick={() => {
-                setdropdown2(dropdownConfig2.unfinished);
-              }}
-            >
-              {dropdownConfig2.unfinished}
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </div>
+      <div className="by_status"></div>
     </div>
   );
 }

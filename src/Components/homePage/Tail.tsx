@@ -14,7 +14,7 @@ interface Props {}
 export default function Tail({}: Props): ReactElement {
   return (
     <div>
-      <div className="tail" style={{ color: "beige" }}>
+      <div>
         {/* 
          everyday quote
          */}

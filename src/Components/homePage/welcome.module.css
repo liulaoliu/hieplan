@@ -1,0 +1,25 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.h {
+  height: 100px;
+ 
+  /* background-color: orange; */
+}
+.c {
+  height: 50vh;
+  /* background-color: blueviolet; */
+  position: relative;
+}
+.t {
+  height: 100px;
+  /* background-color: violet; */
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 2rem;
+}
