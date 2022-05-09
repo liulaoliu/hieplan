@@ -1,3 +1,5 @@
+import { useTheme } from "@emotion/react";
+import Box from "@mui/material/Box";
 import React, { ReactElement } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar";
@@ -15,9 +17,14 @@ export default function Main({}: Props): ReactElement {
         <div>
           <Sidebar></Sidebar>
         </div>
-        <div className={styles.main_page_content}>
+        <Box
+          sx={{
+            backgroundColor: "info.main",
+          }}
+          className={styles.main_page_content}
+        >
           <Outlet></Outlet>
-        </div>
+        </Box>
       </div>
     </div>
   );

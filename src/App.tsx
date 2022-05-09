@@ -17,17 +17,20 @@ import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 
 import { CssBaseline } from "@mui/material";
 import colorModeStorage from "./Components/utils/colorModeStorage";
-import ColorChangeIcon from "./Components/utils/ColorChangeIcon";
+
+import blue from "@mui/material/colors/blue";
 
 // Task 的懒加载
 const Task = React.lazy(() => import("./Components/contentPage/task/Task"));
 
-export const ColorModeContext = React.createContext({
-  toggleColorMode: () => {},
-});
 function DeafaultApp() {
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{
+        minWidth: "450px",
+      }}
+    >
       <BrowserRouter>
         <Routes>
           <Route path="main" element={<Main />}>
@@ -46,8 +49,15 @@ function DeafaultApp() {
             <Route path="tag" element={<Tag />} />
             <Route path="search" element={<Tag />} />
           </Route>
-          <Route path="login" element={<Login />} />
-          <Route path="registration" element={<Login />} />
+          <Route path="login" element={<Login mode={"login"} />} />
+          <Route
+            path="registration"
+            element={<Login mode={"registration"} />}
+          />
+          <Route
+            path="password/forgot"
+            element={<Login mode={"password/forgot"} />}
+          />
           <Route path="/" element={<Welcome />} />
           <Route path="*" element={<Nowhere />} />
         </Routes>
@@ -55,6 +65,10 @@ function DeafaultApp() {
     </div>
   );
 }
+
+export const ColorModeContext = React.createContext({
+  toggleColorMode: () => {},
+});
 
 //  以下是 切换深浅颜色 的 外侧 wrapper 也是 context的 provider
 export default function App() {
@@ -67,6 +81,7 @@ export default function App() {
     }
     return defaultMode as "light" | "dark";
   });
+
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -79,11 +94,27 @@ export default function App() {
     []
   );
 
+  // overwrite background color depends on mode
+  let background: { paper: string; default: string } = null as any;
+  let primary: {
+    main: string;
+  } = null as any;
+  let secondary: {
+    main: string;
+  } = null as any;
+
+  // 改写 背景色
+  if (mode === "dark") {
+    background = { paper: "#0a1929", default: "#0a1929" };
+  } else {
+    background = { paper: "#fff", default: "#fff" };
+  }
   const theme = React.useMemo(
     () =>
       createTheme({
         palette: {
           mode,
+          background,
         },
       }),
     [mode]

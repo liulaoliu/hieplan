@@ -7,6 +7,7 @@ import { ColorModeContext } from "../../App";
 
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+
 type Props = {};
 
 export default function ColorChangeIcon({}: Props) {

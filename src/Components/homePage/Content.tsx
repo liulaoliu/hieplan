@@ -1,15 +1,16 @@
 import { Box, Container, CssBaseline, Typography, Grid } from "@mui/material";
 import React, { ReactElement } from "react";
-import SignInSide from "../singInSlide/SignInSlide";
-import SimpleSlide from "../utils/SimpleSlide";
+
 import Logo from "./Logo";
 import TextField from "@mui/material/TextField";
+import SignInSlide from "../singIn/SignIn";
 
 export default function Content(): ReactElement {
   return (
     <div
       style={{
         marginTop: "2rem",
+        minWidth: "300px",
       }}
     >
       <CssBaseline>

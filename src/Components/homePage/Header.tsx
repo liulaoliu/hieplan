@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { Link } from "@mui/material";
 import ColorChangeIcon from "../utils/ColorChangeIcon";
 import st from "./header.module.css";
+
 export default function Header(): ReactElement {
   //  默认情况下，用在 Welcome页面 ，所以为true, 显示
 
@@ -18,8 +19,8 @@ export default function Header(): ReactElement {
       </div>
 
       <div className={st.l}>
-        <Link underline="hover" color="success">
-          注册
+        <Link underline="none" color="inherit" href="/login">
+          登录
         </Link>
       </div>
     </div>
