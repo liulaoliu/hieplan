@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Welcome from "./Components/homePage/Welcome";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -19,6 +19,7 @@ import { CssBaseline } from "@mui/material";
 import colorModeStorage from "./Components/utils/colorModeStorage";
 
 import blue from "@mui/material/colors/blue";
+import watchAltAndEnter from "./Components/utils/watchAltAndEnter";
 
 // Task 的懒加载
 const Task = React.lazy(() => import("./Components/contentPage/task/Task"));
@@ -72,6 +73,8 @@ export const ColorModeContext = React.createContext({
 
 //  以下是 切换深浅颜色 的 外侧 wrapper 也是 context的 provider
 export default function App() {
+
+
   const defaultMode = colorModeStorage.getMode();
   // console.log('shit');
 

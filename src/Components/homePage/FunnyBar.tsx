@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Grid } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { AnyMxRecord } from "dns";
 import { useNavigate } from "react-router-dom";
-
+import watchAltAndEnter from "../utils/watchAltAndEnter";
 /**
  * funnnyBar的 特殊功能 （输入+回车）
  */
@@ -21,15 +20,22 @@ function isMain(value: string) {
   }
 }
 
-type Props = {};
+type Props = {
+  visible?: boolean;
+};
 /**
  * 
-使用了 mui布局组件的 仿搜索bar
+使用了 mui布局组件的 仿搜索baryarn
  */
-export default function FunnyBar({}: Props) {
+export default function FunnyBar({ visible }: Props) {
   const [input, setInput] = useState("");
   /** 用于跳转的 工具 */
   const navigate = useNavigate();
+
+  if (!visible && visible !== undefined) {
+    return <div></div>;
+  }
+
   return (
     <Grid container>
       <Grid

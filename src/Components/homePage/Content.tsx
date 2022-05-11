@@ -1,12 +1,15 @@
 import { Box, Container, CssBaseline, Typography, Grid } from "@mui/material";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 
 import Logo from "./Logo";
 import FunnyBar from "./FunnyBar";
-
-
+import watchAltAndEnter from "../utils/watchAltAndEnter";
 
 export default function Content(): ReactElement {
+  const [barStatus, setbarStatus] = useState(true);
+
+  watchAltAndEnter(barStatus, setbarStatus);
+
   return (
     <div
       style={{
@@ -24,7 +27,8 @@ export default function Content(): ReactElement {
             </Grid>
           </Box>
           <Box>
-            <FunnyBar></FunnyBar>
+            {/* handler ={setbarStatus} */}
+            <FunnyBar visible={barStatus}></FunnyBar>
           </Box>
         </Container>
       </CssBaseline>
