@@ -74,3 +74,4 @@ export const SIDEBARbottomDATA: any = [
     text: null,
   },
 ];
+export type sidebarData= typeof SIDEBARREGULARDATA

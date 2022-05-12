@@ -1,0 +1,26 @@
+.icon_and_text {
+    display: flex;
+    align-items: center;
+  }
+  
+  .clear_li_style {
+    list-style: none;
+    padding: 0;
+  }
+  // li container
+  .li_c {
+    cursor: pointer;
+    display: flex;
+    margin-top: 0.3rem;
+    justify-content: center;
+    align-items: center;
+    // 规定 li的高度 不规定就有跳动
+    height: 40px;
+    // background-color: violet;
+    
+  }
+  
+  .reset_link{
+    text-decoration: none;
+  
+  }

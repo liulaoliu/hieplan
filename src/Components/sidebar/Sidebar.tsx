@@ -3,73 +3,66 @@ import { Box, Divider, useMediaQuery, Typography } from "@mui/material";
 import React, { ReactElement } from "react";
 import st from "./sidebar.module.scss";
 import { SIDEBARREGULARDATA } from "./SidebarData.config";
-// 不知为何 这个在dev模式会导致 极大的性能问题
-import { FaHamburger } from "react-icons/fa";
 
 import { NavLink } from "react-router-dom";
+import ToggleSidebarIcon from "./ToggleSidebarIcon";
+import SidebarItems from "./SidebarItems";
 interface Props {}
 
 export default function Sidebar({}: Props): ReactElement {
-  const theme = useTheme();
-  console.log(theme);
-
   /**
    * 是 mui提供的钩子 它是高性能的，原理是通过观测文档的媒体查询值发生更改，而不是使用定期轮询的方法来监听其结果
-   * https://mui.com/zh/material-ui/react-use-media-query/
+   * https://mui.com/zh/material-ui/react-use-media-query/。
+   * 
+   * 另外 @media(min-width:330px){…}
+  指的是 width大于或等于min-width时，采用{…}样式。
    *
    */
-  const less1200 = useMediaQuery("(min-width:1200px)");
-  const less600 = useMediaQuery("(min-width:600px");
-  // 强制打开
+  const morethan1200 = useMediaQuery("(min-width:1200px)");
+  const moreThan600 = useMediaQuery("(min-width:600px");
+  // 切换侧边栏宽度 200px/50px
   const [open, setopen] = React.useState(true);
+  // 切换侧边栏 开/关
+  const [show, setshow] = React.useState(true);
+
+  React.useEffect(() => {
+    //  在 宽度小于1200的时候 缩小侧边栏
+    if (morethan1200) {
+      setopen(true);
+    } else {
+      setopen(false);
+    }
+  }, [morethan1200]);
+
+  React.useEffect(() => {
+    //  在 宽度小于600的时候 不显示侧边栏
+    if (moreThan600) {
+      setshow(true);
+    } else {
+      setshow(false);
+    }
+  }, [moreThan600]);
   const sidebarState = open ? "200px" : "50px";
-  // if (sidebarState === 0) {
+
+  /**
+   * 如果用这个 没有平滑过渡
+   */
+  // if (!show) {
   //   return <div></div>;
   // }
   return (
     <Box
-      width={sidebarState}
+      width={show ? sidebarState : "0px"}
       sx={{
         transition: "width 0.3s",
       }}
     >
-      <div
-        className={st.hamHeader}
-        onClick={() => {
-          setopen(!open);
-        }}
-      >
-        <FaHamburger size={open ? "20px" : "30px"} color="orange"></FaHamburger>
-      </div>
       <Divider></Divider>
 
-      <ul className={st.clear_li_style}>
-        {SIDEBARREGULARDATA.map((item, idx: number) => {
-          return (
-            <li className={st.li_c} key={idx}>
-              <NavLink
-                className={st.reset_link}
-                // good point
-                style={{ color: "inherit", display: "flex" }}
-                to={item.path}
-              >
-                <div className={st.icon_and_text}>{<item.icon />}</div>
-                {open ? (
-                  <div className={st.icon_and_text}>
-                    <Box
-                      sx={{
-                        color: `text.dark`,
-                      }}
-                    >
-                      {item.text}
-                    </Box>
-                  </div>
-                ) : null}
-              </NavLink>
-            </li>
-          );
-        })}
-      </ul>
+      <ToggleSidebarIcon state={open} setState={setopen}></ToggleSidebarIcon>
+      <Divider></Divider>
+
+      <SidebarItems data={SIDEBARREGULARDATA} state={open}></SidebarItems>
       <Divider></Divider>
     </Box>
   );
