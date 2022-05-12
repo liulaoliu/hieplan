@@ -15,16 +15,45 @@ export default function Main({}: Props): ReactElement {
     <div>
       <div className={styles.main_page_container}>
         <div>
-          <Sidebar></Sidebar>
+          {/* 顶部 */}
+          {/* 下方
+                  侧边栏 
+                  内容区
+
+          */}
+          {/* 顶部 */}
+          <Box
+            sx={{
+              height: "50px",
+              width: "100vw",
+              // backgroundColor: "violet",
+            }}
+          ></Box>
+          {/* 下方  */}
+          <Box
+            sx={{
+              //  funny space
+              height: "calc(100vh - 50px)",
+              width: "100vw",
+              display: "flex",
+              flexDirection: "colunmn",
+            }}
+          >
+            <Box>
+              {/*  侧边栏 */}
+              <Sidebar></Sidebar>
+            </Box>
+            <Box
+              // 内容区
+              sx={{
+                backgroundColor: "info.main",
+              }}
+              className={styles.main_page_content}
+            >
+              <Outlet></Outlet>
+            </Box>
+          </Box>
         </div>
-        <Box
-          sx={{
-            backgroundColor: "info.main",
-          }}
-          className={styles.main_page_content}
-        >
-          <Outlet></Outlet>
-        </Box>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ import {
 
 import Test from "./Test";
 
-export const SIDEBARREGULARDATA: any = [
+export const SIDEBARREGULARDATA= [
   {
     itemName: "task",
     path: "/task",

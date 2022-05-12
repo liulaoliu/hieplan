@@ -1,0 +1,61 @@
+@mixin thinner_line {
+  content: "";
+  display: block;
+  height: 1px;
+  transform: scaleY(0.2);
+  background: #ccc;
+}
+// 打开宽度
+$w200: 200px;
+// 关闭的宽度
+$w50: 50px;
+
+@mixin sidebar {
+  width: $w200;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  // 给 sidebar的 减小按钮提供定位基准
+  // position: relative;
+}
+
+.w_200 {
+  width: $w200;
+}
+.w_50 {
+  $w50: 50px;
+}
+.icon_and_text {
+  display: flex;
+  align-items: center;
+}
+.hamHeader {
+  // background-color: violet;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  // width: 100vh;
+}
+.clear_li_style {
+  list-style: none;
+  padding: 0;
+}
+// li container
+.li_c {
+  cursor: pointer;
+  display: flex;
+  margin-top: 0.3rem;
+  justify-content: center;
+  align-items: center;
+  // 规定 li的高度 不规定就有跳动
+  height: 40px;
+  // background-color: violet;
+  
+}
+
+.reset_link{
+  text-decoration: none;
+
+}
