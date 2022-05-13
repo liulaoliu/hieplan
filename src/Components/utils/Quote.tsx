@@ -1,7 +1,8 @@
 import React, { ReactElement } from "react";
-import { NumberLiteralType } from "typescript";
 
-interface Props {}
+interface Props {
+  returnString?: boolean;
+}
 /**
  * "@修饰符" 加入方法 看下面数组的示例
  * "someSayings中的 '@修饰符' 的作用是标记一句话属于连续一组话的开头/中间/结尾，没有其他作用
@@ -33,18 +34,31 @@ const someSayings = [
 /**
  *
  *
- * @returns 渲染一句有深意 或者是 幽默的 话
+ * @returns
+ * 渲染一句有深意 或者是 幽默的 话。
+ *
+ *
  */
-export default function Quote({}: Props): ReactElement {
+
+/** 随机获取一个 idx 和someSaying相关*/
+function getRandomIdx(): number {
+  const len = someSayings.length - 1;
+  const idx = Math.floor(Math.random() * (len - 0 + 1) + 0);
+  return idx;
+}
+/**
+ * 随便选个字符串
+ * 还给你一个布尔值
+ */
+export function getQuoteString() {
+  const saying = someSayings[getRandomIdx()].split("/")[0];
+  return [saying, getRandomIdx() % 2 === 0] as const;
+}
+
+export default function Quote({ returnString }: Props): ReactElement {
   /** 为了 能连续地显示 someSayings 中 @start,@mid直到@end 而维护的状态*/
   const [active, setactive] = React.useState(false);
 
-  /** 随机获取一个 idx 和someSaying相关*/
-  function getRandomIdx(): number {
-    const len = someSayings.length - 1;
-    const idx = Math.floor(Math.random() * (len - 0 + 1) + 0);
-    return idx;
-  }
   /**  就是 getRandomIdx的结果*/
   const [quoteIdx, setQuote] = React.useState(getRandomIdx());
 
@@ -92,6 +106,11 @@ export default function Quote({}: Props): ReactElement {
     }
     return false;
   }
+
+  // if (returnString === true) {
+  //   return compound.saying;
+  // }
+
   return (
     <div
       style={{
@@ -123,3 +142,6 @@ export default function Quote({}: Props): ReactElement {
     </div>
   );
 }
+
+interface Props {}
+interface State {}

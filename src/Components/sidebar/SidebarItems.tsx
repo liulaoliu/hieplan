@@ -25,7 +25,8 @@ export default function SidebarItems({ data, state }: Props) {
               className={st.reset_link}
               // good point
               style={{ color: "inherit", display: "flex" }}
-              to={item.path}
+              to={"/main" + item.path}
+              title={item.text}
             >
               <div className={st.icon_and_text}>{<item.icon />}</div>
               {state ? (

@@ -4,15 +4,41 @@ import React, { ReactElement } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar";
 import styles from "./Main.module.css";
-
+import ColorChangeIcon from "../utils/ColorChangeIcon";
+import FunnyBar from "../homePage/FunnyBar";
+import watchAltAndEnter from "../utils/watchAltAndEnter";
 interface Props {}
 /*
 主界面
 包含了侧边栏 + (侧边栏上被点击激活的)对应内容
 */
 export default function Main({}: Props): ReactElement {
+  /*
+  该状态用于 维护 funnyBar
+   */
+  const [funnyBarVisible, setFunnyBarVisible] = React.useState(false);
+  watchAltAndEnter(funnyBarVisible, setFunnyBarVisible);
+ 
+ 
   return (
-    <div>
+    <div
+      style={{
+        position: "relative",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          top: 0,
+          bottom: 0,
+          margin: "auto",
+          display: "flex",
+        }}
+      >
+        <FunnyBar color={"warning"} visible={funnyBarVisible}></FunnyBar>
+      </div>
       <div className={styles.main_page_container}>
         <div>
           {/* 顶部 */}
@@ -28,7 +54,9 @@ export default function Main({}: Props): ReactElement {
               width: "100vw",
               // backgroundColor: "violet",
             }}
-          ></Box>
+          >
+            <ColorChangeIcon></ColorChangeIcon>
+          </Box>
           {/* 下方  */}
           <Box
             sx={{

@@ -28,3 +28,10 @@ export default function ColorChangeIcon({}: Props) {
     </IconButton>
   );
 }
+
+export function useChangeColorMode() {
+  const colorMode = React.useContext(ColorModeContext);
+  return colorMode;
+
+}
+

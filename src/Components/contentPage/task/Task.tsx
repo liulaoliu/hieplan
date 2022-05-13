@@ -3,8 +3,6 @@ import React, { ReactElement } from "react";
 import ContentLayout from "../contentLayout/ContentLayout";
 import TaskTitle from "./TaskTitle";
 
-
-
 interface Props {}
 /**
  *
@@ -14,10 +12,13 @@ interface Props {}
  */
 export default function Task({}: Props): ReactElement {
   return (
-    <div >
+    <div style={{
+      width:"100%",
+      minWidth:"1000px"
+    }}>
       <ContentLayout
         title={<TaskTitle></TaskTitle>}
-        content={<div>content</div>}
+        content={<div> task content</div>}
       ></ContentLayout>
     </div>
   );

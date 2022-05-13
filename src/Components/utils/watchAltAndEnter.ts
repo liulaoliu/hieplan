@@ -12,6 +12,7 @@ export default function watchAltAndEnter(
     // onkeydown 只 加一次 ，默认覆盖
     document.onkeydown = function (e: KeyboardEvent) {
       if (e.code === "Enter" && e.altKey) {
+
         handler(!prevState);
       }
     };

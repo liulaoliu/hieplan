@@ -3,7 +3,6 @@ import styles from "./homePage.module.css";
 import Header from "./Header";
 import Content from "./Content";
 import Tail from "./Tail";
-import { Grid } from "@mui/material";
 import st from "./welcome.module.css";
 /**
  *

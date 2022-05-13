@@ -18,9 +18,6 @@ import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import colorModeStorage from "./Components/utils/colorModeStorage";
 
-import blue from "@mui/material/colors/blue";
-import watchAltAndEnter from "./Components/utils/watchAltAndEnter";
-
 // Task 的懒加载
 const Task = React.lazy(() => import("./Components/contentPage/task/Task"));
 
