@@ -58,11 +58,31 @@ export default function Sidebar({}: Props): ReactElement {
       }}
     >
       <Divider></Divider>
+      <div
+        onClick={() => {
+          // 只在 宽度<600 且侧边栏关闭的时候起作用
+          if (!moreThan600 && !open) {
+            setshow(true);
+          }
+          // 只在 宽度<600 且侧边栏开启的时候起作用
 
-      <ToggleSidebarIcon state={open} setState={setopen}></ToggleSidebarIcon>
+          if (!moreThan600 && open) {
+            setshow(false);
+          } else {
+            return;
+          }
+        }}
+        style={{
+          position: moreThan600 === false ? "fixed" : undefined,
+          top: moreThan600 === false ? "0" : undefined,
+        }}
+      >
+        <ToggleSidebarIcon state={open} setState={setopen}></ToggleSidebarIcon>
+      </div>
       <Divider></Divider>
 
       <SidebarItems data={SIDEBARREGULARDATA} state={open}></SidebarItems>
+
       <Divider></Divider>
     </Box>
   );
