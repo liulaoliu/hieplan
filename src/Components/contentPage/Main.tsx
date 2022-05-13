@@ -14,31 +14,18 @@ interface Props {}
 */
 export default function Main({}: Props): ReactElement {
   /*
-  该状态用于 维护 funnyBar
+  该状态用于 维护 funnyBar 不在此处 渲染 提升到顶层
    */
-  const [funnyBarVisible, setFunnyBarVisible] = React.useState(false);
-  watchAltAndEnter(funnyBarVisible, setFunnyBarVisible);
- 
- 
+  // const [funnyBarVisible, setFunnyBarVisible] = React.useState(false);
+  // watchAltAndEnter(funnyBarVisible, setFunnyBarVisible);
+
   return (
     <div
       style={{
         position: "relative",
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
-          margin: "auto",
-          display: "flex",
-        }}
-      >
-        <FunnyBar color={"warning"} visible={funnyBarVisible}></FunnyBar>
-      </div>
+      
       <div className={styles.main_page_container}>
         <div>
           {/* 顶部 */}

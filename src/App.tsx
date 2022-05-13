@@ -17,11 +17,18 @@ import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 
 import { CssBaseline } from "@mui/material";
 import colorModeStorage from "./Components/utils/colorModeStorage";
+import FunnyBar from "./Components/homePage/FunnyBar";
+import watchAltAndEnter from "./Components/utils/watchAltAndEnter";
 
 // Task 的懒加载
 const Task = React.lazy(() => import("./Components/contentPage/task/Task"));
 
 function DeafaultApp() {
+  /*
+  该状态用于 维护 funnyBar 
+   */
+  const [funnyBarVisible, setFunnyBarVisible] = React.useState(false);
+  watchAltAndEnter(funnyBarVisible, setFunnyBarVisible);
   return (
     <div
       className="App"
@@ -30,6 +37,10 @@ function DeafaultApp() {
       }}
     >
       <BrowserRouter>
+        {/* 注意这种奇怪的配置方法， FunnyBar不和 任何 path相关，永远被渲染，但是他使用了 router的上下文
+        useNavigate() may be used only in the context of a <Router> component.
+        */}
+        <FunnyBar color={"warning"} visible={funnyBarVisible}></FunnyBar>
         <Routes>
           <Route path="main" element={<Main />}>
             <Route
@@ -70,8 +81,6 @@ export const ColorModeContext = React.createContext({
 
 //  以下是 切换深浅颜色 的 外侧 wrapper 也是 context的 provider
 export default function App() {
-
-
   const defaultMode = colorModeStorage.getMode();
   // console.log('shit');
 

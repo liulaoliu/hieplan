@@ -3,7 +3,9 @@
  *  handler 是 一个外部state的 控制器，
  * @param prevState 调用watchAltAndEnter 之前的 state，
  * @param handler 当alt+enter被按下 调用handler，
+ * @bug  切换到没有使用维护状态和  handler的页面可能会导致 leak ==> 把分布在不同组件的FunnyBar放到顶层
  */
+
 export default function watchAltAndEnter(
   prevState: boolean,
   handler: React.Dispatch<React.SetStateAction<boolean>>
@@ -12,7 +14,6 @@ export default function watchAltAndEnter(
     // onkeydown 只 加一次 ，默认覆盖
     document.onkeydown = function (e: KeyboardEvent) {
       if (e.code === "Enter" && e.altKey) {
-
         handler(!prevState);
       }
     };

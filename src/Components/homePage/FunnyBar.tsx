@@ -7,7 +7,17 @@ import { useChangeColorMode } from "../utils/ColorChangeIcon";
  * funnnyBar的 特殊功能 （输入+回车）
  */
 
-const possibility = ["login", "登录", "main", "task", "change", "color"];
+const possibility = [
+  "login",
+  "登录",
+  "main",
+  "task",
+  "change",
+  "color",
+  "home",
+];
+
+type isSomething = (val: string) => boolean | undefined;
 function isLogin(value: string) {
   if (value === "login" || value === "登录") {
     return true;
@@ -25,6 +35,11 @@ function isChangeColorMode(value: string) {
     return true;
   }
 }
+const isHome: isSomething = function (value) {
+  if (value === "home") {
+    return true;
+  }
+};
 type Props = {
   visible?: boolean;
   color?:
@@ -38,7 +53,7 @@ type Props = {
 };
 /**
  * 
-使用了 mui布局组件的 仿搜索baryarn
+使用了 mui布局组件的 仿搜索bar 是一个 absolute定位的bar
  */
 export default function FunnyBar({ visible, color }: Props) {
   const [input, setInput] = useState("");
@@ -52,7 +67,20 @@ export default function FunnyBar({ visible, color }: Props) {
   }
 
   return (
-    <Grid container>
+    <Grid
+      container
+      sx={{
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        margin: "auto",
+        display: "flex",
+        zIndex: 9999,
+        minWidth: "800px",
+      }}
+    >
       <Grid
         item
         textAlign="center"
@@ -85,6 +113,9 @@ export default function FunnyBar({ visible, color }: Props) {
                 }
                 if (isChangeColorMode(input)) {
                   changeColorModeTool();
+                }
+                if (isHome(input)) {
+                  navigate("/");
                 }
               }
               setInput("");

@@ -6,9 +6,10 @@ import FunnyBar from "./FunnyBar";
 import watchAltAndEnter from "../utils/watchAltAndEnter";
 
 export default function Content(): ReactElement {
-  const [barStatus, setbarStatus] = useState(true);
+  // 不在此处使用，提升到顶层
+  // const [barStatus, setbarStatus] = useState(true);
 
-  watchAltAndEnter(barStatus, setbarStatus);
+  // watchAltAndEnter(barStatus, setbarStatus);
 
   return (
     <div
@@ -26,10 +27,9 @@ export default function Content(): ReactElement {
               </Grid>
             </Grid>
           </Box>
-          <Box>
-            {/* handler ={setbarStatus} */}
+          {/* <Box>
             <FunnyBar visible={barStatus}></FunnyBar>
-          </Box>
+          </Box> */}
         </Container>
       </CssBaseline>
     </div>
