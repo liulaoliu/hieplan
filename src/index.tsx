@@ -4,16 +4,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import "@fontsource/roboto/300.css";
 
-import { StyledEngineProvider } from "@mui/material";
 import { getQuoteString } from "./Components/utils/Quote";
 
 ReactDOM.render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <App />
-    </StyledEngineProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

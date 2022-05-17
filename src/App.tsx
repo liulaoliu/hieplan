@@ -13,9 +13,6 @@ import Position from "./Components/contentPage/Position";
 import Tag from "./Components/contentPage/Tag";
 import Nowhere from "./Components/404/Nowhere";
 
-import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
-
-import { CssBaseline } from "@mui/material";
 import colorModeStorage from "./Components/utils/colorModeStorage";
 import FunnyBar from "./Components/homePage/FunnyBar";
 import watchAltAndEnter from "./Components/utils/watchAltAndEnter";
@@ -118,23 +115,10 @@ export default function App() {
   } else {
     background = { paper: "#fff", default: "#fff" };
   }
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-          background,
-        },
-      }),
-    [mode]
-  );
 
   return (
     <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <DeafaultApp />
-      </ThemeProvider>
+      <DeafaultApp />
     </ColorModeContext.Provider>
   );
 }

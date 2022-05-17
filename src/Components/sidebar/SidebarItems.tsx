@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { sidebarData } from "./SidebarData.config";
@@ -31,13 +30,7 @@ export default function SidebarItems({ data, state }: Props) {
               <div className={st.icon_and_text}>{<item.icon />}</div>
               {state ? (
                 <div className={st.icon_and_text}>
-                  <Box
-                    sx={{
-                      color: `text.dark`,
-                    }}
-                  >
-                    {item.text}
-                  </Box>
+                  <div>{item.text}</div>
                 </div>
               ) : null}
             </NavLink>

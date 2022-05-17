@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { Grid } from "@mui/material";
-import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
-import { useChangeColorMode } from "../utils/ColorChangeIcon";
 /**
  * funnnyBar的 特殊功能 （输入+回车）
  */
@@ -60,69 +57,36 @@ export default function FunnyBar({ visible, color }: Props) {
   /** 用于跳转的 工具 */
   const navigate = useNavigate();
 
-  const changeColorModeTool = useChangeColorMode().toggleColorMode;
 
   if (!visible && visible !== undefined) {
     return <div></div>;
   }
 
   return (
-    <Grid
-      container
-      sx={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        margin: "auto",
-        display: "flex",
-        zIndex: 9999,
-        minWidth: "800px",
+    <input
+      autoFocus={true}
+      value={input}
+      onChange={(e) => {
+        setInput(e.target.value);
       }}
-    >
-      <Grid
-        item
-        textAlign="center"
-        xs={12}
-        sm={10}
-        md={8}
-        margin="auto"
-        sx={{
-          transition: "all 0.5s",
-        }}
-      >
-        <TextField
-          fullWidth
-          label="运气不错"
-          variant="filled"
-          color={color ? color : "success"}
-          autoFocus={true}
-          value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
-          }}
-          onKeyDown={(e) => {
-            if (e.code === "Enter") {
-              if (possibility.includes(input)) {
-                if (isLogin(input)) {
-                  navigate("/login");
-                }
-                if (isMain(input)) {
-                  navigate("/main");
-                }
-                if (isChangeColorMode(input)) {
-                  changeColorModeTool();
-                }
-                if (isHome(input)) {
-                  navigate("/");
-                }
-              }
-              setInput("");
+      onKeyDown={(e) => {
+        if (e.code === "Enter") {
+          if (possibility.includes(input)) {
+            if (isLogin(input)) {
+              navigate("/login");
             }
-          }}
-        />
-      </Grid>
-    </Grid>
+            if (isMain(input)) {
+              navigate("/main");
+            }
+            if (isChangeColorMode(input)) {
+            }
+            if (isHome(input)) {
+              navigate("/");
+            }
+          }
+          setInput("");
+        }
+      }}
+    />
   );
 }

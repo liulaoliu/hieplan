@@ -1,4 +1,3 @@
-import { Box, Container, CssBaseline, Typography, Grid } from "@mui/material";
 import React, { ReactElement, useState } from "react";
 
 import Logo from "./Logo";
@@ -18,20 +17,10 @@ export default function Content(): ReactElement {
         minWidth: "300px",
       }}
     >
-      <CssBaseline>
-        <Container>
-          <Box>
-            <Grid container>
-              <Grid item textAlign="center" xs={12}>
-                <Logo></Logo>
-              </Grid>
-            </Grid>
-          </Box>
-          {/* <Box>
+      <Logo></Logo>
+      {/* <Box>
             <FunnyBar visible={barStatus}></FunnyBar>
           </Box> */}
-        </Container>
-      </CssBaseline>
     </div>
   );
 }

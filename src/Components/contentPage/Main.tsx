@@ -1,10 +1,7 @@
-import { useTheme } from "@emotion/react";
-import Box from "@mui/material/Box";
 import React, { ReactElement } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar";
 import styles from "./Main.module.css";
-import ColorChangeIcon from "../utils/ColorChangeIcon";
 import FunnyBar from "../homePage/FunnyBar";
 import watchAltAndEnter from "../utils/watchAltAndEnter";
 interface Props {}
@@ -25,7 +22,6 @@ export default function Main({}: Props): ReactElement {
         position: "relative",
       }}
     >
-      
       <div className={styles.main_page_container}>
         <div>
           {/* 顶部 */}
@@ -35,39 +31,22 @@ export default function Main({}: Props): ReactElement {
 
           */}
           {/* 顶部 */}
-          <Box
-            sx={{
-              height: "50px",
-              width: "100vw",
-              // backgroundColor: "violet",
-            }}
-          >
-            <ColorChangeIcon></ColorChangeIcon>
-          </Box>
+          <div>
+          </div>
           {/* 下方  */}
-          <Box
-            sx={{
-              //  funny space
-              height: "calc(100vh - 50px)",
-              width: "100vw",
-              display: "flex",
-              flexDirection: "colunmn",
-            }}
-          >
-            <Box>
+          <div>
+            <div>
               {/*  侧边栏 */}
               <Sidebar></Sidebar>
-            </Box>
-            <Box
+            </div>
+            <div
               // 内容区
-              sx={{
-                backgroundColor: "info.main",
-              }}
+
               className={styles.main_page_content}
             >
               <Outlet></Outlet>
-            </Box>
-          </Box>
+            </div>
+          </div>
         </div>
       </div>
     </div>
