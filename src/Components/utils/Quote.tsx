@@ -115,6 +115,8 @@ export default function Quote({ returnString }: Props): ReactElement {
     <div
       style={{
         fontWeight: "bolder",
+        userSelect:"none",
+        cursor:"pointer"
       }}
       onClick={() => {
         if (isStart(someSayings[quoteIdx])) {

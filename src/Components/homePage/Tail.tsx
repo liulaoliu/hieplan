@@ -14,12 +14,8 @@ interface Props {}
 export default function Tail({}: Props): ReactElement {
   return (
     <div>
-      <div>
-        {/* 
-         everyday quote
-         */}
-        <Quote></Quote>
-      </div>
+      
+      <Quote></Quote>
     </div>
   );
 }
