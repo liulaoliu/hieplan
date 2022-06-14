@@ -2,7 +2,6 @@ import React, { ReactElement, useState } from "react";
 
 import Logo from "./Logo";
 import FunnyBar from "./FunnyBar";
-import watchAltAndEnter from "../utils/watchAltAndEnter";
 
 export default function Content(): ReactElement {
   // 不在此处使用，提升到顶层

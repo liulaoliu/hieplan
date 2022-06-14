@@ -49,44 +49,45 @@ type Props = {
     | undefined;
 };
 /**
- * 
-使用了 mui布局组件的 仿搜索bar 是一个 absolute定位的bar
+ *
+ * 重新制作的 “手造” 搜索栏
  */
 export default function FunnyBar({ visible, color }: Props) {
   const [input, setInput] = useState("");
   /** 用于跳转的 工具 */
   const navigate = useNavigate();
 
-
   if (!visible && visible !== undefined) {
-    return <div></div>;
+    return null;
   }
 
   return (
-    <input
-      autoFocus={true}
-      value={input}
-      onChange={(e) => {
-        setInput(e.target.value);
-      }}
-      onKeyDown={(e) => {
-        if (e.code === "Enter") {
-          if (possibility.includes(input)) {
-            if (isLogin(input)) {
-              navigate("/login");
+    <div className="">
+      <input
+        autoFocus={true}
+        value={input}
+        onChange={(e) => {
+          setInput(e.target.value);
+        }}
+        onKeyDown={(e) => {
+          if (e.code === "Enter") {
+            if (possibility.includes(input)) {
+              if (isLogin(input)) {
+                navigate("/login");
+              }
+              if (isMain(input)) {
+                navigate("/main");
+              }
+              if (isChangeColorMode(input)) {
+              }
+              if (isHome(input)) {
+                navigate("/");
+              }
             }
-            if (isMain(input)) {
-              navigate("/main");
-            }
-            if (isChangeColorMode(input)) {
-            }
-            if (isHome(input)) {
-              navigate("/");
-            }
+            setInput("");
           }
-          setInput("");
-        }
-      }}
-    />
+        }}
+      />
+    </div>
   );
 }
