@@ -51,26 +51,24 @@ export default function Logo({}: Props) {
       className="text-8xl antialiased select-none shrink-0 flex "
       title="这个Efficiency啊"
     >
-      <span className=" w-1/2  overflow-y-hidden flex-col h-28 bg-black">
-        <div className="bg-white">
-          <div
-            className={
-              moved === true
-                ? "h-28 invisible -translate-y-full duration-75 ease-in "
-                : "h-28 "
-            }
-          >
-            {alters[state]}
-          </div>
-          <div
-            className={
-              moved === true
-                ? "h-28 -translate-y-full duration-200 ease-in"
-                : "h-28"
-            }
-          >
-            {alters[state]}
-          </div>
+      <span className=" w-1/2  overflow-y-hidden flex-col h-28 ">
+        <div
+          className={
+            moved === true
+              ? "h-28 invisible -translate-y-full duration-75 ease-in "
+              : "h-28 "
+          }
+        >
+          {alters[state]}
+        </div>
+        <div
+          className={
+            moved === true
+              ? "h-28 -translate-y-full duration-200 ease-in"
+              : "h-28"
+          }
+        >
+          {alters[state]}
         </div>
       </span>
       <span className="h-28">ToDo</span>
