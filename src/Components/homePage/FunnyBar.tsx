@@ -62,8 +62,34 @@ export default function FunnyBar({ visible, color }: Props) {
   }
 
   return (
-    <div className="">
+    <div
+      className="absolute 
+      left-0
+      right-0
+      top-0
+      bottom-0
+      m-auto
+      my-[50vh]
+      w-[30vw]
+      min-w-[200px]
+      h-auto
+      z-[999]
+      rounded-md
+    "
+    >
       <input
+        className="
+        caret-purple-800
+        absolute h-14 w-[30vw]  min-w-[200px] rounded-md block outline-none
+        border-2
+        text-2xl
+        pl-3
+        bg-slate-500
+        border-black
+       dark:bg-blue-500
+        dark:border-white
+        
+        "
         autoFocus={true}
         value={input}
         onChange={(e) => {

@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./homePage.module.css";
+
 import Header from "./Header";
 import Content from "./Content";
 import Tail from "./Tail";
-import st from "./welcome.module.css";
+
 /**
  *
  * 欢迎页面
@@ -11,15 +11,15 @@ import st from "./welcome.module.css";
  */
 export default function Welcome() {
   return (
-    <div className={st.container}>
-      <div className={st.h}>
+    <div className="h-screen flex flex-col justify-between color-change-base ">
+      <div className="h-[100px]">
         <Header></Header>
       </div>
-      <div className={st.c}>
+      <div className="h-[50vh] relative ">
         <Content></Content>
       </div>
 
-      <div className={st.t}>
+      <div className="flex justify-end   pr-8">
         <Tail></Tail>
       </div>
     </div>

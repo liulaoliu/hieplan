@@ -20,7 +20,7 @@ import watchAltAndEnter from "./Components/utils/watchAltAndEnter";
 //  懒加载示范
 const Task = React.lazy(() => import("./Components/contentPage/task/Task"));
 
-export default function DeafaultApp() {
+export default function App() {
   /*
   该状态用于 维护 funnyBar 
    */

@@ -1,6 +1,8 @@
 /* @tailwind base; */
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -17,4 +19,8 @@ code {
 
 .ml-5 {
   margin-left: 5px;
+}
+/*  切换 color mode */
+.color-change-base {
+  @apply bg-gray-100 text-black dark:bg-blue-900   dark:text-white;
 }

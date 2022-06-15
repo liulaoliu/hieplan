@@ -40,19 +40,46 @@ const someSayings = [
  *
  */
 
-/** 随机获取一个 idx 和someSaying相关*/
-function getRandomIdx(): number {
-  const len = someSayings.length - 1;
+/**
+ *
+ * @param length  数组元素长度
+ * @returns length 长度范围内的一个随机整数数
+ */
+export function getRandomIdx(length: number): number {
+  const len = length - 1;
   const idx = Math.floor(Math.random() * (len - 0 + 1) + 0);
   return idx;
 }
 /**
- * 随便选个字符串
- * 还给你一个布尔值
+ * return the rest idx of the given arr circularly based on an given arr and an given index.
+ * love from ArrayDeque :D
+ * @param arr a given arr
+ * @param anGivenIdx an idx comes from the given arr
+ */
+export function getRestIdxCircular(arr: any[], anGivenIdx: number) {
+  const result = [];
+  while (result.length < arr.length - 2) {
+    anGivenIdx += 1;
+    result.push(anGivenIdx % arr.length);
+  }
+  return result;
+}
+export function getNextIdxCircularly(arr: any[], anGivenIdx: number) {
+  return (anGivenIdx + 1) % arr.length;
+}
+
+export function getPreviousIdxCircularly(arr: any[], anGivenIdx: number) {
+  return (anGivenIdx - 1) % arr.length;
+}
+/**
+ *
+ * @param arr an arr
+ * @returns [a random item,whether the random item's idx is even ]
  */
 export function getQuoteString() {
-  const saying = someSayings[getRandomIdx()].split("/")[0];
-  return [saying, getRandomIdx() % 2 === 0] as const;
+  const length = someSayings.length;
+  const saying = someSayings[getRandomIdx(length)].split("/")[0];
+  return [saying, getRandomIdx(length) % 2 === 0] as const;
 }
 
 export default function Quote({ returnString }: Props): ReactElement {
@@ -60,7 +87,7 @@ export default function Quote({ returnString }: Props): ReactElement {
   const [active, setactive] = React.useState(false);
 
   /**  就是 getRandomIdx的结果*/
-  const [quoteIdx, setQuote] = React.useState(getRandomIdx());
+  const [quoteIdx, setQuote] = React.useState(getRandomIdx(someSayings.length));
 
   /** 把随机的一条saying 给清理一下 (去掉/)和多余的@修饰符*/
   const compound = React.useMemo(() => {
@@ -107,14 +134,12 @@ export default function Quote({ returnString }: Props): ReactElement {
     return false;
   }
 
-  // if (returnString === true) {
-  //   return compound.saying;
-  // }
-
   return (
     <div
       style={{
         fontWeight: "bolder",
+        userSelect: "none",
+        cursor: "pointer",
       }}
       onClick={() => {
         if (isStart(someSayings[quoteIdx])) {
@@ -124,16 +149,16 @@ export default function Quote({ returnString }: Props): ReactElement {
         } else if (isEnd(someSayings[quoteIdx])) {
           // 停用
           setactive(false);
-          setQuote(getRandomIdx());
+          setQuote(getRandomIdx(someSayings.length));
         } else if (isMid(someSayings[quoteIdx])) {
           if (active) {
             //激活则保持 ，停用则随机
             setQuote(quoteIdx + 1);
           } else {
-            setQuote(getRandomIdx());
+            setQuote(getRandomIdx(someSayings.length));
           }
         } else {
-          setQuote(getRandomIdx());
+          setQuote(getRandomIdx(someSayings.length));
         }
       }}
     >
