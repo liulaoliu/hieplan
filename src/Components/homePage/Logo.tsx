@@ -27,6 +27,7 @@ export default function Logo({}: Props) {
   function manyFns() {
     setstate(getNextIdxCircularly(alters, state));
     setmoved(true);
+
     setTimeout(() => {
       setmoved(false);
     }, 1000);
@@ -39,36 +40,37 @@ export default function Logo({}: Props) {
         (manyFns as unknown as any).tid = setTimeout(() => {
           if (e.deltaY > 0) {
             // 向下滚动
-            setdirection("down");
+            // setdirection("down");
+            manyFns();
           } else {
             // 向上滚动
-            setdirection("up");
+            // setdirection("up");
           }
-          manyFns();
         }, 800);
       }}
       className="text-8xl antialiased select-none shrink-0 flex "
       title="这个Efficiency啊"
     >
-      <span className=" w-1/2  overflow-y-hidden flex-col h-28">
-        
-        <div
-          className={
-            moved === true
-              ? "h-28 invisible -translate-y-full duration-75 ease-in "
-              : "h-28"
-          }
-        >
-          {alters[state]}
-        </div>
-        <div
-          className={
-            moved === true 
-              ? "h-28 -translate-y-full duration-200 ease-in"
-              : "h-28"
-          }
-        >
-          {alters[state]}
+      <span className=" w-1/2  overflow-y-hidden flex-col h-28 bg-black">
+        <div className="bg-white">
+          <div
+            className={
+              moved === true
+                ? "h-28 invisible -translate-y-full duration-75 ease-in "
+                : "h-28 "
+            }
+          >
+            {alters[state]}
+          </div>
+          <div
+            className={
+              moved === true
+                ? "h-28 -translate-y-full duration-200 ease-in"
+                : "h-28"
+            }
+          >
+            {alters[state]}
+          </div>
         </div>
       </span>
       <span className="h-28">ToDo</span>
