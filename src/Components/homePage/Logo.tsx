@@ -1,5 +1,6 @@
 import React from "react";
 import { getRandomIdx, getNextIdxCircularly } from "../utils/Quote";
+import VerticalCarousel from "../utils/VerticalCarousel";
 type Props = {};
 
 const alters = [
@@ -13,64 +14,19 @@ const alters = [
   "笑笑",
   "高校",
 ];
-function throttle(method: any, context: any) {
-  clearTimeout(method.tid);
-  method.tid = setTimeout(() => {
-    method.call(context);
-  }, 1000);
-}
 
 export default function Logo({}: Props) {
-  const [state, setstate] = React.useState(getRandomIdx(alters.length));
-  const [moved, setmoved] = React.useState(false);
-  const [direction, setdirection] = React.useState<"up" | "down">("down");
-  function manyFns() {
-    setstate(getNextIdxCircularly(alters, state));
-    setmoved(true);
-
-    setTimeout(() => {
-      setmoved(false);
-    }, 1000);
-  }
-
   return (
     <div
-      onWheel={(e) => {
-        clearTimeout((manyFns as unknown as any).tid);
-        (manyFns as unknown as any).tid = setTimeout(() => {
-          if (e.deltaY > 0) {
-            // 向下滚动
-            // setdirection("down");
-            manyFns();
-          } else {
-            // 向上滚动
-            // setdirection("up");
-          }
-        }, 800);
-      }}
-      className="text-8xl antialiased select-none shrink-0 flex "
+      className="text-8xl antialiased select-none shrink-0 flex  color-change-base "
       title="这个Efficiency啊"
     >
-      <span className=" w-1/2  overflow-y-hidden flex-col h-28 ">
-        <div
-          className={
-            moved === true
-              ? "h-28 invisible -translate-y-full duration-75 ease-in "
-              : "h-28 "
-          }
-        >
-          {alters[state]}
-        </div>
-        <div
-          className={
-            moved === true
-              ? "h-28 -translate-y-full duration-200 ease-in"
-              : "h-28"
-          }
-        >
-          {alters[state]}
-        </div>
-      </span>
+      <VerticalCarousel
+        heightOfTheBlockInRemButNoRem={7}
+        arr={alters}
+        tailwindCssHeight={"h-28"}
+        tailwindCssWidth={"w-48"}
+      ></VerticalCarousel>
       <span className="h-28">ToDo</span>
     </div>
   );
