@@ -74,7 +74,7 @@ const Task = React.lazy(() => import("./Components/contentPage/task/Task"));
 
 export default function App() {
   const [state, setstate] = React.useState(0);
-  const totalItem = 3;
+  const totalItem = 4;
   /**tailwind css;
    * ∵ h-1	height: 0.25rem; 4px.
    * ∴ h-28 height: 0.25 *28 =7rem;
@@ -90,22 +90,22 @@ export default function App() {
     }
   }
 
-  function addEssentialClassName() {
-    const array = Array(3).fill("null");
+  // function addEssentialClassName() {
+  //   const array = Array(3).fill("null");
 
-    const result = array.map((item, idx) => {
-      return idx * 7;
-    });
-    return result;
-  }
-  console.log(addEssentialClassName());
+  //   const result = array.map((item, idx) => {
+  //     return idx * 7;
+  //   });
+  //   return result;
+  // }
+  // console.log(addEssentialClassName());
   return (
     <div className="relative  bg-slate-600 h-28 w-80 mt-52 ml-44 overflow-y-hidden ">
-      <div className="hidden">
+      {/* <div className="hidden">
         {addEssentialClassName().map((item, idx) => {
           return <li key={idx} className={`-translate-y-[${item}rem`}></li>;
         })}
-      </div>
+      </div> */}
       <div
         className={
           "container absolute  duration-500 ease" +
@@ -123,6 +123,9 @@ export default function App() {
         </div>
         <div className="h-28">
           <h1 className="bg-black text-white h-28">3</h1>
+        </div>
+        <div className="h-28">
+          <h1 className="bg-black text-white h-28">4</h1>
         </div>
       </div>
     </div>
