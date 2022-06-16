@@ -1,16 +1,51 @@
 import React, { ReactElement } from "react";
 import { getNextIdxCircularly, getPreviousIdxCircularly } from "./Quote";
+
+/**
+ * https://juejin.cn/post/7017682613959655461 看这里
+ */
+type Without<T, U> = {
+  [P in Exclude<keyof T, keyof U>]?: never;
+};
+/**
+ * https://juejin.cn/post/7017682613959655461 还是看这里
+ */
+type XOR<T, U> = T | U extends object
+  ? (Without<T, U> & U) | (Without<U, T> & T)
+  : T | U;
+
 interface Props {
+  /** things to show in the carousel */
   arr: any[];
+  /**
+   * like 7rem is the height ,input 7.
+   * it can tell how 'long' should the carousel scroll once
+   */
+  heightOfTheBlockInRemButNoRem: number;
+  /**
+   * pls use h-28 like format,
+   * because it has connection with rem.
+   * and this component use the total height expressed in rem as the interval to
+   * control the scroll behavior
+   */
+  tailwindCssHeight: string;
+  /**
+   * pls use w-40 like format
+   */
+  tailwindCssWidth: string;
 }
 
-export default function VerticalCarousel({ arr }: Props) {
+export default function VerticalCarousel({
+  arr,
+  tailwindCssHeight,
+  tailwindCssWidth,
+  heightOfTheBlockInRemButNoRem,
+}: Props) {
   /**
    * 这个状态控制 要滚动的高度
    * this **state** controls the scroll height of this component
    */
   const [state, setstate] = React.useState(0);
-  const totalItem = arr.length;
 
   /**
    *
@@ -47,7 +82,7 @@ export default function VerticalCarousel({ arr }: Props) {
   }
   const [translateYHeight, cssText] = createTranslateHeightAndTailwindCss(
     arr,
-    7
+    heightOfTheBlockInRemButNoRem
   );
   /**
    * css text to be inserted into following style tab
@@ -68,27 +103,33 @@ export default function VerticalCarousel({ arr }: Props) {
    */
   function scrollHanlder(direction: number) {
     if (direction > 0) {
-      console.log("pre", getPreviousIdxCircularly(arr, state));
-
-      setstate(getPreviousIdxCircularly(arr, state));
-    } else {
-      console.log("next");
-
       setstate(getNextIdxCircularly(arr, state));
+    } else {
+      setstate(getPreviousIdxCircularly(arr, state));
     }
   }
 
+  /**这个 组件的宽度 ,默认w-48, 使用了tailwindcss 的utility */
+  const width =
+    tailwindCssWidth === undefined ? " w-48" : " " + tailwindCssWidth;
+  /**这个 组件的高度度, 默认h-28 ,使用了tailwindcss 的utility */
+  const height =
+    tailwindCssHeight === undefined ? " h-28" : " " + tailwindCssHeight;
   return (
-    <span className="relative  bg-slate-600 h-28 w-80  overflow-y-hidden ">
-      {/* 特别插入的 style标签 */}
+    <span className={"relative overflow-y-hidden flex " + width + height}>
+      {/* 特别插入的 style标签
+       因为 tailwind css 对动态生成的东西不编译 utility class
+      */}
       <style>{String.raw`${insertedCss}`}</style>
       <div
         className={
-          "container absolute  duration-500 ease" +
+          "container absolute  duration-200 ease-in" +
           ` -translate-y-[${translateYHeight[state]}rem]`
         }
         onWheel={(e) => {
+          // 节流 throttle ? debounce? 到底是什么
           clearTimeout((scrollHanlder as unknown as any).tid);
+
           (scrollHanlder as unknown as any).tid = setTimeout(() => {
             scrollHanlder(e.deltaY);
           }, 800);
@@ -96,8 +137,8 @@ export default function VerticalCarousel({ arr }: Props) {
       >
         {arr.map((item, idx) => {
           return (
-            <div className="h-28" key={idx}>
-              <h1 className="bg-black text-white h-28">{item}</h1>
+            <div className={tailwindCssHeight} key={idx}>
+              <h1 className={tailwindCssHeight}>{item}</h1>
             </div>
           );
         })}
