@@ -64,12 +64,26 @@ export function getRestIdxCircular(arr: any[], anGivenIdx: number) {
   }
   return result;
 }
+/**
+ * return the next idx of the given arr circularly based on an given arr and an given index.
+ * love from ArrayDeque :D
+ * @param arr a given arr
+ * @param anGivenIdx an idx comes from the given arr
+ * @returns
+ */
 export function getNextIdxCircularly(arr: any[], anGivenIdx: number) {
   return (anGivenIdx + 1) % arr.length;
 }
 
+/**
+ * return the previous idx of the given arr circularly based on an given arr and an given index.
+ * love from ArrayDeque :D
+ * @param arr a given arr
+ * @param anGivenIdx an idx comes from the given arr
+ * @returns
+ */
 export function getPreviousIdxCircularly(arr: any[], anGivenIdx: number) {
-  return (anGivenIdx - 1) % arr.length;
+  return (anGivenIdx - 1 + arr.length) % arr.length;
 }
 /**
  *

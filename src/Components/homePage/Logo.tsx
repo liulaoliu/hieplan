@@ -1,5 +1,6 @@
 import React from "react";
 import { getRandomIdx, getNextIdxCircularly } from "../utils/Quote";
+import VerticalCarousel from "../utils/VerticalCarousel";
 type Props = {};
 
 const alters = [
@@ -51,6 +52,7 @@ export default function Logo({}: Props) {
       className="text-8xl antialiased select-none shrink-0 flex "
       title="这个Efficiency啊"
     >
+      <VerticalCarousel arr={[1, 2, 3]}></VerticalCarousel>
       <span className=" w-1/2  overflow-y-hidden flex-col h-28 ">
         <div
           className={

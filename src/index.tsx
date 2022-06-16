@@ -1,15 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import DefaultApp from "./App";
+import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
 
 import { getQuoteString } from "./Components/utils/Quote";
 
 ReactDOM.render(
   <React.StrictMode>
-    <DefaultApp />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
