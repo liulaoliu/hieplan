@@ -18,7 +18,7 @@ const alters = [
 export default function Logo({}: Props) {
   return (
     <div
-      className="text-8xl antialiased select-none shrink-0 flex  color-change-base "
+      className="text-8xl antialiased select-none shrink-0 flex"
       title="这个Efficiency啊"
     >
       <VerticalCarousel

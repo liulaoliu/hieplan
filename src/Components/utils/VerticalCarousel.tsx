@@ -123,7 +123,7 @@ export default function VerticalCarousel({
       <style>{String.raw`${insertedCss}`}</style>
       <div
         className={
-          "container absolute  duration-200 ease-in" +
+          "container absolute transition-[transform] duration-200 ease-in" +
           ` -translate-y-[${translateYHeight[state]}rem]`
         }
         onWheel={(e) => {
