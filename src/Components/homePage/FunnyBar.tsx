@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import colorModeStorage from "../utils/colorModeStorage";
 /**
  * funnnyBar的 特殊功能 （输入+回车）
  */
@@ -105,6 +106,17 @@ export default function FunnyBar({ visible, color }: Props) {
                 navigate("/main");
               }
               if (isChangeColorMode(input)) {
+                // 获取当前 mode
+                const mode = colorModeStorage.getMode();
+
+                if (mode === "light") {
+                  colorModeStorage.setMode("dark");
+                  document.documentElement.classList.add("dark");
+                } else {
+                  colorModeStorage.setMode("light");
+
+                  document.documentElement.classList.remove("dark");
+                }
               }
               if (isHome(input)) {
                 navigate("/");
