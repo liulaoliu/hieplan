@@ -37,7 +37,7 @@ export default function App() {
         {/* 注意这种奇怪的配置方法， FunnyBar不和 任何 path相关，永远被渲染，但是他使用了 router的上下文
         useNavigate() may be used only in the context of a <Router> component.
         */}
-        <FunnyBar color={"warning"} visible={true}></FunnyBar>
+        <FunnyBar color={"warning"} visible={funnyBarVisible}></FunnyBar>
         <Routes>
           <Route path="main" element={<Main />}>
             <Route
