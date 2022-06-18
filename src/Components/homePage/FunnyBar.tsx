@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import colorModeStorage from "../utils/colorModeStorage";
+import ColorModeStorage from "../utils/colorModeStorage";
 /**
  * funnnyBar的 特殊功能 （输入+回车）
+ * specific input strings that can be deceived as a function 
  */
 
 const possibility = [
@@ -13,23 +14,27 @@ const possibility = [
   "change",
   "color",
   "home",
-];
+  "c",
+] as const;
 
-type isSomething = (val: string) => boolean | undefined;
-function isLogin(value: string) {
+type possibility = typeof possibility[number];
+
+type isSomething = (val: possibility) => boolean | undefined;
+
+function isLogin(value: possibility) {
   if (value === "login" || value === "登录") {
     return true;
   }
 }
 
-function isMain(value: string) {
+function isMain(value: possibility) {
   if (value === "main" || value === "task") {
     return true;
   }
 }
 
-function isChangeColorMode(value: string) {
-  if (value === "color" || value === "change") {
+function isChangeColorMode(value: possibility) {
+  if (value === "c" || value === "color" || value === "change") {
     return true;
   }
 }
@@ -94,32 +99,37 @@ export default function FunnyBar({ visible, color }: Props) {
         autoFocus={true}
         value={input}
         onChange={(e) => {
-          setInput(e.target.value);
+          setInput(e.target.value as any);
         }}
         onKeyDown={(e) => {
           if (e.code === "Enter") {
-            if (possibility.includes(input)) {
+            if (possibility.includes(input as any)) {
+              // 如果找到在一个分支内 做 assertion的办法， 这个 ignore/expect-error可以去掉
+              // @ts-expect-error
               if (isLogin(input)) {
                 navigate("/login");
-              }
+              } // @ts-ignore
               if (isMain(input)) {
                 navigate("/main");
-              }
+              } // @ts-ignore
               if (isChangeColorMode(input)) {
-                // 获取当前 mode
-                const mode = colorModeStorage.getMode();
-
-                if (mode === "light") {
-                  colorModeStorage.setMode("dark");
-                  document.documentElement.classList.add("dark");
-                } else {
-                  colorModeStorage.setMode("light");
-
-                  document.documentElement.classList.remove("dark");
-                }
-              }
+                ColorModeStorage.changeColorMode();
+              } // @ts-ignore
               if (isHome(input)) {
                 navigate("/");
+              }
+            } else {
+              // 如果在调试模式下 报错
+              if (process.env.NODE_ENV === "development") {
+                console.log(`
+                seems input value is not in the defined 'possibility' array.
+                if this value intended not to trigger a function,then just walk away.
+                if you wonder why your input doesn't work properly(like trigger a function).
+                you may check:
+                1. your value is not in possibility array
+                2. your value is not checked adequately in your isXXX function, 
+                and remeber to check this fn's parameter type (should be possibility instead of string)
+                `);
               }
             }
             setInput("");
