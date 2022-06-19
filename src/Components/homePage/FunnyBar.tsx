@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ColorModeStorage from "../utils/colorModeStorage";
 /**
  * funnnyBar的 特殊功能 （输入+回车）
- * specific input strings that can be deceived as a function 
+ * specific input strings that can be deceived as a function
  */
 
 const possibility = [
@@ -69,16 +69,16 @@ export default function FunnyBar({ visible, color }: Props) {
 
   return (
     <div
-      className="absolute 
+      className="absolute
       left-0
       right-0
       top-0
       bottom-0
       m-auto
       my-[50vh]
+      min-w-[450px]
+      h-14
       w-[30vw]
-      min-w-[200px]
-      h-auto
       z-[999]
       rounded-md
     "
@@ -86,15 +86,16 @@ export default function FunnyBar({ visible, color }: Props) {
       <input
         className="
         caret-purple-800
-        absolute h-14 w-[30vw]  min-w-[200px] rounded-md block outline-none
+        absolute h-12 w-[30vw]  min-w-[450px]    rounded-md block outline-none
         border-2
         text-2xl
         pl-3
         bg-slate-500
         border-black
+        text-slate-200
        dark:bg-blue-500
         dark:border-white
-        
+        dark:text-white
         "
         autoFocus={true}
         value={input}

@@ -150,11 +150,7 @@ export default function Quote({ returnString }: Props): ReactElement {
 
   return (
     <div
-      style={{
-        fontWeight: "bolder",
-        userSelect: "none",
-        cursor: "pointer",
-      }}
+      className="select-none cursor-pointer font-bold  min-w-min whitespace-nowrap"
       onClick={() => {
         if (isStart(someSayings[quoteIdx])) {
           // 激活
