@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ColorModeStorage from "../utils/colorModeStorage";
 /**
  * funnnyBar的 特殊功能 （输入+回车）
- * specific input strings that can be deceived as a function 
+ * specific input strings that can be deceived as a function
  */
 
 const possibility = [
