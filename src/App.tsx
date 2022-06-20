@@ -3,7 +3,7 @@ import "./App.css";
 import Welcome from "./Components/homePage/Welcome";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 //  log 页面
-import Login from "./Components/homePage/Login";
+import Login from "./Components/Login/Login";
 // Main 页面
 import Main from "./Components/contentPage/Main";
 
@@ -14,7 +14,7 @@ import Tag from "./Components/contentPage/Tag";
 import Nowhere from "./Components/404/Nowhere";
 
 import colorModeStorage from "./Components/utils/colorModeStorage";
-import FunnyBar from "./Components/homePage/FunnyBar";
+import FunnyBar from "./Components/utils/FunnyBar";
 import watchAltAndEnter from "./Components/utils/watchAltAndEnter";
 
 //  懒加载示范
@@ -38,7 +38,7 @@ export default function App() {
         {/* 注意这种奇怪的配置方法， FunnyBar不和 任何 path相关，永远被渲染，但是他使用了 router的上下文
         useNavigate() may be used only in the context of a <Router> component.
         */}
-        <FunnyBar color={"warning"} visible={true}></FunnyBar>
+        <FunnyBar visible={funnyBarVisible}></FunnyBar>
         <Routes>
           <Route path="main" element={<Main />}>
             <Route

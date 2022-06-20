@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ColorModeStorage from "../utils/colorModeStorage";
+import ColorModeStorage from "./colorModeStorage";
 /**
  * funnnyBar的 特殊功能 （输入+回车）
  * specific input strings that can be deceived as a function
@@ -15,6 +15,8 @@ const possibility = [
   "color",
   "home",
   "c",
+  "h",
+  "lg",
 ] as const;
 
 type possibility = typeof possibility[number];
@@ -22,7 +24,7 @@ type possibility = typeof possibility[number];
 type isSomething = (val: possibility) => boolean | undefined;
 
 function isLogin(value: possibility) {
-  if (value === "login" || value === "登录") {
+  if (value === "login" || value === "登录" || value === "lg") {
     return true;
   }
 }
@@ -39,26 +41,21 @@ function isChangeColorMode(value: possibility) {
   }
 }
 const isHome: isSomething = function (value) {
-  if (value === "home") {
+  if (value === "home" || value === "h") {
     return true;
   }
 };
 type Props = {
   visible?: boolean;
-  color?:
-    | "error"
-    | "primary"
-    | "secondary"
-    | "info"
-    | "success"
-    | "warning"
-    | undefined;
 };
 /**
  *
- * 重新制作的 “手造” 搜索栏
+ * 重新制作的 “手造” 搜索栏,
+ * 需要一个布尔状态**visible**来控制这个搜索栏的隐藏和显示。
+ * 按下Alt+Enter 是切换这个状态的组合键。
+ * 它依赖了 ReactRouter的上下文。
  */
-export default function FunnyBar({ visible, color }: Props) {
+export default function FunnyBar({ visible }: Props) {
   const [input, setInput] = useState("");
   /** 用于跳转的 工具 */
   const navigate = useNavigate();
@@ -66,7 +63,26 @@ export default function FunnyBar({ visible, color }: Props) {
   if (!visible && visible !== undefined) {
     return null;
   }
-
+  /**
+   *raise a warning when :
+   1.possibility doesn't have an item that equals input
+   2.input is in possiblity,but doesn't pass any isXXX fn .
+   */
+  function raiseWarning() {
+    // 如果在调试模式下 报错
+    //only works in dev mode
+    if (process.env.NODE_ENV === "development") {
+      console.log(`
+  seems input value is not in the defined 'possibility' array.
+  if this value intended not to trigger a function,then just walk away.
+  if you wonder why your input doesn't work properly(like trigger a function).
+  you may check:
+  1. your value is not in possibility array
+  2. your value is not checked adequately in your isXXX function, 
+  and remeber to check this fn's parameter type (should be possibility instead of string)
+  `);
+    }
+  }
   return (
     <div
       className="absolute
@@ -91,10 +107,10 @@ export default function FunnyBar({ visible, color }: Props) {
         text-2xl
         pl-3
         bg-slate-500
-        border-black
+        border-blue-800
         text-slate-200
        dark:bg-blue-500
-        dark:border-white
+        dark:border-gray-900
         dark:text-white
         "
         autoFocus={true}
@@ -103,7 +119,10 @@ export default function FunnyBar({ visible, color }: Props) {
           setInput(e.target.value as any);
         }}
         onKeyDown={(e) => {
-          if (e.code === "Enter") {
+          if (process.env.NODE_ENV === "development") {
+            console.log(e.code, "keyCode");
+          }
+          if (e.code === "Enter" || e.code === "NumpadEnter") {
             if (possibility.includes(input as any)) {
               // 如果找到在一个分支内 做 assertion的办法， 这个 ignore/expect-error可以去掉
               // @ts-expect-error
@@ -119,19 +138,9 @@ export default function FunnyBar({ visible, color }: Props) {
               if (isHome(input)) {
                 navigate("/");
               }
+              raiseWarning();
             } else {
-              // 如果在调试模式下 报错
-              if (process.env.NODE_ENV === "development") {
-                console.log(`
-                seems input value is not in the defined 'possibility' array.
-                if this value intended not to trigger a function,then just walk away.
-                if you wonder why your input doesn't work properly(like trigger a function).
-                you may check:
-                1. your value is not in possibility array
-                2. your value is not checked adequately in your isXXX function, 
-                and remeber to check this fn's parameter type (should be possibility instead of string)
-                `);
-              }
+              raiseWarning();
             }
             setInput("");
           }
