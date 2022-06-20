@@ -36,14 +36,15 @@ const someSayings = [
  *
  * @returns
  * 渲染一句有深意 或者是 幽默的 话。
+ * renders a meaningful or meaningless sentence.
  *
  *
  */
 
 /**
  *
- * @param length  数组元素长度
- * @returns length 长度范围内的一个随机整数数
+ * @param length  数组元素长度 array length
+ * @returns length 长度范围内的一个随机整数数 a random element index of the given array
  */
 export function getRandomIdx(length: number): number {
   const len = length - 1;
@@ -103,7 +104,10 @@ export default function Quote({ returnString }: Props): ReactElement {
   /**  就是 getRandomIdx的结果*/
   const [quoteIdx, setQuote] = React.useState(getRandomIdx(someSayings.length));
 
-  /** 把随机的一条saying 给清理一下 (去掉/)和多余的@修饰符*/
+  /** 把随机的一条saying 给清理一下 (去掉/)和多余的@修饰符。
+   * sentences in someSayings are stored like this :'knowledge is power/Francis Bacon@start'.
+   * compound returns {saying:knowledge is power,sourcE:Francis Bacon}
+   */
   const compound = React.useMemo(() => {
     const saying = someSayings[quoteIdx].split("/")[0];
     const sourcE = cleanLastAtSymbol(someSayings[quoteIdx].split("/")[1]);
@@ -111,7 +115,9 @@ export default function Quote({ returnString }: Props): ReactElement {
     return { saying, sourcE };
   }, [quoteIdx]);
 
-  /** 去掉@修饰符*/
+  /** 去掉@修饰符.
+   *  clear '@' symbol in the given str
+   */
   function cleanLastAtSymbol(str: string) {
     if (str.endsWith("@mid") || str.endsWith("@end")) {
       const len = str.length;
@@ -126,21 +132,30 @@ export default function Quote({ returnString }: Props): ReactElement {
     return str;
   }
 
-  /** 通过@修饰符判断 处于 连续的一组saying的 头部?*/
+  /** 通过@修饰符判断 处于 连续的一组saying的 头部?.
+   * in someSaying array(or other sentence source),sentence like 'xxxxx/xxxx@start' means
+   * it's the fore part of the sentence group. so isStart can tell a str is fore part or not.
+   */
   function isStart(str: string) {
     if (str.endsWith("@start")) {
       return true;
     }
     return false;
   }
-  /** 通过@修饰符判断 处于 连续的一组saying的 尾部?*/
+  /** 通过@修饰符判断 处于 连续的一组saying的 尾部?
+   *
+   * isEnd can tell a  str is an ending sentence or not
+   */
   function isEnd(str: string) {
     if (str.endsWith("@end")) {
       return true;
     }
     return false;
   }
-  /** 通过@修饰符判断 处于 连续的一组saying的 中间?*/
+  /** 通过@修饰符判断 处于 连续的一组saying的 中间?
+   *
+   * isMid can tell whether a str is the middle part or not.
+   */
   function isMid(str: string) {
     if (str.endsWith("@mid")) {
       return true;
@@ -150,23 +165,22 @@ export default function Quote({ returnString }: Props): ReactElement {
 
   return (
     <div
-      style={{
-        fontWeight: "bolder",
-        userSelect: "none",
-        cursor: "pointer",
-      }}
+      className="select-none cursor-pointer font-bold  min-w-min whitespace-nowrap"
       onClick={() => {
         if (isStart(someSayings[quoteIdx])) {
           // 激活
+          // only activated when a random sentence coincidently has a "@start symbol"
           setactive(true);
           setQuote(quoteIdx + 1);
         } else if (isEnd(someSayings[quoteIdx])) {
           // 停用
+          // deactivate when a sentence has a '@end symbol'
           setactive(false);
           setQuote(getRandomIdx(someSayings.length));
         } else if (isMid(someSayings[quoteIdx])) {
           if (active) {
             //激活则保持 ，停用则随机
+            // judge how does the quoteIdx change.
             setQuote(quoteIdx + 1);
           } else {
             setQuote(getRandomIdx(someSayings.length));
