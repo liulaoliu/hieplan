@@ -16,7 +16,7 @@ type XOR<T, U> = T | U extends object
 
 interface Props {
   /** things to show in the carousel */
-  arr: any[];
+  arr: string[];
   /**
    * like 7rem is the height ,input 7.
    * it can tell how 'long' should the carousel scroll once
@@ -138,7 +138,9 @@ export default function VerticalCarousel({
         {arr.map((item, idx) => {
           return (
             <div className={tailwindCssHeight} key={idx}>
-              <h1 className={tailwindCssHeight}>{item}</h1>
+              <h1 className={tailwindCssHeight} title={item.split("/")[1]}>
+                {item.split("/")[0]}
+              </h1>
             </div>
           );
         })}

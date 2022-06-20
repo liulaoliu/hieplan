@@ -28,7 +28,8 @@ export default function App() {
   watchAltAndEnter(funnyBarVisible, setFunnyBarVisible);
   return (
     <div
-      className="App"
+      // i f you really hate x-direction scroll bar but you somehow have to use an absoluely positioned element, you can do this...
+      className="App relative"
       style={{
         minWidth: "450px",
       }}
@@ -37,7 +38,7 @@ export default function App() {
         {/* 注意这种奇怪的配置方法， FunnyBar不和 任何 path相关，永远被渲染，但是他使用了 router的上下文
         useNavigate() may be used only in the context of a <Router> component.
         */}
-        <FunnyBar color={"warning"} visible={funnyBarVisible}></FunnyBar>
+        <FunnyBar color={"warning"} visible={true}></FunnyBar>
         <Routes>
           <Route path="main" element={<Main />}>
             <Route
