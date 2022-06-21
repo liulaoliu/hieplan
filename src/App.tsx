@@ -14,7 +14,7 @@ import Tag from "./Components/contentPage/Tag";
 import Nowhere from "./Components/404/Nowhere";
 
 import colorModeStorage from "./Components/utils/colorModeStorage";
-import FunnyBar from "./Components/utils/FunnyBar";
+import FunnyBar from "./Components/utils/funnybar/FunnyBar";
 import watchAltAndEnter from "./Components/utils/watchAltAndEnter";
 
 //  懒加载示范

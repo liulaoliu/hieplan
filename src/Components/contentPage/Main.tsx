@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar";
 import styles from "./Main.module.css";
-import FunnyBar from "../utils/FunnyBar";
+import FunnyBar from "../utils/funnybar/FunnyBar";
 import watchAltAndEnter from "../utils/watchAltAndEnter";
 interface Props {}
 /*
