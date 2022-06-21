@@ -100,17 +100,16 @@ export default function FunnyBar({ visible }: Props) {
     "
     >
       <input
-        className="
+        className="yarn
         caret-purple-800
         absolute h-12 w-[30vw]  min-w-[450px]    rounded-md block outline-none
-        border-2
         text-2xl
+        border-2
+        border-rose-500
         pl-3
-        bg-slate-500
-        border-blue-800
-        text-slate-200
-       dark:bg-blue-500
-        dark:border-gray-900
+        text-black
+        dark:bg-blue-900
+        dark:border-indigo-500
         dark:text-white
         "
         autoFocus={true}
