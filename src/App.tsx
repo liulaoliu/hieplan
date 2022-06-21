@@ -29,7 +29,7 @@ export default function App() {
   return (
     <div
       // i f you really hate x-direction scroll bar but you somehow have to use an absoluely positioned element, you can do this...
-      className="App relative"
+      className="App tw-relative"
       style={{
         minWidth: "450px",
       }}

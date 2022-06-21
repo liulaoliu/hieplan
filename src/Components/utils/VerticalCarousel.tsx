@@ -23,18 +23,22 @@ interface Props {
    */
   heightOfTheBlockInRemButNoRem: number;
   /**
-   * pls use h-28 like format,
+   * pls use tw-h-28 like format,
+   * tw- is the prefix.
    * because it has connection with rem.
    * and this component use the total height expressed in rem as the interval to
    * control the scroll behavior
    */
   tailwindCssHeight: string;
   /**
-   * pls use w-40 like format
+   * pls use tw-w-40 like format,
+   * tw- is the prefix.
    */
   tailwindCssWidth: string;
 }
-
+/**
+ * tw- 是后加的，在传入 高度宽度的时候可能会出现bug.
+ */
 export default function VerticalCarousel({
   arr,
   tailwindCssHeight,
@@ -70,7 +74,7 @@ export default function VerticalCarousel({
 
     let str = String.raw``;
     translateNums.forEach((item, idx) => {
-      str += String.raw`.-translate-y-\[${item}rem\] {
+      str += String.raw`.-tw-translate-y-\[${item}rem\] {
           --tw-translate-y: -${item}rem;
           transform: translate(var(--tw-translate-x), var(--tw-translate-y))
             rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
@@ -111,20 +115,22 @@ export default function VerticalCarousel({
 
   /**这个 组件的宽度 ,默认w-48, 使用了tailwindcss 的utility */
   const width =
-    tailwindCssWidth === undefined ? " w-48" : " " + tailwindCssWidth;
+    tailwindCssWidth === undefined ? " tw-w-48" : " " + tailwindCssWidth;
   /**这个 组件的高度度, 默认h-28 ,使用了tailwindcss 的utility */
   const height =
-    tailwindCssHeight === undefined ? " h-28" : " " + tailwindCssHeight;
+    tailwindCssHeight === undefined ? " tw-h-28" : " " + tailwindCssHeight;
   return (
-    <span className={"relative overflow-y-hidden flex " + width + height}>
+    <span
+      className={"tw-relative tw-overflow-y-hidden tw-flex " + width + height}
+    >
       {/* 特别插入的 style标签
        因为 tailwind css 对动态生成的东西不编译 utility class
       */}
       <style>{String.raw`${insertedCss}`}</style>
       <div
         className={
-          "container absolute transition-[transform] duration-100 ease-in-out" +
-          ` -translate-y-[${translateYHeight[state]}rem]`
+          "tw-container tw-absolute tw-transition-[transform] tw-duration-100 tw-ease-in-out" +
+          ` -tw-translate-y-[${translateYHeight[state]}rem]`
         }
         onWheel={(e) => {
           // 节流 throttle ? debounce? 到底是什么

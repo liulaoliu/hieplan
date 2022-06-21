@@ -22,7 +22,5 @@ code {
 }
 /*  切换 color mode */
 .color-change-base {
-  @apply bg-gray-100 text-black dark:bg-blue-900   dark:text-white;
+  @apply tw-bg-gray-100 tw-text-black dark:tw-bg-blue-900   dark:tw-text-white;
 }
-
-

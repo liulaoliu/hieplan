@@ -9,7 +9,7 @@ export default function Content(): ReactElement {
   // watchAltAndEnter(barStatus, setbarStatus);
 
   return (
-    <div className="flex justify-center">
+    <div className="tw-flex tw-justify-center">
       <Logo></Logo>
     </div>
   );

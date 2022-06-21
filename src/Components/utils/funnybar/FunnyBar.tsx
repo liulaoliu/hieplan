@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ColorModeStorage from "./colorModeStorage";
+import ColorModeStorage from "../colorModeStorage";
 /**
  * funnnyBar的 特殊功能 （输入+回车）
  * specific input strings that can be deceived as a function
@@ -85,32 +85,32 @@ export default function FunnyBar({ visible }: Props) {
   }
   return (
     <div
-      className="tw-absolute
-     tw-left-0
-     tw-right-0
-     tw-top-0
-     tw-bottom-0
-     tw-m-auto
-     tw-my-[50vh]
-     tw-min-w-[450px]
-     tw-h-14
-     tw-w-[30vw]
-     tw-z-[999]
-     tw-rounded-md
+      className="absolute
+      left-0
+      right-0
+      top-0
+      bottom-0
+      m-auto
+      my-[50vh]
+      min-w-[450px]
+      h-14
+      w-[30vw]
+      z-[999]
+      rounded-md
     "
     >
       <input
-        className="
-       tw-caret-purple-800
-       tw-absolute tw-h-12 tw-w-[30vw] tw-min-w-[450px]   tw-rounded-md tw-block tw-outline-none
-       tw-text-2xl
-       tw-border-2
-       tw-border-indigo-500
-       tw-pl-3
-       tw-text-black
-       tw-dark:bg-blue-900
-       tw-dark:border-orange-400
-       tw-dark:text-white
+        className="yarn
+        caret-purple-800
+        absolute h-12 w-[30vw]  min-w-[450px]    rounded-md block outline-none
+        text-2xl
+        border-2
+        border-rose-500
+        pl-3
+        text-black
+        dark:bg-blue-900
+        dark:border-indigo-500
+        dark:text-white
         "
         autoFocus={true}
         value={input}

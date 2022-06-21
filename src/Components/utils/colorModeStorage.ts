@@ -10,6 +10,10 @@ const storageKey = "color_mode";
 /**
  * 保存和获取 color_mode
  * 在 localStorage里边 使用 "storageKey" 来存储colorModeOption中的两种状态
+ * If you’ve set a prefix in your Tailwind config,
+ * be sure to add that to the dark class.
+ * For example, if you have a prefix of tw-,
+ * you’ll need to use the tw-dark class to enable dark mode.
  */
 export default class colorModeStorage {
   /**
@@ -61,16 +65,16 @@ export default class colorModeStorage {
       // 那么把localStorage的 color_mode设置为dark 同时把dark 加到html里，
       // **变了**颜色还进行了localStorage设置。齐活。
       colorModeStorage.setMode("dark");
-      document.documentElement.classList.add("dark");
+      document.documentElement.classList.add("tw-dark");
       return;
     }
 
     if (mode === "light") {
       colorModeStorage.setMode("dark");
-      document.documentElement.classList.add("dark");
+      document.documentElement.classList.add("tw-dark");
     } else {
       colorModeStorage.setMode("light");
-      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.remove("tw-dark");
     }
   }
   /**
@@ -93,7 +97,7 @@ export default class colorModeStorage {
       // 如果localStorage 缓存就是深色系，那把页面设置为黑的
 
       colorModeStorage.setMode("dark");
-      document.documentElement.classList.add("dark");
+      document.documentElement.classList.add("tw-dark");
     }
   }
 }

@@ -11,15 +11,15 @@ import Tail from "./Tail";
  */
 export default function Welcome() {
   return (
-    <div className="h-screen flex flex-col justify-between color-change-base ">
-      <div className="h-[100px]">
+    <div className="tw-h-screen tw-flex tw-flex-col tw-justify-between color-change-base ">
+      <div className="tw-h-[100px]">
         <Header></Header>
       </div>
-      <div className="h-[50vh] relative ">
+      <div className="tw-h-[50vh] tw-relative ">
         <Content></Content>
       </div>
 
-      <div className="flex justify-end   pr-8">
+      <div className="tw-flex tw-justify-end   tw-pr-8">
         <Tail></Tail>
       </div>
     </div>

@@ -19,14 +19,14 @@ const alters = [
 
 export default function Logo({}: Props) {
   return (
-    <div className="text-8xl antialiased select-none shrink-0 flex">
+    <div className="tw-text-8xl tw-antialiased tw-select-none tw-shrink-0 tw-flex">
       <VerticalCarousel
         heightOfTheBlockInRemButNoRem={7}
         arr={alters}
-        tailwindCssHeight={"h-28"}
-        tailwindCssWidth={"w-48"}
+        tailwindCssHeight={"tw-h-28"}
+        tailwindCssWidth={"tw-w-48"}
       ></VerticalCarousel>
-      <span className="h-28">ToDo</span>
+      <span className="tw-h-28">一天</span>
     </div>
   );
 }

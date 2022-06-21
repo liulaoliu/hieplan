@@ -165,7 +165,7 @@ export default function Quote({ returnString }: Props): ReactElement {
 
   return (
     <div
-      className="select-none cursor-pointer font-bold  min-w-min whitespace-nowrap"
+      className="tw-select-none tw-cursor-pointer tw-font-bold  tw-min-w-min tw-whitespace-nowrap"
       onClick={() => {
         if (isStart(someSayings[quoteIdx])) {
           // 激活
