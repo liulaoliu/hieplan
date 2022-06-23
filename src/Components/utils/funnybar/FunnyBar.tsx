@@ -1,6 +1,25 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ColorModeStorage from "../colorModeStorage";
+import Modal, { Styles } from "react-modal";
+
+/**Modal 的样式 */
+const customStyles: Styles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    padding: "-1rem",
+  },
+  overlay: {
+    background: "rgba(0,0,0,0.5)",
+    backdropFilter: "blur(12px",
+  },
+};
+
 /**
  * funnnyBar的 特殊功能 （输入+回车）
  * specific input strings that can be deceived as a function
@@ -46,17 +65,22 @@ const isHome: isSomething = function (value) {
   }
 };
 type Props = {
-  visible?: boolean;
+  visible: boolean;
 };
 /**
  *
- * 重新制作的 “手造” 搜索栏,
+ * 重新制作的  搜索栏,
  * 需要一个布尔状态**visible**来控制这个搜索栏的隐藏和显示。
  * 按下Alt+Enter 是切换这个状态的组合键。
  * 它依赖了 ReactRouter的上下文。
+ * 注意，他的z-index 是1
  */
+
+// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
+Modal.setAppElement("#root");
 export default function FunnyBar({ visible }: Props) {
   const [input, setInput] = useState("");
+
   /** 用于跳转的 工具 */
   const navigate = useNavigate();
 
@@ -83,68 +107,52 @@ export default function FunnyBar({ visible }: Props) {
   `);
     }
   }
+
   return (
-    <div
-      className="tw-absolute
-     tw-left-0
-     tw-right-0
-     tw-top-0
-     tw-bottom-0
-     tw-m-auto
-     tw-my-[50vh]
-     tw-min-w-[450px]
-     tw-h-14
-     tw-w-[30vw]
-     tw-z-[999]
-     tw-rounded-md
-    "
-    >
-      <input
-        className="
+    <Modal isOpen={visible} style={customStyles} contentLabel="Example Modal">
+      <div className="tw-rounded-md">
+        <input
+          className="
        tw-caret-purple-800
-       tw-absolute tw-h-12 tw-w-[30vw] tw-min-w-[450px]   tw-rounded-md tw-block tw-outline-none
-       tw-text-2xl
-       tw-border-2
-       tw-border-indigo-500
+       tw-h-14
+       tw-min-w-[450px]   tw-rounded-md tw-block tw-outline-none
+       tw-text-4xl
        tw-pl-3
-       tw-text-black
-       tw-dark:bg-blue-900
-       tw-dark:border-orange-400
-       tw-dark:text-white
         "
-        autoFocus={true}
-        value={input}
-        onChange={(e) => {
-          setInput(e.target.value as any);
-        }}
-        onKeyDown={(e) => {
-          if (process.env.NODE_ENV === "development") {
-            console.log(e.code, "keyCode");
-          }
-          if (e.code === "Enter" || e.code === "NumpadEnter") {
-            if (possibility.includes(input as any)) {
-              // 如果找到在一个分支内 做 assertion的办法， 这个 ignore/expect-error可以去掉
-              // @ts-expect-error
-              if (isLogin(input)) {
-                navigate("/login");
-              } // @ts-ignore
-              if (isMain(input)) {
-                navigate("/main");
-              } // @ts-ignore
-              if (isChangeColorMode(input)) {
-                ColorModeStorage.changeColorMode();
-              } // @ts-ignore
-              if (isHome(input)) {
-                navigate("/");
-              }
-              raiseWarning();
-            } else {
-              raiseWarning();
+          autoFocus={true}
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value as any);
+          }}
+          onKeyDown={(e) => {
+            if (process.env.NODE_ENV === "development") {
+              console.log(e.code, "keyCode");
             }
-            setInput("");
-          }
-        }}
-      />
-    </div>
+            if (e.code === "Enter" || e.code === "NumpadEnter") {
+              if (possibility.includes(input as any)) {
+                // 如果找到在一个分支内 做 assertion的办法， 这个 ignore/expect-error可以去掉
+                // @ts-expect-error
+                if (isLogin(input)) {
+                  navigate("/login");
+                } // @ts-ignore
+                if (isMain(input)) {
+                  navigate("/main");
+                } // @ts-ignore
+                if (isChangeColorMode(input)) {
+                  ColorModeStorage.changeColorMode();
+                } // @ts-ignore
+                if (isHome(input)) {
+                  navigate("/");
+                }
+                raiseWarning();
+              } else {
+                raiseWarning();
+              }
+              setInput("");
+            }
+          }}
+        />
+      </div>
+    </Modal>
   );
 }

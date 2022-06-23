@@ -3,6 +3,7 @@ import React from "react";
 import Header from "./Header";
 import Content from "./Content";
 import Tail from "./Tail";
+import Modal from "../utils/Modal";
 
 /**
  *
