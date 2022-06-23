@@ -110,14 +110,19 @@ export default function FunnyBar({ visible }: Props) {
 
   return (
     <Modal isOpen={visible} style={customStyles} contentLabel="Example Modal">
-      <div className="tw-rounded-md">
+      <div className="tw-rounded-md tw-flex tw-justify-center tw-items-center tw-p-0 ">
         <input
           className="
        tw-caret-purple-800
-       tw-h-14
-       tw-min-w-[450px]   tw-rounded-md tw-block tw-outline-none
+       tw-min-w-[450px]   tw-rounded-md 
+      tw-outline-none
+      tw-leading-[3.5rem]
        tw-text-4xl
        tw-pl-3
+       tw-pb-3
+       tw-align-middle
+       tw-h-14
+           
         "
           autoFocus={true}
           value={input}
@@ -152,6 +157,7 @@ export default function FunnyBar({ visible }: Props) {
             }
           }}
         />
+        <span className=" tw-pl-14 tw-pr-8 tw-h-full tw-font-bold tw-select-none">Alt +Enter</span>
       </div>
     </Modal>
   );
