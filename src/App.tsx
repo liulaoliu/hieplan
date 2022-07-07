@@ -16,7 +16,7 @@ import Nowhere from "./Components/404/Nowhere";
 import colorModeStorage from "./Components/utils/colorModeStorage";
 import FunnyBar from "./Components/utils/funnybar/FunnyBar";
 import watchAltAndEnter from "./Components/utils/watchAltAndEnter";
-
+import Example from "./Components/utils/funnybar/Example";
 //  懒加载示范
 const Task = React.lazy(() => import("./Components/contentPage/task/Task"));
 
@@ -38,7 +38,8 @@ export default function App() {
         {/* 注意这种奇怪的配置方法， FunnyBar不和 任何 path相关，永远被渲染，但是他使用了 router的上下文
         useNavigate() may be used only in the context of a <Router> component.
         */}
-        <FunnyBar visible={funnyBarVisible}></FunnyBar>
+        <FunnyBar funnybarVisible={funnyBarVisible} handleClose={setFunnyBarVisible}></FunnyBar>
+        {/* <Example></Example> */}
         <Routes>
           <Route path="main" element={<Main />}>
             <Route

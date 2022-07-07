@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import { getNextIdxCircularly, getPreviousIdxCircularly } from "./Quote";
-import ToolTip from "./ToolTip";
 
 /**
  * https://juejin.cn/post/7017682613959655461 看这里
@@ -146,14 +145,10 @@ export default function VerticalCarousel({
           return (
             <div className={tailwindCssHeight} key={idx}>
               <h1
-                className={
-                  tailwindCssHeight +
-                  " tw-relative "
-                }
+                className={tailwindCssHeight + " tw-relative "}
                 title={item.split("/")[1]}
               >
                 {item.split("/")[0]}
-              
               </h1>
             </div>
           );

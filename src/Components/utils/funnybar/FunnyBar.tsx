@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ColorModeStorage from "../colorModeStorage";
 import Modal, { Styles } from "react-modal";
+import { usePopperTooltip } from "react-popper-tooltip";
+import "react-popper-tooltip/dist/styles.css";
 
 /**Modal 的样式 */
 const customStyles: Styles = {
@@ -13,10 +15,11 @@ const customStyles: Styles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     padding: "-1rem",
+    overflow: "visible",
   },
   overlay: {
     background: "rgba(0,0,0,0.5)",
-    backdropFilter: "blur(12px",
+    backdropFilter: "blur(12px)",
   },
 };
 
@@ -65,7 +68,8 @@ const isHome: isSomething = function (value) {
   }
 };
 type Props = {
-  visible: boolean;
+  funnybarVisible: boolean;
+  handleClose: any;
 };
 /**
  *
@@ -78,13 +82,22 @@ type Props = {
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
-export default function FunnyBar({ visible }: Props) {
+
+export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
   const [input, setInput] = useState("");
+  const {
+    getArrowProps,
+    getTooltipProps,
+    setTooltipRef,
+    setTriggerRef,
+    visible,
+  } = usePopperTooltip();
 
   /** 用于跳转的 工具 */
+  /** */
   const navigate = useNavigate();
 
-  if (!visible && visible !== undefined) {
+  if (!funnybarVisible && funnybarVisible !== undefined) {
     return null;
   }
   /**
@@ -109,8 +122,14 @@ export default function FunnyBar({ visible }: Props) {
   }
 
   return (
-    <Modal isOpen={visible} style={customStyles} contentLabel="Example Modal">
-      <div className="tw-rounded-md tw-flex tw-justify-center tw-items-center tw-p-0 ">
+    <Modal
+      isOpen={funnybarVisible}
+      style={customStyles}
+      onRequestClose={() => {
+        handleClose(false);
+      }}
+    >
+      <div className="tw-rounded-md tw-flex tw-justify-center tw-items-center tw-p-0">
         <input
           className="
        tw-caret-purple-800
@@ -119,10 +138,9 @@ export default function FunnyBar({ visible }: Props) {
       tw-leading-[3.5rem]
        tw-text-4xl
        tw-pl-3
-       tw-pb-3
+      
        tw-align-middle
        tw-h-14
-           
         "
           autoFocus={true}
           value={input}
@@ -156,9 +174,21 @@ export default function FunnyBar({ visible }: Props) {
               setInput("");
             }
           }}
+          ref={setTriggerRef}
         />
-        <span className=" tw-pl-14 tw-pr-8 tw-h-full tw-font-bold tw-select-none">Alt +Enter</span>
+        <span className=" tw-pl-14 tw-pr-8 tw-h-full tw-font-bold tw-select-none">
+          Alt +Enter
+        </span>
       </div>
+      {visible && (
+        <div
+          ref={setTooltipRef}
+          {...getTooltipProps({ className: "tooltip-container" })}
+        >
+          <div {...getArrowProps({ className: "tooltip-arrow" })} />
+          好大一棵树挡住我啊
+        </div>
+      )}
     </Modal>
   );
 }

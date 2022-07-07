@@ -1,6 +1,7 @@
 import React from "react";
 import { getRandomIdx, getNextIdxCircularly } from "../utils/Quote";
 import VerticalCarousel from "../utils/VerticalCarousel";
+
 type Props = {};
 /**
  * 前面的内容 是Logo里的文字内容，后面的内容是logo的title的内容
@@ -26,7 +27,7 @@ export default function Logo({}: Props) {
         tailwindCssHeight={"tw-h-28"}
         tailwindCssWidth={"tw-w-48"}
       ></VerticalCarousel>
-      <span className="tw-h-28">一天</span>
+      <span className="tw-h-28">也是一天</span>
     </div>
   );
 }
