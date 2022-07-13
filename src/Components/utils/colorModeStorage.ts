@@ -43,6 +43,11 @@ export default class colorModeStorage {
   static setMode(mode: "light" | "dark") {
     localStorage.setItem(storageKey, mode);
   }
+  
+  static removeMode(){
+    localStorage.removeItem(storageKey);
+  }
+  
   /**
    *
    * @param mode 颜色模式

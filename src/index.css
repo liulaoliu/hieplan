@@ -24,12 +24,3 @@ code {
 .color-change-base {
   @apply tw-bg-gray-100 tw-text-black dark:tw-bg-blue-900   dark:tw-text-white;
 }
-
-@layer components {
-  .tooltip {
-    @apply tw-absolute tw-p-4 tw-text-lg tw-left-28 -tw-top-0 tw-bg-gray-900 tw-shadow-md tw-rounded-md
-  tw-text-white 
-    tw-font-bold 
-    tw-transition-all tw-duration-100 tw-origin-left tw-scale-0 ; 
-  }
-}
