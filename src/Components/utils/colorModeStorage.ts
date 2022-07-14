@@ -15,12 +15,12 @@ const storageKey = "color_mode";
  * For example, if you have a prefix of tw-,
  * you’ll need to use the tw-dark class to enable dark mode.
  */
-export default class colorModeStorage {
+export default class ColorModeStorage {
   /**
    *
-   * @returns  获取local storage里的颜色模式
+   * @returns  获取local storage(缓存)里的颜色模式，如果缓存里没有颜色模式，返回undefined,说明在使用跟随系统
    */
-  static getMode() {
+  public static getMode() {
     const mode = localStorage.getItem(storageKey) as
       | typeof colorModeOption[number]
       | null;
@@ -38,72 +38,123 @@ export default class colorModeStorage {
 
   /**
    *
-   * @param mode 设置local storage里的颜色模式
+   * @param mode 设置缓存里的颜色模式
    */
-  static setMode(mode: "light" | "dark") {
+  public static setMode(mode: "light" | "dark") {
     localStorage.setItem(storageKey, mode);
   }
-  
-  static removeMode(){
+  /**
+   * 清除缓存里的颜色模式
+   */
+  public static removeMode() {
     localStorage.removeItem(storageKey);
   }
-  
   /**
-   *
-   * @param mode 颜色模式
-   * @returns 返回(和当前的颜色模式)不同的颜色模式
+   * when prefer os is selected,use this fn
    */
-  static diffMode(mode: "light" | "dark") {
-    const newMode = mode === "dark" ? "light" : "dark";
-    return newMode;
+  public static preferOsColorMode() {
+    ColorModeStorage.removeMode();
+    ColorModeStorage.setColorModeByOsConfig();
   }
   /**
    * 切换网页的颜色模式
    * @returns void
    */
-  static changeColorMode() {
+  public static changeColorMode() {
     // 获取当前 mode
-    const mode = colorModeStorage.getMode();
+    const mode = ColorModeStorage.getMode();
+    // prefer os  mode
     if (mode === undefined) {
-      // 默认是浅色模式 ，因为这里使用了tailwind 的class模式，默认Html标签没有dark 类名
-      //  那么如果 localStorage里没有这个key，说明还没设置过darkmode.
-      // 那么把localStorage的 color_mode设置为dark 同时把dark 加到html里，
-      // **变了**颜色还进行了localStorage设置。齐活。
-      colorModeStorage.setMode("dark");
-      document.documentElement.classList.add("tw-dark");
-      return;
+      let currentIsDark =
+        document.documentElement.classList.contains("tw-dark");
+      if (currentIsDark) {
+        ColorModeStorage.setMode("light");
+        document.documentElement.classList.remove("tw-dark");
+        return;
+      } else {
+        ColorModeStorage.setMode("dark");
+        document.documentElement.classList.add("tw-dark");
+        return;
+      }
     }
-
+    //  manual mode
     if (mode === "light") {
-      colorModeStorage.setMode("dark");
+      ColorModeStorage.setMode("dark");
       document.documentElement.classList.add("tw-dark");
     } else {
-      colorModeStorage.setMode("light");
+      ColorModeStorage.setMode("light");
       document.documentElement.classList.remove("tw-dark");
     }
   }
+
   /**
-   * 根据localStorage的缓存来初始化页面的背景颜色
+   * 根据localStorage的缓存或者是以跟随系统的形式来初始化页面的背景颜色
    * @returns void
    */
-  public static initialColorMode() {
+  public static initialColorMode = () => {
     // 获取当前 mode
-    const mode = colorModeStorage.getMode();
+    const mode = ColorModeStorage.getMode();
+    // supervise possible os color mode change
+    ColorModeStorage.removeAndAddOsColorModeChangeEventListener();
+    // mode 为空 ，则跟随系统
     if (mode === undefined) {
-      // 默认是浅色模式 ，因为这里使用了tailwind 的class模式，默认Html标签没有dark 类名
-      //   设置默认localStorage 存储内容
-      colorModeStorage.setMode("light");
+      ColorModeStorage.setColorModeByOsConfig();
       return;
     }
 
     if (mode === "light") {
-      // 如果localStorage 缓存就是浅色系，那什么也不做
+      document.documentElement.classList.remove("tw-dark");
+      return;
     } else {
-      // 如果localStorage 缓存就是深色系，那把页面设置为黑的
-
-      colorModeStorage.setMode("dark");
       document.documentElement.classList.add("tw-dark");
     }
+  };
+  // the following fns are helpers....... that mustn't be used out of the ColorModeStorage Class
+  private static setColorModeByOsConfig() {
+    const osIsDarkMode = window.matchMedia(
+      "(prefers-color-scheme:dark)"
+    ).matches;
+
+    if (osIsDarkMode) {
+      document.documentElement.classList.add("tw-dark");
+      return;
+    } else {
+      document.documentElement.classList.remove("tw-dark");
+      return;
+    }
+  }
+  /**
+   *
+   * when os's color mode changes, check if app's manual color change mode is enabled,
+   * if not enabled ,change app's color mode using the os's colorMode
+   */
+  private static osPreferColorChangeHandler(e: MediaQueryListEvent) {
+    let prefersDarkMode = e.matches;
+    let mode = ColorModeStorage.getMode();
+    if (mode === undefined) {
+      if (prefersDarkMode) {
+        document.documentElement.classList.add("tw-dark");
+      } else {
+        document.documentElement.classList.remove("tw-dark");
+      }
+    }
+  }
+  /**
+   * when operating system's color mode change ,this fn will catch
+   * the change event and attach necessary event handler
+   * (and because i used addEventListener, i have to remove possible redundant handler)
+   */
+  private static removeAndAddOsColorModeChangeEventListener() {
+    let media = window.matchMedia("(prefers-color-scheme:dark)");
+
+    media.removeEventListener(
+      "change",
+      ColorModeStorage.osPreferColorChangeHandler
+    );
+    media.addEventListener(
+      "change",
+      ColorModeStorage.osPreferColorChangeHandler
+    );
   }
 }
 

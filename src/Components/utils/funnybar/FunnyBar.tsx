@@ -39,6 +39,7 @@ const possibility = [
   "c",
   "h",
   "lg",
+  "os",
 ] as const;
 
 type possibility = typeof possibility[number];
@@ -59,6 +60,11 @@ function isMain(value: possibility) {
 
 function isChangeColorMode(value: possibility) {
   if (value === "c" || value === "color" || value === "change") {
+    return true;
+  }
+}
+function isChangeColorModePreferOs(value: possibility) {
+  if (value === "os") {
     return true;
   }
 }
@@ -166,6 +172,10 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
                 } // @ts-ignore
                 if (isHome(input)) {
                   navigate("/");
+                }
+                //@ts-ignore
+                if (isChangeColorModePreferOs(input)) {
+                  ColorModeStorage.preferOsColorMode();
                 }
                 raiseWarning();
               } else {
