@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ColorModeStorage from "../colorModeStorage";
+import ChangeAppColorMode from "../ChangeAppColorMode";
 import Modal, { Styles } from "react-modal";
 import { usePopperTooltip } from "react-popper-tooltip";
 import "react-popper-tooltip/dist/styles.css";
@@ -40,6 +40,7 @@ const possibility = [
   "h",
   "lg",
   "os",
+  "跟随系统",
 ] as const;
 
 type possibility = typeof possibility[number];
@@ -64,7 +65,7 @@ function isChangeColorMode(value: possibility) {
   }
 }
 function isChangeColorModePreferOs(value: possibility) {
-  if (value === "os") {
+  if (value === "os" || value == "跟随系统") {
     return true;
   }
 }
@@ -168,14 +169,14 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
                   navigate("/main");
                 } // @ts-ignore
                 if (isChangeColorMode(input)) {
-                  ColorModeStorage.changeColorMode();
+                  ChangeAppColorMode.changeColorMode();
                 } // @ts-ignore
                 if (isHome(input)) {
                   navigate("/");
                 }
                 //@ts-ignore
                 if (isChangeColorModePreferOs(input)) {
-                  ColorModeStorage.preferOsColorMode();
+                  ChangeAppColorMode.preferOsColorMode();
                 }
                 raiseWarning();
               } else {

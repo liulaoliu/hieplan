@@ -13,7 +13,7 @@ import Position from "./Components/contentPage/Position";
 import Tag from "./Components/contentPage/Tag";
 import Nowhere from "./Components/404/Nowhere";
 
-import colorModeStorage from "./Components/utils/colorModeStorage";
+import colorModeStorage from "./Components/utils/ChangeAppColorMode";
 import FunnyBar from "./Components/utils/funnybar/FunnyBar";
 import watchAltAndEnter from "./Components/utils/watchAltAndEnter";
 //  懒加载示范
