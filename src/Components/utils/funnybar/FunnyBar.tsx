@@ -4,25 +4,8 @@ import ChangeAppColorMode from "../ChangeAppColorMode";
 import Modal, { Styles } from "react-modal";
 import { usePopperTooltip } from "react-popper-tooltip";
 import "react-popper-tooltip/dist/styles.css";
-
-/**Modal 的样式 */
-const customStyles: Styles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    padding: "-1rem",
-    overflow: "visible",
-  },
-  overlay: {
-    background: "rgba(0,0,0,0.5)",
-    backdropFilter: "blur(12px)",
-  },
-};
-
+import customStyles from "./config/modalStyle";
+import raiseWarning from "./util/raiseWarning";
 /**
  * funnnyBar的 特殊功能 （输入+回车）
  * specific input strings that can be deceived as a function
@@ -106,26 +89,6 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
 
   if (!funnybarVisible && funnybarVisible !== undefined) {
     return null;
-  }
-  /**
-   *raise a warning when :
-   1.possibility doesn't have an item that equals input
-   2.input is in possiblity,but doesn't pass any isXXX fn .
-   */
-  function raiseWarning() {
-    // 如果在调试模式下 报错
-    //only works in dev mode
-    if (process.env.NODE_ENV === "development") {
-      console.log(`
-  seems input value is not in the defined 'possibility' array.
-  if this value intended not to trigger a function,then just walk away.
-  if you wonder why your input doesn't work properly(like trigger a function).
-  you may check:
-  1. your value is not in possibility array
-  2. your value is not checked adequately in your isXXX function, 
-  and remeber to check this fn's parameter type (should be possibility instead of string)
-  `);
-    }
   }
 
   return (
