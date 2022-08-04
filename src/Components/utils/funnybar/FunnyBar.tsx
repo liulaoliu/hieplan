@@ -6,57 +6,55 @@ import { usePopperTooltip } from "react-popper-tooltip";
 import "react-popper-tooltip/dist/styles.css";
 import customStyles from "./config/modalStyle";
 import raiseWarning from "./util/raiseWarning";
-/**
- * funnnyBar的 特殊功能 （输入+回车）
- * specific input strings that can be deceived as a function
- */
 
-const possibility = [
-  "login",
-  "登录",
-  "main",
-  "task",
-  "change",
-  "color",
-  "home",
-  "c",
-  "h",
-  "lg",
-  "os",
-  "跟随系统",
-] as const;
+import {
+  funnybarHooks,
+  activeFunnybarHooks,
+  reportPossibleStrs,
+} from "./hook/activeHooks/index";
 
-type possibility = typeof possibility[number];
+// /**
+//  * funnnyBar的 特殊功能 （输入+回车）
+//  * specific input strings that can be deceived as a function
+//  */
 
-type isSomething = (val: possibility) => boolean | undefined;
+// const possibility = reportPossibleStrs(funnybarHooks)
 
-function isLogin(value: possibility) {
-  if (value === "login" || value === "登录" || value === "lg") {
-    return true;
-  }
-}
+// type possibility = typeof possibility[number];
 
-function isMain(value: possibility) {
-  if (value === "main" || value === "task") {
-    return true;
-  }
-}
+// type isSomething = (val: possibility) => boolean | undefined;
 
-function isChangeColorMode(value: possibility) {
-  if (value === "c" || value === "color" || value === "change") {
-    return true;
-  }
-}
-function isChangeColorModePreferOs(value: possibility) {
-  if (value === "os" || value == "跟随系统") {
-    return true;
-  }
-}
-const isHome: isSomething = function (value) {
-  if (value === "home" || value === "h") {
-    return true;
-  }
-};
+// //done
+// function isLogin(value: possibility) {
+//   if (value === "login" || value === "登录" || value === "lg") {
+//     return true;
+//   }
+// }
+// //done
+// function isMain(value: possibility) {
+//   if (value === "main" || value === "task") {
+//     return true;
+//   }
+// }
+// //done
+// function isChangeColorMode(value: possibility) {
+//   if (value === "c" || value === "color" || value === "change") {
+//     return true;
+//   }
+// }
+// //done
+// function isChangeColorModePreferOs(value: possibility) {
+//   if (value === "os" || value == "跟随系统") {
+//     return true;
+//   }
+// }
+// //done
+// const isHome: isSomething = function (value) {
+//   if (value === "home" || value === "h") {
+//     return true;
+//   }
+// };
+
 type Props = {
   funnybarVisible: boolean;
   handleClose: any;
@@ -74,6 +72,15 @@ type Props = {
 Modal.setAppElement("#root");
 
 export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
+  /**
+   * funnnyBar的 特殊功能 （输入+回车）
+   * specific input strings that can be deceived as a function
+   */
+
+  const possibility = reportPossibleStrs(funnybarHooks);
+
+  type possibility = typeof possibility[number];
+
   const [input, setInput] = useState("");
   const {
     getArrowProps,
@@ -83,9 +90,7 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
     visible,
   } = usePopperTooltip();
 
-  /** 用于跳转的 工具 */
-  /** */
-  const navigate = useNavigate();
+  let funnybarFns = activeFunnybarHooks(funnybarHooks, input);
 
   if (!funnybarVisible && funnybarVisible !== undefined) {
     return null;
@@ -102,15 +107,14 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
       <div className="tw-rounded-md tw-flex tw-justify-center tw-items-center tw-p-0">
         <input
           className="
-       tw-caret-purple-800
-       tw-min-w-[450px]   tw-rounded-md 
-      tw-outline-none
-      tw-leading-[3.5rem]
-       tw-text-4xl
-       tw-pl-3
-      
-       tw-align-middle
-       tw-h-14
+      tw-caret-purple-800
+        tw-min-w-[450px]   tw-rounded-md 
+        tw-outline-none
+        tw-leading-[3.5rem]
+        tw-text-4xl
+        tw-pl-3
+        tw-align-middle
+        tw-h-14
         "
           autoFocus={true}
           value={input}
@@ -123,25 +127,15 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
             }
             if (e.code === "Enter" || e.code === "NumpadEnter") {
               if (possibility.includes(input as any)) {
-                // 如果找到在一个分支内 做 assertion的办法， 这个 ignore/expect-error可以去掉
-                // @ts-expect-error
-                if (isLogin(input)) {
-                  navigate("/login");
-                } // @ts-ignore
-                if (isMain(input)) {
-                  navigate("/main");
-                } // @ts-ignore
-                if (isChangeColorMode(input)) {
-                  ChangeAppColorMode.changeColorMode();
-                } // @ts-ignore
-                if (isHome(input)) {
-                  navigate("/");
+                for (let i = 0; i < funnybarFns.length; i++) {
+                  let currentItem = funnybarFns[i];
+                  if (currentItem.judge() === false) {
+                    continue;
+                  } else {
+                    currentItem.execTheCmd();
+                    break;
+                  }
                 }
-                //@ts-ignore
-                if (isChangeColorModePreferOs(input)) {
-                  ChangeAppColorMode.preferOsColorMode();
-                }
-                raiseWarning();
               } else {
                 raiseWarning();
               }
