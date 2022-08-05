@@ -1,5 +1,5 @@
 import React from "react";
-import { getRandomIdx, getNextIdxCircularly } from "../utils/Quote";
+import { getRandomIdx, getNextIdxCircularly } from "../utils/quote/utils/index";
 import VerticalCarousel from "../utils/VerticalCarousel";
 
 type Props = {};
@@ -9,13 +9,13 @@ type Props = {};
 const alters = [
   "站着/这个Efficiency啊",
   "躺着/funny",
-  "高效/'我长的呢?''你长得有点好笑'",
+  "坐着/'我长的呢?''你长得有点好笑'",
   "佛系/要时刻清晰地避免无效输出",
   "摸鱼/低效不代表无效,但是或许有提升的空间?",
   "对抗/俄罗斯方块..",
   "顺从/那很好",
-  "笑笑/一笑而过吧",
-  "高校/高校真的是学习的地方吗?",
+  "趴着/一笑而过吧",
+  "蹲着/你确定你真的能蹲一天吗?",
 ];
 
 export default function Logo({}: Props) {

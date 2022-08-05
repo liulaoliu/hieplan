@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import Quote from "../utils/Quote";
+import Quote from "../utils/quote/Quote";
 
 interface Props {}
 /**

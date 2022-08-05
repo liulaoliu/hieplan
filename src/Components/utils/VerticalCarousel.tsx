@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { getNextIdxCircularly, getPreviousIdxCircularly } from "./Quote";
+import { getNextIdxCircularly, getPreviousIdxCircularly } from "./quote/utils/index";
 
 /**
  * https://juejin.cn/post/7017682613959655461 看这里
