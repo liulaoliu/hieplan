@@ -1,21 +1,26 @@
 import React, { ReactElement } from "react";
 import { usePopperTooltip } from "react-popper-tooltip";
-import { getRandomIdx } from "./utils";
 import someSayings from "./someSayings";
+import {
+  cleanLastAtSymbol,
+  isEnd,
+  isMid,
+  isStart,
+  getRandomIdx,
+  isSpecial,
+  reportSpecialComment,
+} from "./utils";
+
 interface Props {
   returnString?: boolean;
 }
 
 /**
- *
- *
+
  * @returns
  * 渲染一句有深意 或者是 幽默的 话。
  * renders a meaningful or meaningless sentence.
- *
- *
  */
-
 
 export default function Quote({ returnString }: Props): ReactElement {
   /**
@@ -34,7 +39,6 @@ export default function Quote({ returnString }: Props): ReactElement {
 
   /**  就是 getRandomIdx的结果*/
   const [quoteIdx, setQuote] = React.useState(getRandomIdx(someSayings.length));
-
   /** 把随机的一条saying 给清理一下 (去掉/)和多余的@修饰符。
    * sentences in someSayings are stored like this :'knowledge is power/Francis Bacon@start'.
    * compound returns {saying:knowledge is power,sourcE:Francis Bacon}
@@ -42,57 +46,10 @@ export default function Quote({ returnString }: Props): ReactElement {
   const compound = React.useMemo(() => {
     const saying = someSayings[quoteIdx].split("/")[0];
     const sourcE = cleanLastAtSymbol(someSayings[quoteIdx].split("/")[1]);
+    const containsAspecSymbol = isSpecial(someSayings[quoteIdx].split("/")[1]);
 
-    return { saying, sourcE };
+    return { saying, sourcE, containsAspecSymbol };
   }, [quoteIdx]);
-
-  /** 去掉@修饰符.
-   *  clear '@' symbol in the given str
-   */
-  function cleanLastAtSymbol(str: string) {
-    if (str.endsWith("@mid") || str.endsWith("@end")) {
-      const len = str.length;
-      let newStr = str.slice(0, len - 4);
-      return newStr;
-    }
-    if (str.endsWith("@start")) {
-      const len = str.length;
-      let newStr = str.slice(0, len - 6);
-      return newStr;
-    }
-    return str;
-  }
-
-  /** 通过@修饰符判断 处于 连续的一组saying的 头部?.
-   * in someSaying array(or other sentence source),sentence like 'xxxxx/xxxx@start' means
-   * it's the fore part of the sentence group. so isStart can tell a str is fore part or not.
-   */
-  function isStart(str: string) {
-    if (str.endsWith("@start")) {
-      return true;
-    }
-    return false;
-  }
-  /** 通过@修饰符判断 处于 连续的一组saying的 尾部?
-   *
-   * isEnd can tell a  str is an ending sentence or not
-   */
-  function isEnd(str: string) {
-    if (str.endsWith("@end")) {
-      return true;
-    }
-    return false;
-  }
-  /** 通过@修饰符判断 处于 连续的一组saying的 中间?
-   *
-   * isMid can tell whether a str is the middle part or not.
-   */
-  function isMid(str: string) {
-    if (str.endsWith("@mid")) {
-      return true;
-    }
-    return false;
-  }
 
   return (
     <div
@@ -124,13 +81,13 @@ export default function Quote({ returnString }: Props): ReactElement {
     >
       <div className="saying">{compound.saying}</div>
       <div className="sourcE">{"---" + compound.sourcE}</div>
-      {visible && (
+      {visible && compound.containsAspecSymbol && (
         <div
           ref={setTooltipRef}
           {...getTooltipProps({ className: "tooltip-container" })}
         >
           <div {...getArrowProps({ className: "tooltip-arrow" })} />
-          好大一棵树挡住我啊
+          {reportSpecialComment(someSayings[quoteIdx].split("/")[1])}
         </div>
       )}
     </div>
