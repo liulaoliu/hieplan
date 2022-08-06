@@ -40,8 +40,8 @@ export default function Quote({ returnString }: Props): ReactElement {
   /**  就是 getRandomIdx的结果*/
   const [quoteIdx, setQuote] = React.useState(getRandomIdx(someSayings.length));
   /** 把随机的一条saying 给清理一下 (去掉/)和多余的@修饰符。
-   * sentences in someSayings are stored like this :'knowledge is power/Francis Bacon@start'.
-   * compound returns {saying:knowledge is power,sourcE:Francis Bacon}
+   * sentences in someSayings are stored like this :'knowledge is power/Francis Bacon@start@spec=something special'.
+   * compound returns {saying:knowledge is power,sourcE:Francis Bacon,containsAspecSymbol:false}
    */
   const compound = React.useMemo(() => {
     const saying = someSayings[quoteIdx].split("/")[0];
