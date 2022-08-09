@@ -127,6 +127,7 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
             }
             if (e.code === "Enter" || e.code === "NumpadEnter") {
               if (possibility.includes(input as any)) {
+                
                 for (let i = 0; i < funnybarFns.length; i++) {
                   let currentItem = funnybarFns[i];
                   if (currentItem.judge() === false) {

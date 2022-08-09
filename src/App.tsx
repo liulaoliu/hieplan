@@ -33,24 +33,6 @@ export default function App() {
         minWidth: "450px",
       }}
     >
-      {/* <button
-        className="tw-bg-blue-500 hover:tw-bg-blue-700 tw-text-white tw-font-bold tw-py-2 tw-px-4 tw-rounded tw-my-2"
-        onClick={() => {
-          colorModeStorage.preferOsColorMode();
-        }}
-      >
-        跟随系统
-      </button>
-      <div> </div>
-      <button
-        className="tw-bg-blue-500 hover:tw-bg-blue-700 tw-text-white tw-font-bold tw-py-2 tw-px-4 tw-rounded"
-        onClick={() => {
-          colorModeStorage.changeColorMode();
-        }}
-      >
-        手动切换
-      </button> */}
-
       <BrowserRouter>
         {/* 注意这种奇怪的配置方法， FunnyBar不和 任何 path相关，永远被渲染，但是他使用了 router的上下文
         useNavigate() may be used only in the context of a <Router> component.
