@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import loginSvg from "./asset/svg/login.svg";
 import CheckInput from "./checkInput";
+import Input from "./input";
 import { usePopperTooltip } from "react-popper-tooltip";
 /**
  * 这是登录或者注册页面
@@ -28,24 +29,12 @@ export default function Login({ mode }: { mode: string }): ReactElement {
           </div>
           <div className="md:tw-w-8/12 lg:tw-w-5/12 lg:tw-ml-20">
             <form>
-              <div className="tw-mb-6">
-                <input
-                  type="text"
-                  className="tw-form-control tw-block tw-w-full tw-px-4 tw-py-2 tw-text-xl tw-font-normal tw-text-gray-700 tw-bg-white tw-bg-clip-padding tw-border tw-border-solid tw-border-gray-300 tw-rounded tw-transition tw-ease-in-out tw-m-0 focus:tw-text-gray-700 focus:tw-bg-white focus:tw-border-blue-600 focus:tw-outline-none"
-                  placeholder="邮箱地址"
-                />
-              </div>
-
-              <div className="tw-mb-6">
-                <input
-                  type="password"
-                  className="tw-form-control tw-block tw-w-full tw-px-4 tw-py-2 tw-text-xl tw-font-normal tw-text-gray-700 tw-bg-white tw-bg-clip-padding tw-border tw-border-solid tw-border-gray-300 tw-rounded tw-transition tw-ease-in-out tw-m-0 focus:tw-text-gray-700 focus:tw-bg-white focus:tw-border-blue-600 focus:tw-outline-none"
-                  placeholder="密码"
-                />
-              </div>
+              <Input placeholder="邮箱地址"></Input>
+              <Input placeholder="密码"></Input>
 
               <div className="tw-flex tw-justify-between tw-items-center tw-mb-6">
                 <CheckInput
+                  text="记住我"
                   checked={rememberMe}
                   handleCheck={() => {
                     setRememberMe(!rememberMe);

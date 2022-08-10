@@ -4,9 +4,16 @@ import checkIcon from "./asset/check_icon.svg";
 interface Props {
   checked: boolean;
   handleCheck: any;
+  text:string
 }
 // checked:tw-bg-blue-600 checked:tw-border-blue-600 ==> checkIcon
+/**
+ * 
+ * a checkbox like 'remember me ' with a 'check symbol' in it
+  是 ‘保持登陆’ 这样的复选框
+ */
 export default function checkInput({
+  text,
   checked,
   handleCheck,
 }: Props): ReactElement {
@@ -31,7 +38,7 @@ export default function checkInput({
         className="tw-form-check-label tw-inline-block tw-text-gray-800 dark:tw-text-slate-200 hover:dark:tw-text-slate-300 focus:dark:tw-text-slate-300 active:dark:tw-text-slate-100"
         htmlFor="exampleCheck2"
       >
-        记住我
+        {text}
       </label>
     </div>
   );

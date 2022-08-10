@@ -137,6 +137,7 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
                     break;
                   }
                 }
+                
               } else {
                 raiseWarning();
               }
