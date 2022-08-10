@@ -18,43 +18,6 @@ import {
 //  * specific input strings that can be deceived as a function
 //  */
 
-// const possibility = reportPossibleStrs(funnybarHooks)
-
-// type possibility = typeof possibility[number];
-
-// type isSomething = (val: possibility) => boolean | undefined;
-
-// //done
-// function isLogin(value: possibility) {
-//   if (value === "login" || value === "登录" || value === "lg") {
-//     return true;
-//   }
-// }
-// //done
-// function isMain(value: possibility) {
-//   if (value === "main" || value === "task") {
-//     return true;
-//   }
-// }
-// //done
-// function isChangeColorMode(value: possibility) {
-//   if (value === "c" || value === "color" || value === "change") {
-//     return true;
-//   }
-// }
-// //done
-// function isChangeColorModePreferOs(value: possibility) {
-//   if (value === "os" || value == "跟随系统") {
-//     return true;
-//   }
-// }
-// //done
-// const isHome: isSomething = function (value) {
-//   if (value === "home" || value === "h") {
-//     return true;
-//   }
-// };
-
 type Props = {
   funnybarVisible: boolean;
   handleClose: any;
@@ -78,8 +41,6 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
    */
 
   const possibility = reportPossibleStrs(funnybarHooks);
-
-  type possibility = typeof possibility[number];
 
   const [input, setInput] = useState("");
   const {
@@ -126,8 +87,7 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
               console.log(e.code, "keyCode");
             }
             if (e.code === "Enter" || e.code === "NumpadEnter") {
-              if (possibility.includes(input as any)) {
-                
+              if (possibility.includes(input)) {
                 for (let i = 0; i < funnybarFns.length; i++) {
                   let currentItem = funnybarFns[i];
                   if (currentItem.judge() === false) {
@@ -137,7 +97,6 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
                     break;
                   }
                 }
-                
               } else {
                 raiseWarning();
               }
