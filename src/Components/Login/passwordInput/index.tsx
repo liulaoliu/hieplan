@@ -8,19 +8,20 @@ export interface inputProp {
   label?: string;
   type: string;
   placeholder: string;
-  initialTouched: boolean;
-  handleInitialTouched: React.Dispatch<React.SetStateAction<boolean>>;
+  // initialTouched: boolean;
+  // handleInitialTouched: React.Dispatch<React.SetStateAction<boolean>>;
+  /**
+   * specify what constituent does the password must have.
+   */
   passwordRequirement: string;
 }
 /**
  * 
 use it inside a form，it's just a input bar.
 
-一条 input输入框
+一条 input输入框 但是仅仅用于密码输入
  */
 export default function PasswordInput({
-  initialTouched,
-  handleInitialTouched,
   passwordRequirement,
   label,
   ...props
@@ -28,6 +29,8 @@ export default function PasswordInput({
   const [field, meta] = useField(props);
   const [show, setShow] = React.useState(false);
   const ref: React.LegacyRef<HTMLInputElement> = React.useRef(null);
+  const [passwordInputInitialTouched, setPasswordInputInitialTouched] =
+    React.useState(false);
 
   /**
    * 如果是 password 输入框
@@ -60,7 +63,7 @@ export default function PasswordInput({
           {...props}
           type={show === true ? "text" : "password"}
           onFocus={() => {
-            handleInitialTouched(true);
+            setPasswordInputInitialTouched(true);
           }}
           ref={ref}
         />
@@ -77,7 +80,7 @@ export default function PasswordInput({
           {show === true ? <BiHide></BiHide> : <BiShow></BiShow>}
         </div>
       </div>
-      {initialTouched === true ? (
+      {passwordInputInitialTouched === true ? (
         <div className="tw-font-bold tw-text-blue-700 dark:tw-text-slate-100 tw-pl-2 tw-h-auto tw-select-none">
           {passwordRequirement}
         </div>
@@ -86,7 +89,7 @@ export default function PasswordInput({
           {passwordRequirement}
         </div>
       )}
-      {meta.touched && meta.error ? (
+      {meta.touched && meta.value !== meta.initialValue && meta.error ? (
         <ErrorMessage
           someErrorMessage={tellCurrentError(meta.value)}
           // meta={meta}
@@ -144,6 +147,19 @@ const noMoreThan6Words = (function noMoreThanALength(length: number) {
   };
 })(6);
 
+const moreThan10Words = (function noMoreThanALength(length: number) {
+  return function (str: string) {
+    let result = false;
+    const errorMessage = `必须小于${length}个字符`;
+
+    if (str.length > length) {
+      result = true;
+    }
+
+    return { result, errorMessage };
+  };
+})(10);
+
 function tellCurrentError(str: string) {
   const judgeFns = [
     noLowerCase,
@@ -151,6 +167,7 @@ function tellCurrentError(str: string) {
     noNumber,
     hasSpecialWord,
     noMoreThan6Words,
+    moreThan10Words,
   ];
   const errorMessageArr = [];
 

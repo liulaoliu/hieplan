@@ -5,7 +5,7 @@ import Input from "./input";
 import PasswordInput from "./passwordInput";
 import { usePopperTooltip } from "react-popper-tooltip";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import formValues, { formSchema } from "./config";
 /**
  * 这是登录或者注册页面
  */
@@ -13,10 +13,6 @@ export default function Login({ mode }: { mode: string }): ReactElement {
   const config = {
     forgotPassword: "/registry/forgotpassword",
   };
-  const firstInput = React.useRef(null);
-
-  const [passwordInputInitialTouched, setPasswordInputInitialTouched] =
-    React.useState(false);
 
   const {
     getArrowProps,
@@ -28,23 +24,8 @@ export default function Login({ mode }: { mode: string }): ReactElement {
 
   return (
     <Formik
-      initialValues={{
-        email: "",
-        password: "",
-        rememberMe: false,
-      }}
-      validationSchema={Yup.object({
-        email: Yup.string().email("错误的邮箱格式").required("必填项"),
-        password: Yup.string()
-          .min(6, "密码不能低于6个字符")
-          .max(15, "密码不能超过10个字符")
-          .matches(
-            /^\w{6,10}$/,
-            "密码至少包含1个大写字母,1个小写字母和1个数字,不能包含特殊字符（非数字字母）"
-          )
-          .required("必填项"),
-        rememberMe: Yup.boolean(),
-      })}
+      initialValues={formValues}
+      validationSchema={formSchema}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
@@ -67,8 +48,6 @@ export default function Login({ mode }: { mode: string }): ReactElement {
                   autoFocus={true}
                 ></Input>
                 <PasswordInput
-                  initialTouched={passwordInputInitialTouched}
-                  handleInitialTouched={setPasswordInputInitialTouched}
                   passwordRequirement=" 密码6~10个字符,至少包含一个大小写字母"
                   name="password"
                   type="password"

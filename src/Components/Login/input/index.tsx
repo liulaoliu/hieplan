@@ -37,7 +37,7 @@ export default function Input({ label, ...props }: inputProp): ReactElement {
         {...props}
         autoFocus={props.autoFocus}
       />
-      {meta.touched && meta.error ? (
+      {meta.touched && meta.value !== meta.initialValue && meta.error ? (
         <ErrorMessage meta={meta}></ErrorMessage>
       ) : null}
     </div>
