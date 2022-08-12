@@ -6,6 +6,7 @@ import { inputProp } from "../input/index";
 interface Props extends inputProp {
   text: string;
   // children>: ReactNode;
+  
 }
 
 // checked:tw-bg-blue-600 checked:tw-border-blue-600 ==> checkIcon
@@ -41,7 +42,7 @@ export default function CheckBox({
           helpers.setValue(!field.value);
         }}
         htmlFor={props.label}
-        className="tw-form-check-label tw-inline-block tw-text-gray-800 dark:tw-text-slate-200 hover:dark:tw-text-slate-300 focus:dark:tw-text-slate-300 active:dark:tw-text-slate-100"
+        className="tw-form-check-label tw-inline-block tw-text-gray-800 dark:tw-text-slate-200 hover:dark:tw-text-slate-300 focus:dark:tw-text-slate-300 active:dark:tw-text-slate-100 tw-select-none tw-cursor-pointer"
       >
         {props.text}
       </label>

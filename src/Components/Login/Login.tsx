@@ -13,6 +13,15 @@ export default function Login({ mode }: { mode: string }): ReactElement {
   const config = {
     forgotPassword: "/registry/forgotpassword",
   };
+  const firstInput = React.useRef(null);
+
+  const [passwordInputInitialTouched, setPasswordInputInitialTouched] =
+    React.useState(false);
+  React.useEffect(() => {
+    return () => {
+      console.log(firstInput);
+    };
+  }, []);
 
   const {
     getArrowProps,
@@ -56,8 +65,16 @@ export default function Login({ mode }: { mode: string }): ReactElement {
             </div>
             <div className="md:tw-w-8/12 lg:tw-w-5/12 lg:tw-ml-20">
               <Form>
-                <Input name="email" type="text" placeholder="邮箱地址"></Input>
+                <Input
+                  name="email"
+                  type="email"
+                  placeholder="邮箱地址"
+                  autoFocus={true}
+                ></Input>
                 <PasswordInput
+                  initialTouched={passwordInputInitialTouched}
+                  handleInitialTouched={setPasswordInputInitialTouched}
+                  passwordRequirement=" 密码6~10个字符,至少包含一个大小写字母"
                   name="password"
                   type="password"
                   placeholder="密码"
