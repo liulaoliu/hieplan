@@ -2,8 +2,10 @@ import React, { ReactElement, useState } from "react";
 import loginSvg from "./asset/svg/login.svg";
 import CheckBox from "./checkBox";
 import Input from "./input";
+import PasswordInput from "./passwordInput";
 import { usePopperTooltip } from "react-popper-tooltip";
 import { Formik, Form } from "formik";
+import * as Yup from "yup";
 /**
  * 这是登录或者注册页面
  */
@@ -12,8 +14,6 @@ export default function Login({ mode }: { mode: string }): ReactElement {
     forgotPassword: "/registry/forgotpassword",
   };
 
-  const [rememberMe, setRememberMe] = useState(false);
-
   const {
     getArrowProps,
     getTooltipProps,
@@ -21,6 +21,7 @@ export default function Login({ mode }: { mode: string }): ReactElement {
     setTriggerRef,
     visible,
   } = usePopperTooltip();
+
   return (
     <Formik
       initialValues={{
@@ -28,6 +29,18 @@ export default function Login({ mode }: { mode: string }): ReactElement {
         password: "",
         rememberMe: false,
       }}
+      validationSchema={Yup.object({
+        email: Yup.string().email("错误的邮箱格式").required("必填项"),
+        password: Yup.string()
+          .min(6, "密码不能低于6个字符")
+          .max(15, "密码不能超过10个字符")
+          .matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,10}$/,
+            "密码至少包含1个大写字母,1个小写字母和1个数字,不能包含特殊字符（非数字字母）"
+          )
+          .required("必填项"),
+        rememberMe: Yup.boolean(),
+      })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
@@ -44,19 +57,14 @@ export default function Login({ mode }: { mode: string }): ReactElement {
             <div className="md:tw-w-8/12 lg:tw-w-5/12 lg:tw-ml-20">
               <Form>
                 <Input name="email" type="text" placeholder="邮箱地址"></Input>
-                <Input
+                <PasswordInput
                   name="password"
                   type="password"
                   placeholder="密码"
-                ></Input>
+                ></PasswordInput>
 
                 <div className="tw-flex tw-justify-between tw-items-center tw-mb-6">
                   <CheckBox
-                    // text="记住我"
-                    // checked={rememberMe}
-                    // handleCheck={() => {
-                    //   setRememberMe(!rememberMe);
-                    // }}
                     name="rememberMe"
                     type="checkbox"
                     text="记住我"

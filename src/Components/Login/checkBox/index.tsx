@@ -21,7 +21,8 @@ export default function CheckBox({
   // Formik does this too! When you specify `type` to useField(), it will
   // return the correct bag of props for you -- a `checked` prop will be included
   // in `field` alongside `name`, `value`, `onChange`, and `onBlur`
-  const [field, meta] = useField({ ...props, type: "checkbox" });
+  const [field, meta, helpers] = useField({ ...props, type: "checkbox" });
+
   return (
     <div className="tw-form-group tw-form-check">
       <input
@@ -36,8 +37,11 @@ export default function CheckBox({
         }}
       />
       <label
+        onClick={() => {
+          helpers.setValue(!field.value);
+        }}
+        htmlFor={props.label}
         className="tw-form-check-label tw-inline-block tw-text-gray-800 dark:tw-text-slate-200 hover:dark:tw-text-slate-300 focus:dark:tw-text-slate-300 active:dark:tw-text-slate-100"
-        htmlFor="exampleCheck2"
       >
         {props.text}
       </label>
