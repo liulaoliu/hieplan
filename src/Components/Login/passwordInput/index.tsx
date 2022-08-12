@@ -87,8 +87,81 @@ export default function PasswordInput({
         </div>
       )}
       {meta.touched && meta.error ? (
-        <ErrorMessage someErrorMessage="密码太弱"></ErrorMessage>
+        <ErrorMessage
+          someErrorMessage={tellCurrentError(meta.value)}
+          // meta={meta}
+        ></ErrorMessage>
       ) : null}
     </div>
   );
+}
+/** doesn't contain at least 1 number*/
+function noNumber(str: string) {
+  let re = /[0-9]/g;
+  const result = !re.test(str);
+  const errorMessage = "必须至少含有一个数字";
+  return { result, errorMessage };
+}
+
+/** doesn't contain at least 1 upper case word*/
+
+function noUpperCase(str: string) {
+  let re = /[A-Z]/g;
+  const result = !re.test(str);
+  const errorMessage = "必须至少含有一个大写字母";
+  return { result, errorMessage };
+}
+
+/** doesn't contain at least 1 lower case word*/
+function noLowerCase(str: string) {
+  let re = /[a-z]/g;
+  const result = !re.test(str);
+  const errorMessage = "必须至少含有一个小写字母";
+  return { result, errorMessage };
+}
+/**
+ * 有数字、字母、下划线以外的东西
+ * @param str
+ * @returns
+ */
+function hasSpecialWord(str: string) {
+  let re = /\W/g;
+  const result = re.test(str);
+  const errorMessage = "不能有特殊字符";
+  return { result, errorMessage };
+}
+
+const noMoreThan6Words = (function noMoreThanALength(length: number) {
+  return function (str: string) {
+    let result = false;
+    const errorMessage = `必须超过${length}个字符`;
+
+    if (str.length < length) {
+      result = true;
+    }
+
+    return { result, errorMessage };
+  };
+})(6);
+
+function tellCurrentError(str: string) {
+  const judgeFns = [
+    noLowerCase,
+    noUpperCase,
+    noNumber,
+    hasSpecialWord,
+    noMoreThan6Words,
+  ];
+  const errorMessageArr = [];
+
+  for (let i = 0; i < judgeFns.length; i++) {
+    if (judgeFns[i](str).result === true) {
+      console.log(judgeFns[i](str));
+
+      errorMessageArr.push(judgeFns[i](str).errorMessage);
+    }
+  }
+  console.log(errorMessageArr);
+
+  return errorMessageArr.join(",");
 }

@@ -17,11 +17,6 @@ export default function Login({ mode }: { mode: string }): ReactElement {
 
   const [passwordInputInitialTouched, setPasswordInputInitialTouched] =
     React.useState(false);
-  React.useEffect(() => {
-    return () => {
-      console.log(firstInput);
-    };
-  }, []);
 
   const {
     getArrowProps,
@@ -44,7 +39,7 @@ export default function Login({ mode }: { mode: string }): ReactElement {
           .min(6, "密码不能低于6个字符")
           .max(15, "密码不能超过10个字符")
           .matches(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,10}$/,
+            /^\w{6,10}$/,
             "密码至少包含1个大写字母,1个小写字母和1个数字,不能包含特殊字符（非数字字母）"
           )
           .required("必填项"),
