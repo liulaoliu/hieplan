@@ -3,7 +3,7 @@ import "./App.css";
 import Welcome from "./Components/homePage/Welcome";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 //  log 页面
-import Login from "./Components/Login/Login";
+import SignIn from "./Components/SignIn/SignIn";
 // Main 页面
 import Main from "./Components/contentPage/Main";
 
@@ -16,6 +16,7 @@ import Nowhere from "./Components/404/Nowhere";
 import colorModeStorage from "./Components/utils/ChangeAppColorMode";
 import FunnyBar from "./Components/utils/funnybar/FunnyBar";
 import watchAltAndEnter from "./Components/utils/watchAltAndEnter";
+import Login from "./Components/Login/Login";
 //  懒加载示范
 const Task = React.lazy(() => import("./Components/contentPage/task/Task"));
 
@@ -59,14 +60,14 @@ export default function App() {
             <Route path="tag" element={<Tag />} />
             <Route path="search" element={<Tag />} />
           </Route>
-          <Route path="login" element={<Login mode={"login"} />} />
+          <Route path="login" element={<Login />} />
           <Route
-            path="registration"
-            element={<Login mode={"registration"} />}
+            path="signIn"
+            element={<SignIn mode={"signIn"} />}
           />
           <Route
             path="password/forgot"
-            element={<Login mode={"password/forgot"} />}
+            element={<SignIn mode={"password/forgot"} />}
           />
           <Route path="/" element={<Welcome />} />
           <Route path="*" element={<Nowhere />} />

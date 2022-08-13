@@ -6,7 +6,6 @@ import { inputProp } from "../input/index";
 interface Props extends inputProp {
   text: string;
   // children>: ReactNode;
-  
 }
 
 // checked:tw-bg-blue-600 checked:tw-border-blue-600 ==> checkIcon
@@ -17,7 +16,7 @@ interface Props extends inputProp {
  */
 export default function CheckBox({
   ...props
-}: Omit<Props, "placeholder">): ReactElement {
+}: Omit<Props, "placeholder" | "showErrorMessage">): ReactElement {
   // React treats radios and checkbox inputs differently other input types, select, and textarea.
   // Formik does this too! When you specify `type` to useField(), it will
   // return the correct bag of props for you -- a `checked` prop will be included

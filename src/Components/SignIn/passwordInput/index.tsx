@@ -2,18 +2,17 @@ import React, { ReactChild, ReactElement } from "react";
 import { BiShow, BiHide } from "react-icons/bi";
 import { useField } from "formik";
 import ErrorMessage from "../util/errorMessage";
-export interface inputProp {
+import { inputProp } from "../input/index";
+interface Props extends inputProp {
   id?: string;
   name: string;
   label?: string;
   type: string;
   placeholder: string;
-  // initialTouched: boolean;
-  // handleInitialTouched: React.Dispatch<React.SetStateAction<boolean>>;
   /**
    * specify what constituent does the password must have.
    */
-  passwordRequirement: string;
+  passwordRequirement?: string;
 }
 /**
  * 
@@ -24,8 +23,9 @@ use it inside a form，it's just a input bar.
 export default function PasswordInput({
   passwordRequirement,
   label,
+  showErrorMessage,
   ...props
-}: inputProp): ReactElement {
+}: Props): ReactElement {
   const [field, meta] = useField(props);
   const [show, setShow] = React.useState(false);
   const ref: React.LegacyRef<HTMLInputElement> = React.useRef(null);
@@ -92,7 +92,6 @@ export default function PasswordInput({
       {meta.touched && meta.value !== meta.initialValue && meta.error ? (
         <ErrorMessage
           someErrorMessage={tellCurrentError(meta.value)}
-          // meta={meta}
         ></ErrorMessage>
       ) : null}
     </div>
@@ -128,7 +127,7 @@ function noLowerCase(str: string) {
  * @returns
  */
 function hasSpecialWord(str: string) {
-  let re = /\W/g;
+  let re = /\W|_/g;
   const result = re.test(str);
   const errorMessage = "不能有特殊字符";
   return { result, errorMessage };
@@ -173,12 +172,9 @@ function tellCurrentError(str: string) {
 
   for (let i = 0; i < judgeFns.length; i++) {
     if (judgeFns[i](str).result === true) {
-      console.log(judgeFns[i](str));
-
       errorMessageArr.push(judgeFns[i](str).errorMessage);
     }
   }
-  console.log(errorMessageArr);
 
   return errorMessageArr.join(",");
 }

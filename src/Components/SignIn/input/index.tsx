@@ -9,6 +9,7 @@ export interface inputProp {
   type: string;
   placeholder: string;
   autoFocus?: boolean;
+  showErrorMessage: boolean;
 }
 /**
  * 
@@ -16,7 +17,7 @@ use it inside a form，it's just a input bar.
 
 一条 input输入框
  */
-export default function Input({ label, ...props }: inputProp): ReactElement {
+export default function Input({ label,showErrorMessage, ...props }: inputProp): ReactElement {
   const [field, meta] = useField(props);
 
   /**
