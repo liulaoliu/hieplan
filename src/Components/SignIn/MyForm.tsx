@@ -7,7 +7,7 @@ interface Props {}
 
 export default function MyForm({}: Props): ReactElement {
   const config = {
-    forgotPassword: "/registry/forgotpassword",
+    login: "/login",
   };
 
   return (
@@ -26,17 +26,15 @@ export default function MyForm({}: Props): ReactElement {
         type="password"
         placeholder="密码"
       ></PasswordInput>
-
       <div className="tw-flex tw-justify-between tw-items-center tw-mb-6">
-        {/* <CheckBox name="rememberMe" type="checkbox" text="记住我"></CheckBox> */}
         <a
-          href={config.forgotPassword}
+          href={config.login}
           className=" tw-duration-200 tw-transition tw-ease-in-out
            tw-text-blue-600 hover:tw-text-blue-700 focus:tw-text-blue-700 active:tw-text-blue-800
            dark:tw-text-slate-200 hover:dark:tw-text-slate-300 focus:dark:tw-text-slate-300 active:dark:tw-text-slate-100
            "
         >
-          忘记密码
+          俺有账号
         </a>
       </div>
 

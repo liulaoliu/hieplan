@@ -10,7 +10,8 @@ interface Props {}
  */
 export default function MyForm({}: Props): ReactElement {
   const config = {
-    forgotPassword: "/registry/forgotpassword",
+    signIn: "/signIn",
+    forgotPassword: "/forgotPassword",
   };
   const {
     getArrowProps,
@@ -38,15 +39,29 @@ export default function MyForm({}: Props): ReactElement {
 
       <div className="tw-flex tw-justify-between tw-items-center tw-mb-6">
         <CheckBox name="rememberMe" type="checkbox" text="记住我"></CheckBox>
-        <a
-          href={config.forgotPassword}
-          className=" tw-duration-200 tw-transition tw-ease-in-out
+        <div className="tw-flex">
+          <a
+            href={config.signIn}
+            className=" tw-duration-200 tw-transition tw-ease-in-out
+           tw-text-blue-600 hover:tw-text-blue-700 focus:tw-text-blue-700 active:tw-text-blue-800
+           dark:tw-text-slate-200 hover:dark:tw-text-slate-300 focus:dark:tw-text-slate-300 active:dark:tw-text-slate-100
+           tw-mr-4
+          
+           "
+            title="其实我也想去创建一个账号"
+          >
+            么的账号
+          </a>
+          <a
+            href={config.forgotPassword}
+            className=" tw-duration-200 tw-transition tw-ease-in-out
            tw-text-blue-600 hover:tw-text-blue-700 focus:tw-text-blue-700 active:tw-text-blue-800
            dark:tw-text-slate-200 hover:dark:tw-text-slate-300 focus:dark:tw-text-slate-300 active:dark:tw-text-slate-100
            "
-        >
-          忘记密码
-        </a>
+          >
+            忘记密码
+          </a>
+        </div>
       </div>
 
       <button
