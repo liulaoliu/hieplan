@@ -83,7 +83,7 @@ export default function MyForm({}: Props): ReactElement {
           {...getTooltipProps({ className: "tooltip-container" })}
         >
           <div {...getArrowProps({ className: "tooltip-arrow" })} />
-          没有注册过的邮箱会直接创建一个新账户
+          (⊙o⊙)…
         </div>
       )}
     </Form>

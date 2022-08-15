@@ -138,7 +138,7 @@ export default function VerticalCarousel({
 
           (scrollHanlder as unknown as any).tid = setTimeout(() => {
             scrollHanlder(e.deltaY);
-          }, 800);
+          }, 300);
         }}
       >
         {arr.map((item, idx) => {
