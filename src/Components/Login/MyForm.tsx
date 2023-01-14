@@ -2,8 +2,9 @@ import React, { ReactElement } from "react";
 import CheckBox from "../SignIn/checkBox";
 import Input from "../SignIn/input";
 import PasswordInput from "../SignIn/passwordInput";
-import { Form } from "formik";
+import { Form, useFormikContext } from "formik";
 import { usePopperTooltip } from "react-popper-tooltip";
+import BlueButton from "../utils/buttons/BlueButton";
 interface Props {}
 /**
  *  登录页面 表单
@@ -20,6 +21,7 @@ export default function MyForm({}: Props): ReactElement {
     setTriggerRef,
     visible,
   } = usePopperTooltip();
+  const { dirty, isValid } = useFormikContext();
 
   return (
     <Form>
@@ -64,19 +66,13 @@ export default function MyForm({}: Props): ReactElement {
         </div>
       </div>
 
-      <button
+      <BlueButton
+        disabled={isValid === false || dirty === false}
         ref={setTriggerRef}
-        type="submit"
-        className="tw-inline-block tw-px-7 tw-py-3 tw-text-white tw-font-bold tw-text-sm tw-leading-snug tw-uppercase tw-rounded tw-shadow-md   hover:tw-shadow-lg  focus:tw-shadow-lg focus:tw-outline-none focus:tw-ring-0  active:tw-shadow-lg tw-transition tw-duration-150 tw-ease-in-out tw-w-full
-        tw-bg-blue-600 
-        hover:tw-bg-blue-700
-        focus:tw-bg-blue-700
-        active:tw-bg-blue-800
-        dark:tw-border-2
-        "
       >
         登录
-      </button>
+      </BlueButton>
+
       {visible && (
         <div
           ref={setTooltipRef}
@@ -88,4 +84,20 @@ export default function MyForm({}: Props): ReactElement {
       )}
     </Form>
   );
+}
+
+{
+  /* <button
+        ref={setTriggerRef}
+        type="submit"
+        className="tw-inline-block tw-px-7 tw-py-3 tw-text-white tw-font-bold tw-text-sm tw-leading-snug tw-uppercase tw-rounded tw-shadow-md   hover:tw-shadow-lg  focus:tw-shadow-lg focus:tw-outline-none focus:tw-ring-0  active:tw-shadow-lg tw-transition tw-duration-150 tw-ease-in-out tw-w-full
+        tw-bg-blue-600 
+        hover:tw-bg-blue-700
+        focus:tw-bg-blue-700
+        active:tw-bg-blue-800
+        dark:tw-border-2
+        "
+      >
+        呃呃呃呃呃呃呃呃呃额
+      </button> */
 }

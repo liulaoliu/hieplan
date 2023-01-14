@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import loginSvg from "./asset/svg/login.svg";
 import { Formik } from "formik";
 import formValues, { formSchema } from "./config";
@@ -24,8 +24,13 @@ export default function SignIn({ mode }: { mode: string }): ReactElement {
             <div className="md:tw-w-8/12 lg:tw-w-6/12 tw-mb-12 md:tw-mb-0">
               <img src={loginSvg} className="tw-w-full" alt="Phone image" />
             </div>
-            <div className="md:tw-w-8/12 lg:tw-w-5/12 lg:tw-ml-20">
-              <MyForm></MyForm>
+            <div className="md:tw-w-8/12 lg:tw-w-5/12 lg:tw-ml-20 tw-flex tw-flex-col tw-items-center ">
+              <h1 className="tw-text-4xl tw-mb-3 tw-text-blue-700 dark:tw-text-white">
+                新用户在这里注册账号
+              </h1>
+              <div className="tw-w-full">
+                <MyForm></MyForm>
+              </div>
             </div>
           </div>
         </div>

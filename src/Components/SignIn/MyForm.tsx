@@ -1,8 +1,8 @@
 import React, { ReactElement } from "react";
-import CheckBox from "./checkBox";
 import Input from "./input";
 import PasswordInput from "./passwordInput";
-import { Form, useFormik, useFormikContext } from "formik";
+import { Form, useFormikContext } from "formik";
+import BlueButton from "../utils/buttons/BlueButton";
 interface Props {}
 /**
  *  注册表
@@ -41,38 +41,9 @@ export default function MyForm({}: Props): ReactElement {
         </a>
       </div>
 
-      <button
-        type="submit"
-        className="tw-inline-block tw-px-7 tw-py-3 tw-text-white tw-font-bold tw-text-sm tw-leading-snug tw-uppercase 
-        tw-rounded tw-shadow-md   
-
-        hover:tw-shadow-lg  
-        focus:tw-shadow-lg 
-        focus:tw-outline-none 
-        focus:tw-ring-0  
-        active:tw-shadow-lg 
-
-        tw-transition 
-        tw-duration-150 
-        tw-ease-in-out 
-        tw-w-full
-        tw-bg-blue-600 
-        hover:tw-bg-blue-700
-        focus:tw-bg-blue-700
-        active:tw-bg-blue-800
-        dark:tw-border-2
-        
-        disabled:focus:tw-outline-none 
-        disabled:focus:tw-ring-0 
-        disabled:tw-opacity-60
-        disabled:hover:tw-bg-blue-600
-      disabled:focus:tw-bg-blue-600
-      disabled:active:tw-bg-blue-600
-        "
-        disabled={isValid === false || dirty === false}
-      >
-        创建新账户
-      </button>
+      <BlueButton disabled={isValid === false || dirty === false}>
+        创建一个账号
+      </BlueButton>
     </Form>
   );
 }

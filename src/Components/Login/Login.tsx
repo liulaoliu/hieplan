@@ -27,7 +27,12 @@ export default function Login({}: Props): ReactElement {
               <img src={bg} className="tw-w-full" alt="Phone image" />
             </div>
             <div className="md:tw-w-8/12 lg:tw-w-5/12 lg:tw-ml-20">
-              <MyForm></MyForm>
+              <h1 className="tw-text-4xl tw-mb-3 tw-text-blue-700 dark:tw-text-white">
+                已经有账号_,_就在这里登录
+              </h1>
+              <div className="tw-w-full">
+                <MyForm></MyForm>
+              </div>
             </div>
           </div>
         </div>
