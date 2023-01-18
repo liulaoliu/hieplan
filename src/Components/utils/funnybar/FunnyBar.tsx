@@ -41,6 +41,8 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
    */
 
   const possibility = reportPossibleStrs(funnybarHooks);
+  // hooks live show in the console.
+  // console.log(possibility);
 
   const [input, setInput] = useState("");
   const {

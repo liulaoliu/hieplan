@@ -7,7 +7,7 @@ export const patterns = {
   month: "month" as const,
 };
 /**
- * 日期显示的三种格式 ,只能是全显示/显示年月/显示年
+ * 日期显示的三种格式 ,只能是月/周/日
  * 是 patterns 的派生类型
  */
 export type pattern = keyof typeof patterns;
@@ -31,7 +31,7 @@ export default class FormattedDate {
     ];
   }
   /**
-   * 获取格式化完毕的当天日期 形式为 : "年_月_日" 比如:"2022_2_9"
+   * 获取格式化完毕的当天日期 形式为 : "年-月-日" 比如:"2022-2-9"
    */
   public getTodayDate() {
     /**
@@ -41,6 +41,7 @@ export default class FormattedDate {
     return `${this.year}-${this.month}-${this.day}`;
   }
   /**
+   * static helper
    * 接受一个Date实例, 返回格式化的年月日
    * 形如YYYY-MM-DD
    */
@@ -113,7 +114,6 @@ export default class FormattedDate {
    * 接受一个模式字符串，接受一个date字符串 (形如YYYY-MM-DD)
    * 判断模式为 日/周/月 ，返回向过去方向 一天/一周/一月的 那一天
    *
-   * 那一天，杨坤遇见了你
    */
   static getPreviousDateByPattern(pattern: pattern, date: string): string {
     /**

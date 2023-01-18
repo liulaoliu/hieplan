@@ -16,23 +16,30 @@ type Props = {
 
 export default function SidebarItems({ data, state }: Props) {
   return (
-    <ul className={st.clear_li_style}>
+    <ul className="tw-select-none tw-p-0 tw-list-none">
       {data.map((item, idx: number) => {
         return (
-          <li className={st.li_c} key={idx}>
+          <li
+            className="tw-cursor-pointer 
+            tw-flex tw-justify-center 
+            tw-items-center tw-h-[50px] "
+            key={idx}
+          >
             <NavLink
-              className={st.reset_link}
+              className="tw-no-underline "
               // good point
               style={{ color: "inherit", display: "flex" }}
               to={"/main" + item.path}
               title={item.text}
             >
-              <div className={st.icon_and_text}>{<item.icon />}</div>
-              {state ? (
-                <div className={st.icon_and_text}>
-                  <div>{item.text}</div>
-                </div>
-              ) : null}
+              <div className="blue-clickable tw-flex ">
+                <div className="tw-flex tw-items-center">{<item.icon />}</div>
+                {state ? (
+                  <div className="tw-flex tw-items-center tw-ml-4 ">
+                    <div>{item.text}</div>
+                  </div>
+                ) : null}
+              </div>
             </NavLink>
           </li>
         );

@@ -24,3 +24,19 @@ code {
 .color-change-base {
   @apply tw-bg-gray-100 tw-text-black dark:tw-bg-blue-900   dark:tw-text-white;
 }
+
+/* 让div或者button什么的有点击变颜色的特效，蓝色底色 */
+.blue-clickable {
+  @apply tw-px-7 tw-py-3
+  tw-text-white tw-font-bold tw-text-sm tw-leading-snug tw-uppercase 
+  tw-rounded tw-shadow-md   hover:tw-shadow-lg  
+  focus:tw-shadow-lg focus:tw-outline-none 
+  focus:tw-ring-0  active:tw-shadow-lg tw-transition tw-duration-150 tw-ease-in-out tw-w-full
+  tw-bg-blue-600 
+  hover:tw-bg-blue-700
+  focus:tw-bg-blue-700
+  active:tw-bg-blue-800
+  dark:tw-border-2;
+}
+
+

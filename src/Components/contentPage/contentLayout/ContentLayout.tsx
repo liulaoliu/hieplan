@@ -13,9 +13,9 @@ interface Props {
  * */
 export default function ContentLayout({ title, content }: Props): ReactElement {
   return (
-    <div className={styles.container}>
-      <div className={styles.title + " " + styles.border_bottom}>{title}</div>
-      <div className={styles.content}>{content}</div>
+    <div className=" tw-flex tw-flex-col tw-w-full">
+      <div className="tw-w-full tw-h-24 tw-bg-blue-600">{title}</div>
+      <div className="tw-w-full tw-h-full tw-bg-blue-500">{content}</div>
     </div>
   );
 }

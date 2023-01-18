@@ -1,9 +1,6 @@
 import React, { ReactElement } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar";
-import styles from "./Main.module.css";
-import FunnyBar from "../utils/funnybar/FunnyBar";
-import watchAltAndEnter from "../utils/watchAltAndEnter";
 interface Props {}
 /*
 主界面
@@ -17,37 +14,18 @@ export default function Main({}: Props): ReactElement {
   // watchAltAndEnter(funnyBarVisible, setFunnyBarVisible);
 
   return (
-    <div
-      style={{
-        position: "relative",
-      }}
-    >
-      <div className={styles.main_page_container}>
-        <div>
-          {/* 顶部 */}
-          {/* 下方
-                  侧边栏 
-                  内容区
-
-          */}
-          {/* 顶部 */}
-          <div>
-          </div>
-          {/* 下方  */}
-          <div>
-            <div>
-              {/*  侧边栏 */}
-              <Sidebar></Sidebar>
-            </div>
-            <div
-              // 内容区
-
-              className={styles.main_page_content}
-            >
-              <Outlet></Outlet>
-            </div>
-          </div>
-        </div>
+    // className="tw-relative"
+    //   注意，因为父级设置失误，这里用 height 100%之类的 设置没鸟用啊，气死我了，阿布阿布阿布阿布。
+    <div className="tw-flex tw-h-screen">
+      <div className="tw-w-36 tw-min-w-[9rem] tw-h-screen color-change-base">
+        {/*  侧边栏 */}
+        <Sidebar></Sidebar>
+      </div>
+      <div
+        // 内容区
+        className="tw-flex tw-w-full "
+      >
+        <Outlet></Outlet>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import st from "./sidebar.module.scss";
+
 import { SIDEBARREGULARDATA } from "./SidebarData.config";
 
 import { NavLink } from "react-router-dom";
@@ -15,6 +15,7 @@ export default function Sidebar({}: Props): ReactElement {
    * 另外 @media(min-width:330px){…}
   指的是 width大于或等于min-width时，采用{…}样式。
    *
+  2023 1月 更新，谁他妈用Mui啊?
    */
 
   // 切换侧边栏宽度 200px/50px
@@ -29,7 +30,7 @@ export default function Sidebar({}: Props): ReactElement {
   //   return <div></div>;
   // }
   return (
-    <div>
+    <div className="tw-pt-4">
      
 
       <SidebarItems data={SIDEBARREGULARDATA} state={open}></SidebarItems>
