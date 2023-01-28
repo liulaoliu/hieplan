@@ -7,11 +7,17 @@ interface Props {}
 export default function RollingInput({}: Props): ReactElement {
   const [state, setstate] = React.useState(false);
   const [val, setval] = React.useState("");
-  const inputRef = React.useRef(null);
+  let inputRef = React.useRef(null);
+  // 注意， 即使是useLayoutEffect 也有概率 自动focus 失效，没搞清楚为什么
   React.useEffect(() => {
     setTimeout(() => {
       (inputRef.current as any).focus();
-    }, 300);
+    }, 100);
+
+    return () => {
+      // can this clear operation work? will it cause any trouble?
+      inputRef = null as unknown as React.MutableRefObject<null>;
+    };
   }, [state]);
   return (
     <div className="tw-relative">
