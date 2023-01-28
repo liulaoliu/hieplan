@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import ChangeAppColorMode from "../ChangeAppColorMode";
+
 import Modal, { Styles } from "react-modal";
 import { usePopperTooltip } from "react-popper-tooltip";
 import "react-popper-tooltip/dist/styles.css";
@@ -89,7 +88,11 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
               console.log(e.code, "keyCode");
             }
             if (e.code === "Enter" || e.code === "NumpadEnter") {
-              if (possibility.includes(input)) {
+              if (
+                possibility.includes(input) ||
+                input.includes("/") ||
+                /\s{1,}/.test(input)
+              ) {
                 for (let i = 0; i < funnybarFns.length; i++) {
                   let currentItem = funnybarFns[i];
                   if (currentItem.judge() === false) {

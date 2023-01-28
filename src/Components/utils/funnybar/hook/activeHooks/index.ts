@@ -5,6 +5,8 @@ import useChangeColorModeCmd from "../useChangeColorModeCmd";
 import useChangeColorModePreferOsCmd from "../useChangeColorModePreferOsCmd";
 import funnybarHook from "../funnybarHook";
 import useNavigateSignInCmd from "../useNavigateSignInCmd";
+import useNavigateByInputCmd from "../useNavigateByInputCmd";
+
 /**
  * add any new hook here,those hooks are the different strategies that
  * can be used in different conditions.
@@ -17,6 +19,7 @@ export const funnybarHooks = [
   useChangeColorModeCmd,
   useChangeColorModePreferOsCmd,
   useNavigateSignInCmd,
+  useNavigateByInputCmd,
 ];
 
 export function activeFunnybarHooks(

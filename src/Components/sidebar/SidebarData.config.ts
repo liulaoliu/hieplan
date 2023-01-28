@@ -8,11 +8,12 @@ import {
   FaRegFile,
   FaBuromobelexperte,
   FaRegCompass,
+  FaHornbill,
 } from "react-icons/fa";
 
 import Test from "./Test";
 
-export const SIDEBARREGULARDATA= [
+export const SIDEBARREGULARDATA = [
   {
     itemName: "task",
     path: "/task",
@@ -48,6 +49,13 @@ export const SIDEBARREGULARDATA= [
     urlRelated: true,
     text: "标签",
   },
+  {
+    itemName: "tag",
+    path: "/test",
+    icon: FaHornbill,
+    urlRelated: true,
+    text: "测试",
+  },
 ];
 
 export const SIDEBARbottomDATA: any = [
@@ -74,4 +82,4 @@ export const SIDEBARbottomDATA: any = [
     text: null,
   },
 ];
-export type sidebarData= typeof SIDEBARREGULARDATA
+export type sidebarData = typeof SIDEBARREGULARDATA;

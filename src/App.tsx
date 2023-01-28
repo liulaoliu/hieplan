@@ -17,6 +17,7 @@ import colorModeStorage from "./Components/utils/ChangeAppColorMode";
 import FunnyBar from "./Components/utils/funnybar/FunnyBar";
 import watchAltAndEnter from "./Components/utils/watchAltAndEnter";
 import Login from "./Components/Login/Login";
+import Test from "./Components/contentPage/Test";
 //  懒加载示范
 const Task = React.lazy(() => import("./Components/contentPage/task/Task"));
 
@@ -59,6 +60,7 @@ export default function App() {
             <Route path="position" element={<Position />} />
             <Route path="tag" element={<Tag />} />
             <Route path="search" element={<Tag />} />
+            <Route path="test" element={<Test />} />
           </Route>
           <Route path="login" element={<Login />} />
           <Route

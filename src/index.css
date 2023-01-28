@@ -21,8 +21,10 @@ code {
   margin-left: 5px;
 }
 /*  切换 color mode */
-.color-change-base {
-  @apply tw-bg-gray-100 tw-text-black dark:tw-bg-blue-900   dark:tw-text-white;
+@layer components {
+  .color-change-base {
+    @apply tw-bg-gray-100 tw-text-black dark:tw-bg-blue-900   dark:tw-text-white;
+  }
 }
 
 /* 让div或者button什么的有点击变颜色的特效，蓝色底色 */
@@ -38,5 +40,3 @@ code {
   active:tw-bg-blue-800
   dark:tw-border-2;
 }
-
-

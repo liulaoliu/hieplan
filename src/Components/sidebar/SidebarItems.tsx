@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Button from "../../lib/Button/Button";
 import { sidebarData } from "./SidebarData.config";
 
-import st from "./sidebarItems.module.scss";
 type Props = {
   /**
    * 是侧边栏的数据格式
@@ -32,14 +32,14 @@ export default function SidebarItems({ data, state }: Props) {
               to={"/main" + item.path}
               title={item.text}
             >
-              <div className="blue-clickable tw-flex ">
-                <div className="tw-flex tw-items-center">{<item.icon />}</div>
-                {state ? (
-                  <div className="tw-flex tw-items-center tw-ml-4 ">
-                    <div>{item.text}</div>
+              <Button size="lg" color="primary">
+                <div className="tw-flex">
+                  <div>
+                    <item.icon />
                   </div>
-                ) : null}
-              </div>
+                  <div className="tw-text-sm tw-pl-4">{item.text}</div>
+                </div>
+              </Button>
             </NavLink>
           </li>
         );
