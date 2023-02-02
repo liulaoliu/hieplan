@@ -12,12 +12,23 @@ const CANGOEVERYWHERE =
  */
 const useNavigateByInputCmd: funnybarHook = function (inputValue: string) {
   const navigate = useNavigate();
-  const re = /\s{1,}/;
-  const isAddrContainsSpace = re.test(inputValue);
+  const reWithSpace = /\s{1,}/;
+  const isAddrContainsSpace = reWithSpace.test(inputValue);
+  const reWithDot = /\.{1,}/;
+  const isAddrContainsDot = reWithDot.test(inputValue);
+
   const clearSpaceAddr = inputValue.split(" ").join("/");
+  const clearDotAddr = inputValue.split(".").join("/");
   const execTheCmd = () => {
+    if (isAddrContainsDot && isAddrContainsSpace) {
+      return;
+    }
     if (isAddrContainsSpace) {
       navigate(clearSpaceAddr);
+      return;
+    }
+    if (isAddrContainsDot) {
+      navigate(clearDotAddr);
       return;
     }
     navigate(inputValue);
@@ -26,7 +37,7 @@ const useNavigateByInputCmd: funnybarHook = function (inputValue: string) {
   const possibility = [CANGOEVERYWHERE];
 
   function judge() {
-    if (inputValue.includes("/") || isAddrContainsSpace) {
+    if (inputValue.includes("/") || isAddrContainsSpace || isAddrContainsDot) {
       return true;
     }
     //包含空格，且以字母开头

@@ -5,7 +5,9 @@ import ButtonCustomized from "../../../../lib/Button/ButtonCustomized/ButtonCuto
 interface Props {}
 
 export default function RollingInput({}: Props): ReactElement {
+  // 开合状态的state
   const [state, setstate] = React.useState(false);
+  //input value的状态
   const [val, setval] = React.useState("");
   let inputRef = React.useRef(null);
   // 注意， 即使是useLayoutEffect 也有概率 自动focus 失效，没搞清楚为什么

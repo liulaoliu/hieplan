@@ -91,7 +91,8 @@ export default function FunnyBar({ funnybarVisible, handleClose }: Props) {
               if (
                 possibility.includes(input) ||
                 input.includes("/") ||
-                /\s{1,}/.test(input)
+                /\s{1,}/.test(input) ||
+                /\.{1,}/.test(input)
               ) {
                 for (let i = 0; i < funnybarFns.length; i++) {
                   let currentItem = funnybarFns[i];

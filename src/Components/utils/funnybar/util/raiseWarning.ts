@@ -8,7 +8,8 @@ export default function raiseWarning() {
   //only works in dev mode
   if (process.env.NODE_ENV === "development") {
     console.log(`
-  seems input value is not in the defined 'possibility' array.
+  seems input value' pattern is  not in the defined 'possibility' array or is not in accordance with 
+  the possible settings.
   if this value intended not to trigger a function,then just walk away.
   if you wonder why your input doesn't work properly(like trigger a function).
   you may check:

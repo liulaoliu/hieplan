@@ -1,5 +1,8 @@
 import React, { ReactElement } from "react";
-import { getNextIdxCircularly, getPreviousIdxCircularly } from "./quote/utils/index";
+import {
+  getNextIdxCircularly,
+  getPreviousIdxCircularly,
+} from "./quote/utils/index";
 
 /**
  * https://juejin.cn/post/7017682613959655461 看这里
@@ -103,7 +106,9 @@ export default function VerticalCarousel({
 
   /**
    *  when wheel scrolled ,this fn change state ,thus scroll behavior triggered.
-   * @param direction a number,positive means upward scroll ,negative means downward scroll
+   * @param direction a number,positive means upward scroll ,negative means downward scroll;
+   * when click(or ctrl + click) ,pass in a positive number(or a negative one)
+   * to simulate the scroll behavior's e.deltaY
    */
   function scrollHanlder(direction: number) {
     if (direction > 0) {
@@ -138,6 +143,18 @@ export default function VerticalCarousel({
 
           (scrollHanlder as unknown as any).tid = setTimeout(() => {
             scrollHanlder(e.deltaY);
+          }, 800);
+        }}
+        onClick={(e) => {
+          // 节流 throttle ? debounce? 到底是什么
+          clearTimeout((scrollHanlder as unknown as any).tid);
+
+          (scrollHanlder as unknown as any).tid = setTimeout(() => {
+            if (e.ctrlKey) {
+              scrollHanlder(1);
+              return;
+            }
+            scrollHanlder(-1);
           }, 800);
         }}
       >
