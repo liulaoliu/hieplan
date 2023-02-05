@@ -6,7 +6,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   height: number;
   width: number;
   color: buttonType;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
 }
 /*
 a button component,but you have to customize its height and width
